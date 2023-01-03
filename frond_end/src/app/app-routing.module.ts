@@ -15,12 +15,12 @@ const routes: Routes = [
 {path: "admin", component: UtilisateurComponent},
 {path: "profil", component: ProfilComponent},
 {path: "user", component: SimpleusersComponent},
+{path:"acceuil", component: AccueilDashboardComponent},
 {path:"inscription", component: InscrptionComponent},
-{path:"inscriptions", component: InscrptionComponent},
 {path:"login", component: LoginComponent},
 {path:"sides", component: SidebarComponent},
 {path:"", component: LoginComponent},
-{path:"acceuil", component: AccueilDashboardComponent},
+
 
 
 
