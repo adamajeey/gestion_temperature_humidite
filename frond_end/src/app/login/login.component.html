@@ -1,53 +1,82 @@
-<div class="container p-3 col-md-5   bg-light" id="container">
+<div class="container py-5 h-100 mt-5">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-xl-10">
+            <div class="card rounded-3 text-black">
+                <div class="row g-0">
+                    <div class="col-lg-6">
+                        <div class="card-body p-md-5 mx-md-4">
+                            <div class="text-center">
+                                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/lotus.webp"
+                                    style="width: 185px;" alt="logo">
+                                <h4 class="mt-1 mb-5 pb-1">Connexion</h4>
+                            </div>
+                            <form id="form" class="row g-3 d-flex justify-content-center no-wrap m-2"
+                                (submit)="onSubmit()" [formGroup]="registerForm">
+                                <div *ngIf="errorSms!" class="d-flex justify-content-center text text-danger" id="">
+                                    <span>vous n'etes pas dans la base de données!</span>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="input-control">
+                                        <label for="email">Email<span style="color: red;">*</span></label>
+                                        <input id="email" name="email" class=" p-3 rounded-0" type="text" id="email"
+                                            name="email" class=" p-3 rounded-0" type="text" id="email" name="email"
+                                            class=" p-3 rounded-0" type="text"
+                                            [ngClass]="{'is-invalid':submitted && registerForm.controls['email'].errors}"
+                                            placeholder="" formControlName="email" type="email" class="form-control"
+                                            id="email" name="email">
+                                        <div *ngIf="submitted && registerForm.controls['email'].errors"
+                                            class="text-danger">
+                                            <div
+                                                *ngIf="submitted && registerForm.controls['email'].errors ['required']">
+                                                Ce champ est require
+                                            </div>
+                                            <div *ngIf="submitted && registerForm.controls['email'].errors['email']">
+                                                Email Address incorrect
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="input-control">
+                                        <label for="password">Mot de passe<span style="color: red;">*</span></label>
+                                        <input name="password" class=" p-3 rounded-0" type="password" id="pass1"
+                                            name="password" class=" p-3 rounded-0" type="password" placeholder=""
+                                            [ngClass]="{'is-invalid':submitted && registerForm.controls['password'].errors}"
+                                            formControlName="password" type="password" class="form-control" id="pass2">
+                                        <div *ngIf="submitted && registerForm.controls['password'].errors"
+                                            class="text-danger">
+                                            <div *ngIf="submitted && registerForm.controls['password'].errors required">
+                                                Ce champ est require
+                                            </div>
+                                            <div
+                                                *ngIf="submitted && registerForm.controls['password'].errors['minlength']">
+                                                password doit contenir au minimum 8 caractères
+                                            </div>
+                                        </div>
 
-    <!-- <h1>FORMULAIRE DE CONNEXION</h1> -->
+                                    </div>
+                                </div>
 
-    <form id="form" class="row g-3 d-flex justify-content-center no-wrap m-2 bg-light" (submit)="onSubmit()"
-        [formGroup]="registerForm">
-        <div *ngIf="errorSms!" class="d-flex justify-content-center text text-danger" id="">
-            <span>vous n'etes pas dans la base de données!</span>
-          </div>
-        <div class="col-md-12">
-            <div class="input-control">
-                <label for="email">Email</label>
-                <input id="email" name="email" class=" p-3 rounded-0" type="text" id="email" name="email"
-                    class=" p-3 rounded-0" type="text" id="email" name="email" class=" p-3 rounded-0" type="text"
-                    [ngClass]="{'is-invalid':submitted && registerForm.controls['email'].errors}" placeholder="email"
-                    formControlName="email" type="email" class="form-control" id="email" name="email">
-                <div *ngIf="submitted && registerForm.controls['email'].errors" class="text-danger">
-                    <div *ngIf="submitted && registerForm.controls['email'].errors ['required']">
-                        Ce champ est require
+                                <div class="text-center pt-1 mb-5 pb-1">
+                                    <button type="submit" id="button" class="btn btn-outline-danger">
+                                        <span class="visually" *ngIf="!spin">Se connecter</span>
+                                        <span class="spinner-border spinner-border-sm" *ngIf="spin" role="status"
+                                            aria-hidden="false" style="color: white;"></span>
+                                    </button>
+                                </div>
+
+                            </form>
+
+                        </div>
                     </div>
-                    <div *ngIf="submitted && registerForm.controls['email'].errors['email']">
-                        Email Address incorrect
+                    <div class="col-lg-6 d-flex align-items-center gradient-custom-2">
+                        <div class="text-white px-3 py-4 p-md-5 mx-md-4">
+                            <img src="../../assets/conn.webp" alt=""
+                                style="opacity: 40%; height: 400px;width:395px;">
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-
-        <div class="col-md-12">
-            <div class="input-control">
-                <label for="password">Password</label>
-                <input name="password" class=" p-3 rounded-0" type="password" id="pass1" name="password"
-                    class=" p-3 rounded-0" type="password" placeholder="password"
-                    [ngClass]="{'is-invalid':submitted && registerForm.controls['password'].errors}"
-                    formControlName="password" type="password" class="form-control" id="pass2">
-                <div *ngIf="submitted && registerForm.controls['password'].errors" class="text-danger">
-                    <div *ngIf="submitted && registerForm.controls['password'].errors required">
-                        Ce champ est require
-                    </div>
-                    <div *ngIf="submitted && registerForm.controls['password'].errors['minlength']">
-                        password doit contenir au minimum 8 caractères
-                    </div>
-                </div>
-
-            </div>
-        </div>
-        
-        <button type="submit" id="button"  class="btn btn-primary">
-            <span class="visually" *ngIf="!spin" style="color: white;">Connexion</span>
-            <span class="spinner-border spinner-border-sm" *ngIf="spin" role="status" aria-hidden="false" style="color: white;"></span>
-        </button>
-        <a routerLink="/inscriptions">S'INSCRIRE</a>
-    </form>
+    </div>
 </div>
