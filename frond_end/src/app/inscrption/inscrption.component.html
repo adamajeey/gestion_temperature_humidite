@@ -1,0 +1,287 @@
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head> 
+<body class=" "> 
+    <div class="contrainer mt-10 p-3 col-md-5 mb-8  h-90 bg-light " >
+        FORMULAIRE D'INSCRIPTION
+        <div class="card"> -->
+            <!-- <div class="card-header text-while bg-primary d-flex justify-content-center h-20" id="titre">
+               
+            </div> -->
+    <!--         <div *ngIf="!verifPass" class="text-dander">
+                Les  mots de passe ne correspondent pas !
+            </div>
+            <div class="row">
+               
+                <div class="col-md-12">
+                    <form  (submit)="onSubmit()"[formGroup]="registerForm" id="form" >
+                        <div class="form-group">
+                            <label for="firstname">Prenom</label>
+                            <input [ngClass]="{'is-invalid':submitted && registerForm.controls['prenom'].errors}" placeholder="prenom"
+                                formControlName="prenom" type="text" class="form-control" style="height: 50px; width: 130%;">
+                            <div *ngIf="submitted && registerForm.controls['prenom'].errors" class="text-danger" name="prenom">
+                                <div *ngIf="submitted && registerForm.controls['prenom'].errors required">
+                                    Ce champ est  require
+                                </div> 
+                                 <div *ngIf="!submitted && registerForm.controls['prenom'].errors['cannotContainSpace']">
+                                    ne met pas espace
+                                </div> 
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            
+                            <div class="col-md-12">
+                            <label for="lastname">Nom</label>
+                            <input [ngClass]="{'is-invalid':submitted && registerForm.controls['prenom'].errors}" placeholder="prenom"
+                                formControlName="prenom" type="text" class="form-control" style="height: 50px; width: 130%;">
+                            <div *ngIf="submitted && registerForm.controls['prenom'].errors" class="text-danger" name="prenom">
+                                <div *ngIf="submitted && registerForm.controls['prenom'].errors required">
+                                    Ce champ est  require
+                                </div> 
+                                 <div *ngIf="!submitted && registerForm.controls['prenom'].errors['cannotContainSpace']">
+                                    ne met pas espace
+                                </div> 
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            
+                          <div class="col-md-12">
+                            <label for="emai">Email Address</label>
+                            <input [ngClass]="{'is-invalid':submitted && registerForm.controls['email'].errors}" placeholder="email"
+                                formControlName="email" type="email" class="form-control" id="email" name="email">
+                            <div *ngIf="submitted && registerForm.controls['email'].errors" class="text-danger">
+                                <div *ngIf="submitted && registerForm.controls['email'].errors ['required']">
+                                    Ce champ est  require
+                                </div>
+                                <div *ngIf="submitted && registerForm.controls['email'].errors['email']">
+                                    Email Address incorrect
+                                </div>
+                            </div>
+                        </div>
+                        </div> 
+                        <div class="form-group">
+                            <div class="col-md-12 ">
+                            <label for="Email">Role</label>
+                            <select [ngClass]="{'is-invalid':submitted && registerForm.controls['email'].errors}" placeholder="roles"
+                                formControlName="roles" type="text" class="form-control">
+                
+                                <option value=""></option>
+                                <option value="Administrateur">Admin</option>
+                                <option value="Utilisateur">Utilisateur</option>
+                            </select>
+                            <div *ngIf="submitted && registerForm.controls['roles'].errors" class="text-danger">
+                                <div *ngIf="submitted && registerForm.controls['roles'].errors ['required']">
+                                    Ce champ est  require
+                                </div>
+                                <div *ngIf="submitted && registerForm.controls['roles'].errors['roles']">
+                                   role is not Valid
+                                   
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-12">
+                            <label for="password">Password</label>
+                            <input [ngClass]="{'is-invalid':submitted && registerForm.controls['password'].errors}"
+                                formControlName="password" type="password" class="form-control" id="pass1">
+                            <div *ngIf="submitted && registerForm.controls['password'].errors" class="text-danger" >
+                                <div *ngIf="submitted && registerForm.controls['password'].errors required">
+                                    Ce champ est  require
+                                </div>
+                                <div *ngIf="submitted && registerForm.controls['password'].errors['minlength']">
+                                    password doit contenir au minimum 8 caractères
+                                </div>
+                            </div>
+                        </div>
+                        </div> 
+                        <div class="form-group">
+                            <div class="col-md-12">
+                            <label for="password">Password2</label>
+                            <input [ngClass]="{'is-invalid':submitted && registerForm.controls['passwordc'].errors}" placeholder="password2"
+                                formControlName="passwordc" type="password" class="form-control"  id="pass2" #pass2 (change)="checkPassword()">
+                            <div *ngIf="submitted && registerForm.controls['passwordc'].errors" class="text-danger">
+                                <div *ngIf="submitted && registerForm.controls['passwordc'].errors required">
+                                    Ce champ est  require
+                                </div>
+
+                            </div>
+                        </div>
+                        </div>
+                        <label for="avatar">Photo:</label>
+                        <input type="file"
+                          id="photo" name="photo"
+                             accept="image/png, image/jpeg">
+           
+                        <div class="form-group mt-10">
+                            <button class="btn btn-primary" type="submit">Soumettre</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div> 
+
+ -->
+<!-- /body> 
+</html>
+ -->
+
+ <div class="container w-100 p-3 col-md-5">
+    <!--   controle mot de pass// -->
+      
+    <!--   /// -->
+      <h1>FORMULAIRE D'INSCRIPTION</h1>
+     
+        <form id="form" class="row g-3 d-flex justify-content-center no-wrap m-2 bg-light" (submit)="onSubmit()"[formGroup]="registerForm" >
+          <div *ngIf="!verifPass" class="d-flex justify-content-center text text-danger" id="">
+            <span>les deux password ne correspondent pas!</span>
+          </div>
+          <div *ngIf="imgHeight" class="d-flex justify-content-center text text-danger" id="">
+            <span>La taille de l'image est trop grand</span>
+          </div>
+          <div *ngIf="errorMsg!" class="d-flex justify-content-center text text-danger" id="">
+            <span>email deja existe!</span>
+          </div>
+            <div class="col-md-6">
+            <div class="input-control">
+                <label for="username">Prenom</label>
+                <input id="prenom" class=" p-3 rounded-0" name="prenom" type="text"
+                [ngClass]="{'is-invalid':submitted && registerForm.controls['prenom'].errors}" placeholder="prenom"
+                                  formControlName="prenom" type="text" class="form-control" >
+                              <div *ngIf="submitted && registerForm.controls['prenom'].errors" class="text-danger" name="prenom">
+                                  <div *ngIf="submitted && registerForm.controls['prenom'].errors required">
+                                      Ce champ est  require
+                                  </div> 
+                                   <div *ngIf="!submitted && registerForm.controls['prenom'].errors['cannotContainSpace']">
+                                      ne met pas espace
+                                  </div> 
+                              </div>
+                
+            </div>
+            </div>
+            <div class="col-md-6">
+            <div class="input-control">
+              <label for="username">Nom</label>
+              <input id="nom" name="nom"  class=" p-3 rounded-0" type="text"
+              [ngClass]="{'is-invalid':submitted && registerForm.controls['nom'].errors}" placeholder="nom"
+              formControlName="nom" type="text" class="form-control">
+          <div *ngIf="submitted && registerForm.controls['nom'].errors" class="text-danger" name="nom">
+              <div *ngIf="submitted && registerForm.controls['nom'].errors required">
+                  Ce champ est  require
+              </div> 
+               <div *ngIf="!submitted && registerForm.controls['nom'].errors['cannotContainSpace']">
+                  ne met pas espace
+              </div> 
+          </div>
+              </div>
+          </div>
+          <div class="col-md-6">
+            <div class="input-control">
+                <label for="email">Email</label>
+                <input id="email" name="email" class=" p-3 rounded-0" type="text"
+                [ngClass]="{'is-invalid':submitted && registerForm.controls['email'].errors}" placeholder="email"
+                formControlName="email" type="email" class="form-control" id="email" name="email">
+            <div *ngIf="submitted && registerForm.controls['email'].errors" class="text-danger">
+                <div *ngIf="submitted && registerForm.controls['email'].errors ['required']">
+                    Ce champ est  require
+                </div>
+                <div *ngIf="submitted && registerForm.controls['email'].errors['email']">
+                    Email Address incorrect
+                </div>
+            </div>
+          </div>
+            </div>
+            <div class="col-md-6">
+            <div class="input-control">
+                <label for="email">Role</label>
+                <select id="role" name="roles"  class="form-select p-3 rounded-0" [ngClass]="{'is-invalid':submitted && registerForm.controls['email'].errors}" placeholder="roles"
+                formControlName="roles" type="text" class="form-control"placeholder="Role">
+                  <option value=""></option>
+                  <option value="Admin">Admin</option>
+                  <option value="Utilisateur">Utilisateur</option>
+                </select>
+                <div *ngIf="submitted && registerForm.controls['roles'].errors" class="text-danger">
+                  <div *ngIf="submitted && registerForm.controls['roles'].errors ['required']">
+                      Ce champ est  require
+                  </div>
+                  <div *ngIf="submitted && registerForm.controls['roles'].errors['roles']">
+                     role is not Valid
+                     
+                  </div>
+              </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+            <div class="input-control">
+                <label for="password">Password</label>
+                <input id="pass1" name="password"  class=" p-3 rounded-0" type="password"  placeholder="password"
+  
+                [ngClass]="{'is-invalid':submitted && registerForm.controls['password'].errors}"
+                formControlName="password" type="password" class="form-control">
+            <div *ngIf="submitted && registerForm.controls['password'].errors" class="text-danger" >
+                <div *ngIf="submitted && registerForm.controls['password'].errors required">
+                    Ce champ est  require
+                </div>
+                <div *ngIf="submitted && registerForm.controls['password'].errors['minlength']">
+                    password doit contenir au minimum 8 caractères
+                </div>
+            </div>
+        </div>
+               
+            </div>
+            
+            <div class="col-md-6">
+            <div class="input-control">
+                <label for="password2">Password again</label>
+                <input [ngClass]="{'is-invalid':submitted && registerForm.controls['passwordc'].errors}" placeholder="password2"
+                formControlName="passwordc" type="password" class="form-control"  id="pass2" #pass2 (change)="checkPassword()">
+            <div *ngIf="submitted && registerForm.controls['passwordc'].errors" class="text-danger">
+                <div *ngIf="submitted && registerForm.controls['passwordc'].errors required">
+                    Ce champ est  require
+                </div>
+  
+            </div>
+           
+        </div>
+               
+                </div>
+                <div class="col-md-6">
+            <div class="input-control">
+               
+                <label for="avatar"></label>
+                <input type="file" id="photo" name="photo" class="form-control" accept="image/png, image/jpeg"
+                    (change)="onFileSelected($event)">
+
+            </div>
+        
+           
+<hr />
+<!-- <div class="spinner-border text-warning" role="status"> -->
+ 
+
+
+<button type="button"(click)="onSubmit()" id="button" >
+    <span class="visually" *ngIf="!spin" style="color: white;">Inscription</span>
+    <span class="spinner-border spinner-border-sm" *ngIf="spin" role="status" aria-hidden="false" style="color: white;"></span>
+</button>
+   
+   
+  <!--  <div class="overlay" *ngIf="popup">
+       <div class="popup">
+           <h2>BIENVENUE</h2>
+           <a class="close" (click)="onSubmit()">ok</a>
+           <div class="content" style="color:green">
+INSCRIPTION RÉUSSIE AVEC SUCCÉE</div>
+       </div>
+   </div> -->
+
+     <a  routerLink="/login" id="conn">CONNEXION ?</a>
+
+        </div>

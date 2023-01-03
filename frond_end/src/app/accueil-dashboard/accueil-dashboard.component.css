@@ -1,0 +1,28 @@
+.taicard{
+    width:250px;
+    height: 250px;
+};
+.centera{
+   text-align: center;
+};
+.post-content {
+    background: none repeat scroll 0 0 #FFFFFF;
+    opacity: 0.5;
+    /* margin: -54px 20px 12px; */ 
+    position: relative;
+}
+.centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 35px;
+  }
+  .taicarde{
+    width:1140px;
+    height: 1006px;
+};
+.taivent{
+    width:30x;
+    height: 30px;
+};

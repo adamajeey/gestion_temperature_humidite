@@ -1,0 +1,53 @@
+<div class="container p-3 col-md-5   bg-light" id="container">
+
+    <!-- <h1>FORMULAIRE DE CONNEXION</h1> -->
+
+    <form id="form" class="row g-3 d-flex justify-content-center no-wrap m-2 bg-light" (submit)="onSubmit()"
+        [formGroup]="registerForm">
+        <div *ngIf="errorSms!" class="d-flex justify-content-center text text-danger" id="">
+            <span>vous n'etes pas dans la base de données!</span>
+          </div>
+        <div class="col-md-12">
+            <div class="input-control">
+                <label for="email">Email</label>
+                <input id="email" name="email" class=" p-3 rounded-0" type="text" id="email" name="email"
+                    class=" p-3 rounded-0" type="text" id="email" name="email" class=" p-3 rounded-0" type="text"
+                    [ngClass]="{'is-invalid':submitted && registerForm.controls['email'].errors}" placeholder="email"
+                    formControlName="email" type="email" class="form-control" id="email" name="email">
+                <div *ngIf="submitted && registerForm.controls['email'].errors" class="text-danger">
+                    <div *ngIf="submitted && registerForm.controls['email'].errors ['required']">
+                        Ce champ est require
+                    </div>
+                    <div *ngIf="submitted && registerForm.controls['email'].errors['email']">
+                        Email Address incorrect
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <div class="input-control">
+                <label for="password">Password</label>
+                <input name="password" class=" p-3 rounded-0" type="password" id="pass1" name="password"
+                    class=" p-3 rounded-0" type="password" placeholder="password"
+                    [ngClass]="{'is-invalid':submitted && registerForm.controls['password'].errors}"
+                    formControlName="password" type="password" class="form-control" id="pass2">
+                <div *ngIf="submitted && registerForm.controls['password'].errors" class="text-danger">
+                    <div *ngIf="submitted && registerForm.controls['password'].errors required">
+                        Ce champ est require
+                    </div>
+                    <div *ngIf="submitted && registerForm.controls['password'].errors['minlength']">
+                        password doit contenir au minimum 8 caractères
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        
+        <button type="submit" id="button"  class="btn btn-primary">
+            <span class="visually" *ngIf="!spin" style="color: white;">Connexion</span>
+            <span class="spinner-border spinner-border-sm" *ngIf="spin" role="status" aria-hidden="false" style="color: white;"></span>
+        </button>
+        <a routerLink="/inscriptions">S'INSCRIRE</a>
+    </form>
+</div>

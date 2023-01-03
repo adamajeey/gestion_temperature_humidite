@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <div class="container py-5 h-100 " *ngIf="!showForm">
+    <div class="row d-flex justify-content-center align-items-center h-100 " *ngFor="let user of userActif">
+      <div class="col col-lg-10 mb-4  mb-lg-0 bg-body ">
+        <div class="card mb-3 mt-3" style="border-radius: .5rem;">
+          <div class="row g-0 ">
+            <div class="col-md-4 shadow bg-primary gradient-custom text-center text-dark"
+              style="border-top-left-radius: .5rem; border-bottom-left-radius: .5rem;">
+
+
+
+              <img [attr.src]="img" alt="Avatar" class="img-fluid my-5 rounded" style="width: 80px;" />
+              <!-- <img [attr.src]="img" class="rounded-circle border m-1   " height="50" />       -->
+
+
+
+              <h5 class="text-dark">
+
+                <p class="text-dark text-bold">{{user.prenom}}</p>
+                <p class="text-dark">{{user.nom}}</p>
+              </h5>
+              <div ng="let user of userActif">
+                <span class="btn btn-outline-primary" title="modifier">
+                  <i class="bi bi-pen-fill" id="i2" (click)="getUserData()"></i>
+                </span>
+                <span class="btn btn-outline-primary" title="modifier">
+                  <i class="bi bi-user" id="i2" (click)="getUserData()"></i>
+                </span>
+              </div>
+            </div>
+            <div class="col-md-8 ">
+              <div class="card-body p-4 shadow">
+                <h6>Information</h6>
+                <hr class="mt-0 mb-4">
+                <div class="row pt-1">
+                  <div class="col-6 mb-3">
+                    <h6>Email</h6>
+                    <p class="text-muted">{{user.email}}</p>
+                  </div>
+                  <div class="col-6 mb-3">
+                    <h6>Rôle</h6>
+                    <p class="text-muted">{{user.roles}}</p>
+                  </div>
+                  <div class="col-6 mb-3">
+                    <h6>Matricule</h6>
+                    <p class="text-muted">{{user.matricule}}</p>
+                  </div>
+                  <div class="col-6 mb-3">
+                    <h6>Date inscription</h6>
+                    <p class="text-muted">{{user.date_inscri | date}}</p>
+                  </div>
+                </div>
+
+                <hr class="mt-0 mb-4">
+                <div class="row pt-1">
+                  <div class="col-10 mb-3">
+
+                    <p class="text-muted">Mamy sy ©copyright 2022</p>
+                  </div>
+                </div>
+                <div class="d-flex justify-content-start">
+                  <a href="#!"><i class="fab fa-facebook-f fa-lg me-3"></i></a>
+                  <a href="#!"><i class="fab fa-twitter fa-lg me-3"></i></a>
+                  <a href="#!"><i class="fab fa-instagram fa-lg"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <form *ngIf="showForm" [formGroup]="userEditForm" (ngSubmit)="modifUsers()" class="col-6" style="margin: 0 auto;">
+    <input type="text" formControlName="id" hidden>
+    <span *ngIf="verifPass">
+        <p class="text text-danger">Mot de passe nom identique</p>
+    </span>
+    <div class="mb-3">
+      <label for="password" class="form-label">Password</label>
+      <input [ngClass]="{'is-invalid':submitted && registerForm.controls['password'].errors}" placeholder="password"
+        type="password" class="form-control" id="pass1" formControlName="password" #pass1>
+      <div *ngIf="submitted && registerForm.controls['password'].errors" class="text-danger">
+        <div *ngIf="submitted && registerForm.controls['password'].errors required">
+
+        </div>
+      </div>
+    </div>
+    <div class="mb-3">
+      <label class="form-label" for="password2">Password2</label>
+      <input [ngClass]="{'is-invalid':submitted && registerForm.controls['password2'].errors}" placeholder="password2"
+        formControlName="password2" type="password" class="form-control" id="pass2" (change)="checkPassword()" #pass1>
+
+      <div *ngIf="submitted && registerForm.controls['password2'].errors" class="text-danger">
+        <div *ngIf="submitted && registerForm.controls['password2'].errors required">
+        </div>
+      </div>
+    </div>
+    <div class="d-flex justify-content-space">
+      <button type="submit" class="btn btn-primary">ENREGISTRER</button>
+      <button type="submit" class="btn btn-danger" (click)="this.ngOnInit()">Annuler</button>
+    </div>
+  </form>
+
+
+  <!-- 
+                        <div class="fr ">
+                              <form *ngIf="showForm" [formGroup]="userEditForm" (ngSubmit)="modifUsers()" id="form" style="margin: 0 auto;">
+                                <input type="text" formControlName="id"  hidden>
+                             
+                                <div class="col-md-6">
+                                  <div class="input-control">
+                                    <label for="password" class="form-label">password</label>
+                                 
+                                           <input [ngClass]="{'is-invalid':submitted && registerForm.controls['password'].errors}" placeholder="password"
+                                            formControlName="password" type="password" class="form-control"  id="pass1">
+                                            <div *ngIf="submitted && registerForm.controls['password'].errors" class="text-danger">
+                                            <div *ngIf="submitted && registerForm.controls['password'].errors required">
+                                              
+                                            </div>
+                                            </div>
+                                            </div>
+                               
+                                
+                                     <label for="password2" class="form-label">Password2</label>
+                                 
+                                      <input [ngClass]="{'is-invalid':submitted && registerForm.controls['password2'].errors}" placeholder="password2"
+                                      formControlName="password2" type="password" class="form-control"  id="pass2" #pass2 (change)="checkPassword()">
+                                      <div *ngIf="submitted && registerForm.controls['password2'].errors" class="text-danger">
+                                      <div *ngIf="submitted && registerForm.controls['password2'].errors required">
+                                      
+                                      </div>
+                                      </div> 
+                                    </div>
+                             
+                           
+                      
+                          <div class="d-flex justify-content-space" id="btn">
+                            <button type="submit" class="btn btn-primary" id="bnt">ENREGISTRER</button>
+                            <button type="submit" class="btn btn-danger" (click)="this.ngOnInit()">Annuler</button>
+                          </div>
+                        </form>
+                            </div> -->
+
+</body>
+
+</html>

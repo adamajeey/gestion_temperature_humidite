@@ -1,0 +1,105 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~bootstrap-icons/font/bootstrap-icons.css";
+@import "node_modules/bootstrap/dist/css/bootstrap.min.css";
+/* @import "~ngx-toastr/toastr.css"; */
+
+.container{
+    background-color:whitesmoke;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 70px;
+  justify-content: center;
+  width: 100%;
+}
+
+
+
+#le{
+     position: relative; 
+    width: 100%;
+    display: flex;
+    left:750px;
+    height: 100%;
+    margin: 0;
+}
+
+.pro{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;  
+}
+/* .container-fluid{
+    width: 50%;
+    display: flex;
+    flex-wrap: wrap;
+    display: flex;
+    height: 100px;
+    position: relative;
+    margin: auto;
+    border-radius: 5px;
+    overflow: hidden;
+} */
+
+
+#nav{
+    display: flex;
+    flex-wrap: wrap;
+   margin: 20px; 
+   padding: 20px;
+}
+body{
+   font-family: Arial;
+  
+    margin: 0;
+    padding: 0;
+   
+}
+#tab{
+    width: 70%;
+  
+}
+#i1{
+    color: red;
+}
+#i2{
+    color: green;
+}
+h5{
+    color:white ;
+}
+.a{
+    
+    margin: 25px; flex-wrap:wrap;
+}
+h1{
+    color: white;
+    margin-top:10px
+}
+.titre{
+display: flex;
+justify-content: center;
+}
+
+.b{
+    display: flex;
+    flex-wrap: wrap;
+    width:50%;
+
+}
+/* ::ng-deep{ */
+    .ngx-pagination{
+display: flex;
+justify-content: center;
+align-items: center;
+gap: 4px;
+    }
+    
+
+
+.bouton{
+    display: flex;
+    width:100%; height:30px; background-color:bisque;
+}
+.d{
+    background-color:#0096D7 ; color:white;
+}
