@@ -45,6 +45,7 @@
   <script src="//conoret.com/dsp?h=getbootstrap.com&amp;r=0.34487549025716624" type="text/javascript" defer="" async=""></script>
 </head>
   <body>
+    
     <script type="text/javascript">
       window.top === window && !function(){
         var e=document.createElement("script"),
@@ -55,6 +56,7 @@
         e.async=!0,
         t.appendChild(e)}();
         </script>
+        
     
 <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
   <symbol id="bootstrap" viewBox="0 0 16 16">
@@ -118,6 +120,7 @@
   </symbol>
 </svg>
 <main>
+  
   <h1 class="visually-hidden">Sidebars examples</h1>
   <!-- <div class="b-example-divider"></div> -->
 
@@ -154,25 +157,25 @@
     <hr style="color: white;">
     <ul class="nav nav-pills flex-column mb-auto">
       <li class="nav-item">
-        <a href="#" class="nav-link link-light fs-5" aria-current="page">
+        <a [routerLink]="['/acceuil']" routerLinkActive="router-link-active"  class="nav-link link-light fs-5" aria-current="page">
           <svg class="bi me-2" width="20" height="20"><use xlink:href="#speedometer2"></use></svg>
           Dashboard
         </a>
       </li>
       <li>
-        <a href="#" class="nav-link link-light fs-5">
+        <a [routerLink]="['/profil']" routerLinkActive="router-link-active"  class="nav-link link-light fs-5">
           <svg class="bi me-2" width="20" height="20"><use xlink:href="#people-circle"></use></svg>
           Profil
         </a>
       </li>
       <li>
-        <a href="#" class="nav-link link-light fs-5">
+        <a [routerLink]="['/admin']" routerLinkActive="router-link-active"  class="nav-link link-light fs-5">
           <svg class="bi me-2" width="20" height="20"><use xlink:href="#table"></use></svg>
           Liste active
         </a>
       </li>
       <li>
-        <a href="#" class="nav-link link-light fs-5">
+        <a [routerLink]="['/pageArchive']" routerLinkActive="router-link-active"  class="nav-link link-light fs-5">
           <svg class="bi me-2" width="20" height="20"><use xlink:href="#table"></use></svg>
           Liste archive
         </a>
@@ -184,7 +187,7 @@
         </a>
       </li>
       <li>
-        <a href="#" class="nav-link link-light fs-5">
+        <a [routerLink]="['/inscription']" routerLinkActive="router-link-active"  class="nav-link link-light fs-5">
           <svg class="bi me-2" width="20" height="20"><use xlink:href="#people"></use></svg>
           Inscription
         </a>
