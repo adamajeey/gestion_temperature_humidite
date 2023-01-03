@@ -9,7 +9,11 @@ import Swal from 'sweetalert2';
   styleUrls: ['./utilisateur.component.css']
 })
 
-export class UtilisateurComponent implements OnInit { 
+export class UtilisateurComponent implements OnInit {
+  registerForm!:FormGroup;
+  title = 'angularvalidate';
+  submitted = false;
+  verifPass:any = true;
 users: any;
 userEditForm : FormGroup;
 showForm = false; 
@@ -19,6 +23,7 @@ totalUser:any;
 searchText:any;
 user = []; userActif:any = [];
 emailExiste:any;
+spin= false;
 
   constructor(private userService : UsersService, private formBuilder : FormBuilder){
     this.userEditForm = this.formBuilder.group({
@@ -109,7 +114,7 @@ etat == "false" ? etat = true : etat = false
     this.userService.modifUsers(id,user).subscribe(
 
       data=>{
-
+  
         Swal.fire({
           icon:'success' 
         })
@@ -149,6 +154,13 @@ getUserData(id:any,email:any,prenom:any,nom:any){
 modifUsers (){
   const id =  this.userEditForm.value.id;
   for (const iterator of this.users) {
+    this.submitted = true
+    this.spin = true
+   if(this.userEditForm.invalid){
+    this.spin = false
+    return ;
+  }
+  
   console.log(iterator.email  )
   if(iterator.email == this.userEditForm.value.email && iterator._id != id){
     this.emailExiste = "Email existe déjà";
@@ -179,6 +191,5 @@ modifUsers (){
 }
 
 }
-
 
 
