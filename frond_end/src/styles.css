@@ -4,7 +4,11 @@
 /* @import "~ngx-toastr/toastr.css"; */
 
 .container{
+<<<<<<< HEAD
     background-color:white;
+=======
+   
+>>>>>>> f53fdde1e2750dcc90f6ae03ecad78c2edc0a147
     display: flex;
     flex-wrap: wrap;
     margin: 70px;
