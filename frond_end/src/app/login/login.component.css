@@ -1,6 +1,8 @@
     .gradient-custom-2{
-        background-color: #D4464f;
-        opacity: 50%;
+        background-image:linear-gradient(rgba(255, 0, 0, 0.5), rgba(255, 0, 0, 0.5)),
+        url('../../assets/conn.webp');
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
     }
     
     @media (min-width: 768px) {
