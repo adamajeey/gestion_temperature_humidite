@@ -1,5 +1,17 @@
   <!-- <app-header *ngIf="showHead"></app-header> -->
-<router-outlet></router-outlet>
+  <div class="d-flex">
+    <div>
+      <app-sidebar *ngIf="showHead"></app-sidebar>
+    </div>
+
+    <div class="d-flex justify-content-center col-12">
+      <div>
+        <router-outlet></router-outlet>
+      </div>
+     
+    </div>
+  </div>
+
  
 
 <!-- <app-utilisateur></app-utilisateur> -->
