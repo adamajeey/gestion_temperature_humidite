@@ -11,22 +11,22 @@
 </head>
 <body >
 
-  <div class="container py-4 " style="height:100vh;">
+  <div class="container" style="height:800px;margin:0;">
     <div class="row d-flex justify-content-center align-items-center">
-      <div class="col-xl-10">
-        <div class="card rounded-3 text-black">
+      <div class="col-xl-8">
+        <div class="card rounded-2 text-black">
           <div class="row g-0">
             <div class="col-lg-6">
-              <div class="card-body p-md-3 mx-md-2">
+              <div class="card-body p-md-3 ">
 
                 <div class="text-center">
                   <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/lotus.webp"
-                    style="width: 180px;" alt="logo">
-                  <h4 class="mt-1 mb-3 pb-1">Ajouter un utilisateur</h4>
+                    style="width: 180px;margin-top: -40px;" alt="logo">
+                  <h3 class=" mb-3 pb-1" style="margin-top: -20px;">Ajouter un utilisateur</h3>
                 </div>
 
                
-        <form id="form" class="row g-3 d-flex justify-content-center no-wrap m-2 bg-light" (submit)="onSubmit()"[formGroup]="registerForm" >
+        <form id="form" style="height: 750px;margin-top: -35px;" class="row d-flex justify-content-center no-wrap  " (submit)="onSubmit()"[formGroup]="registerForm" >
             <div *ngIf="!verifPass" class="d-flex justify-content-center text text-danger" id="">
               <span>les deux password ne correspondent pas!</span>
             </div>
@@ -37,7 +37,7 @@
               <span>email deja existe!</span>
             </div>
                  
-                    <div class="form-outline mb-2">
+                    <div class="form-outline">
                         <div class="input-control">
                     <label class="form-label" for="form2Example11">Nom</label>
                     <input id="form2Example11" name="nom"  class=" p-3 rounded-0" type="text"
@@ -54,7 +54,7 @@
                    
                   </div>
                 </div>
-                  <div class="form-outline mb-2">
+                  <div class="form-outline">
                     <div class="input-control">
                     <label class="form-label" for="form2Example11">Prenom</label>
                     <input id="form2Example11" class=" p-3 rounded-0" name="prenom" type="text"
@@ -71,7 +71,7 @@
                      
                                       </div>
                   </div>
-                  <div class="form-outline mb-2">
+                  <div class="form-outline">
                     <div class="input-control">
                     <label class="form-label" for="form2Example11">Email</label>
                     <input id="form2Example11" name="email" class=" p-3 rounded-0" type="text"
@@ -88,7 +88,7 @@
                    
                   </div>
                   </div>
-                  <div class="form-outline mb-2">
+                  <div class="form-outline">
                     <div class="input-control">
                     <label class="form-label" for="form2Example11">Role</label>
                     <select id="form2Example11" name="roles"  class="form-select p-3 rounded-0" [ngClass]="{'is-invalid':submitted && registerForm.controls['email'].errors}" placeholder="roles"
@@ -109,7 +109,7 @@
                   </div>
                   </div>
                   
-                  <div class="form-outline mb-2">
+                  <div class="form-outline">
                     <div class="input-control">
                     <label class="form-label" for="form2Example11">Password</label>
                     <input id="pass1" name="password"  class=" p-3 rounded-0" type="password"  placeholder="password"
@@ -127,7 +127,7 @@
                   
                   </div>
                   </div>
-                  <div class="form-outline mb-2">
+                  <div class="form-outline">
                     <div class="input-control">
                     <label class="form-label" for="form2Example11">Confirm password</label>
                     <input [ngClass]="{'is-invalid':submitted && registerForm.controls['passwordc'].errors}" placeholder="password2"
@@ -141,7 +141,7 @@
                      
                   </div>
                   </div>
-                  <div class="form-outline mb-2">
+                  <div class="form-outline">
                     <div class="input-control">
                     <label class="form-label" for="form2Example11">Photos</label>
                     <input type="file" id="form2Example11" name="photo" class="form-control" accept="image/png, image/jpeg"
