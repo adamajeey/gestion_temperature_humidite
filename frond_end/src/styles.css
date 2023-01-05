@@ -4,11 +4,7 @@
 /* @import "~ngx-toastr/toastr.css"; */
 
 .container{
-<<<<<<< HEAD
-    background-color:white;
-=======
    
->>>>>>> origin/mamisy
     display: flex;
     flex-wrap: wrap;
     margin: 70px;
