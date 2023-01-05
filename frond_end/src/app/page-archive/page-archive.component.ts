@@ -62,10 +62,10 @@ simpleAlert(){
     if (result.value) {  
       Swal.fire({
        icon:'success' 
-       }    
-           
-      )  
+       })  
+      
     }
+  
     // else if (result.dismiss === Swal.DismissReason.cancel) {  
     //   Swal.fire(  
     //     'Annuler',    
@@ -73,6 +73,8 @@ simpleAlert(){
     //   )  
     // }  
   })  
+  
+
 }  
 
 ddeleteId=(id:any,etat:any)=> {
@@ -85,14 +87,28 @@ ddeleteId=(id:any,etat:any)=> {
   
    }
   
-   this.userService.modifUsers(id,user).subscribe(
+   Swal.fire({  
+    title: 'Voulez-vous vraiment effectuer cette action?',  
+    text: 'Si oui met ok',  
+    icon: 'warning',  
+    showCancelButton: true,  
+    confirmButtonText: 'ok!',  
+    cancelButtonText: 'Annuler'  
+  }).then((result) => {  
+    if (result.value) {  
   
-    data=>{
-      this.simpleAlert();
-      this.ngOnInit();
+      this.userService.modifUsers(id,user).subscribe(
+  
+        data=>{
+    
+          Swal.fire({
+            icon:'success' 
+          })
+          this.ngOnInit();
+        }
+     );  
     }
-   );
-  
+  }) 
   
 }
 
