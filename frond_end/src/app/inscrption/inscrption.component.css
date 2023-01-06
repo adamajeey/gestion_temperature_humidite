@@ -103,15 +103,21 @@
       width: 100%;
       font-size: 85%;
   }
+
+  #roles{
+    height: 50px;
+    width: 100%;
+    font-size: 85%;
+}
+
+
   h1 {
     color: #0f2027;
     text-align: center;
     font-size: 35px;
    /*  margin-left: 12px; */
   }
-  label{
-      font-size: 25px;  
-  }#photo{
+  #photo{
     height: 50px;
       width: 100%;
       font-size: 100%;
@@ -128,28 +134,10 @@
     display: flex;
     justify-content: center;
   }
-  .gradient-custom-2 {
-    /* fallback for old browsers */
-    background: #d4464f;
-    /* opacity: 30%; */
-    /* Chrome 10-25, Safari 5.1-6 */
-  /*     background: -webkit-linear-gradient(to right,/*  #ee7724, #d8363a, #dd3675, #b44593 */
+ 
     
-    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ 
-    background: linear-gradient(to right,  #ee7724, #d8363a, #dd3675, #b44593 ); */
-    }
-    
-    @media (min-width: 768px) {
-    .gradient-form {
-    height: 100vh !important;
-    }
-    }
-    @media (min-width: 769px) {
-    .gradient-custom-2 {
-    border-top-right-radius: .3rem;
-    border-bottom-right-radius: .3rem;
-    }
-    }
+ 
+ 
  
 
   
