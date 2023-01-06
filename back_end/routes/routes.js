@@ -85,8 +85,9 @@ try {
     return res.status(409).send("Email Already Exist. Please Login");
   }
 
-    const hash = await bcrypt.hash(newUser.password, 10);
+    const hash = await bcrypt.hash(newUser.password,newUser.password2, 10);
     newUser.password = hash;
+    newUser.password2 = hash;
     users.push(newUser);
     /* res.json(newUser); */
     await newUser.save();
