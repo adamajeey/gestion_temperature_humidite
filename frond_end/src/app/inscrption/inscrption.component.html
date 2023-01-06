@@ -1,15 +1,19 @@
-
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+    crossorigin="anonymous"></script>
+  <title>Document</title>
 </head>
-<body >
+
+<body>
 
   <div class="container" style="height:800px;margin:0;">
     <div class="row d-flex justify-content-center align-items-center">
@@ -25,144 +29,136 @@
                   <h3 class=" mb-3 pb-1" style="margin-top: -20px;">Ajouter un utilisateur</h3>
                 </div>
 
-               
-        <form id="form" style="height: 750px;margin-top: -35px;" class="row d-flex justify-content-center no-wrap  " (submit)="onSubmit()"[formGroup]="registerForm" >
-            <div *ngIf="!verifPass" class="d-flex justify-content-center text text-danger" id="">
-              <span>les deux password ne correspondent pas!</span>
-            </div>
-            <div *ngIf="imgHeight" class="d-flex justify-content-center text text-danger" id="">
-              <span>La taille de l'image est trop grand</span>
-            </div>
-            <div *ngIf="errorMsg!" class="d-flex justify-content-center text text-danger" id="">
-              <span>email deja existe!</span>
-            </div>
-                 
-                    <div class="form-outline">
-                        <div class="input-control">
-                    <label class="form-label" for="form2Example11">Nom</label>
-                    <input id="form2Example11" name="nom"  class=" p-3 rounded-0" type="text"
-                    [ngClass]="{'is-invalid':submitted && registerForm.controls['nom'].errors}" placeholder="nom"
-                    formControlName="nom" class="form-control">
-                   <div *ngIf="submitted && registerForm.controls['nom'].errors" class="text-danger" name="nom">
-                    <div *ngIf="submitted && registerForm.controls['nom'].errors required">
-                        Ce champ est  require
-                    </div> 
-                     <div *ngIf="!submitted && registerForm.controls['nom'].errors['cannotContainSpace']">
-                        ne met pas espace
-                    </div> 
-                    </div>
-                   
+
+                <form id="form" style="height: 750px;  margin-top: -15px;"
+                  class="row d-flex justify-content-center no-wrap  " (submit)="onSubmit()" [formGroup]="registerForm">
+                  <div *ngIf="!verifPass" class="d-flex justify-content-center text text-danger" id="">
+                    <span>les deux password ne correspondent pas!</span>
                   </div>
-                </div>
-                  <div class="form-outline">
+                  <div *ngIf="imgHeight" class="d-flex justify-content-center text text-danger" id="">
+                    <span>La taille de l'image est trop grand</span>
+                  </div>
+                  <div *ngIf="errorMsg!" class="d-flex justify-content-center text text-danger" id="">
+                    <span>email deja existe!</span>
+                  </div>
+
+                  <div class="form-group row-6">
                     <div class="input-control">
+                      <label class="form-label" for="form2Example11">Nom</label>
+                      <input id="form2Example11" name="nom" class=" p-3 rounded-0" type="text"
+                        [ngClass]="{'is-invalid':submitted && registerForm.controls['nom'].errors}" placeholder="nom"
+                        formControlName="nom" class="form-control">
+                      <div *ngIf="submitted && registerForm.controls['nom'].errors" class="text-danger" name="nom">
+                        <div *ngIf="submitted && registerForm.controls['nom'].errors required">
+                          Ce champ est require
+                        </div>
+                        <div *ngIf="!submitted && registerForm.controls['nom'].errors['cannotContainSpace']">
+                          ne met pas espace
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+
+                  <div class="input-control">
                     <label class="form-label" for="form2Example11">Prenom</label>
                     <input id="form2Example11" class=" p-3 rounded-0" name="prenom" type="text"
-                    [ngClass]="{'is-invalid':submitted && registerForm.controls['prenom'].errors}" placeholder="prenom"
-                                      formControlName="prenom" type="text" class="form-control" >
-                                      <div *ngIf="submitted && registerForm.controls['prenom'].errors" class="text-danger" name="prenom">
-                                      <div *ngIf="submitted && registerForm.controls['prenom'].errors required">
-                                          Ce champ est  require
-                                       </div> 
-                                       <div *ngIf="!submitted && registerForm.controls['prenom'].errors['cannotContainSpace']">
-                                          ne met pas espace
-                                      </div> 
-                                      </div>
-                     
-                                      </div>
+                      [ngClass]="{'is-invalid':submitted && registerForm.controls['prenom'].errors}"
+                      placeholder="prenom" formControlName="prenom" type="text" class="form-control">
+                    <div *ngIf="submitted && registerForm.controls['prenom'].errors" class="text-danger" name="prenom">
+                      <div *ngIf="submitted && registerForm.controls['prenom'].errors required">
+                        Ce champ est require
+                      </div>
+                      <div *ngIf="!submitted && registerForm.controls['prenom'].errors['cannotContainSpace']">
+                        ne met pas espace
+                      </div>
+                    </div>
+
                   </div>
-                  <div class="form-outline">
-                    <div class="input-control">
+
+
+                  <div class="input-control">
                     <label class="form-label" for="form2Example11">Email</label>
-                    <input id="form2Example11" name="email" class=" p-3 rounded-0" type="text"
+                    <input id="form2Example11" name="email" class=" p-1 rounded-0" type="text"
                       [ngClass]="{'is-invalid':submitted && registerForm.controls['email'].errors}" placeholder="email"
                       formControlName="email" type="email" class="form-control" id="email" name="email">
-            <div *ngIf="submitted && registerForm.controls['email'].errors" class="text-danger">
-            <div *ngIf="submitted && registerForm.controls['email'].errors ['required']">
-                    Ce champ est  require
-            </div>
-            <div *ngIf="submitted && registerForm.controls['email'].errors['email']">
-                    Email Address incorrect
-            </div>
-            </div>
-                   
+                    <div *ngIf="submitted && registerForm.controls['email'].errors" class="text-danger">
+                      <div *ngIf="submitted && registerForm.controls['email'].errors ['required']">
+                        Ce champ est require
+                      </div>
+                      <div *ngIf="submitted && registerForm.controls['email'].errors['email']">
+                        Email Address incorrect
+                      </div>
+                    </div>
+
                   </div>
-                  </div>
-                  <div class="form-outline">
-                    <div class="input-control">
+
+
+                  <div class="input-control">
                     <label class="form-label" for="form2Example11">Role</label>
-                    <select id="form2Example11" name="roles"  class="form-select p-3 rounded-0" [ngClass]="{'is-invalid':submitted && registerForm.controls['email'].errors}" placeholder="roles"
-                    formControlName="roles" type="text" class="form-control"placeholder="Role">
+                    <select id="form2Example11" name="roles" class="form-select p-3 rounded-0"
+                      [ngClass]="{'is-invalid':submitted && registerForm.controls['email'].errors}" placeholder="roles"
+                      formControlName="roles" type="text" class="form-control" placeholder="Role">
                       <option value=""></option>
                       <option value="Admin">Admin</option>
                       <option value="Utilisateur">Utilisateur</option>
                     </select>
                     <div *ngIf="submitted && registerForm.controls['roles'].errors" class="text-danger">
                       <div *ngIf="submitted && registerForm.controls['roles'].errors ['required']">
-                          Ce champ est  require
+                        Ce champ est require
                       </div>
                       <div *ngIf="submitted && registerForm.controls['roles'].errors['roles']">
-                         role is not Valid
-                         
+                        role is not Valid
+
                       </div>
+                    </div>
                   </div>
-                  </div>
-                  </div>
-                  
-                  <div class="form-outline">
-                    <div class="input-control">
+
+
+
+                  <div class="input-control col-md-4">
                     <label class="form-label" for="form2Example11">Password</label>
-                    <input id="pass1" name="password"  class=" p-3 rounded-0" type="password"  placeholder="password"
-  
-                    [ngClass]="{'is-invalid':submitted && registerForm.controls['password'].errors}"
-                    formControlName="password" type="password" class="form-control">
-                <div *ngIf="submitted && registerForm.controls['password'].errors" class="text-danger" >
-                    <div *ngIf="submitted && registerForm.controls['password'].errors required">
-                        Ce champ est  require
-                    </div>
-                    <div *ngIf="submitted && registerForm.controls['password'].errors['minlength']">
+                    <input id="pass1" name="password" class=" p-3 rounded-0" type="password" placeholder="password"
+                      [ngClass]="{'is-invalid':submitted && registerForm.controls['password'].errors}"
+                      formControlName="password" type="password" class="form-control">
+                    <div *ngIf="submitted && registerForm.controls['password'].errors" class="text-danger">
+                      <div *ngIf="submitted && registerForm.controls['password'].errors required">
+                        Ce champ est require
+                      </div>
+                      <div *ngIf="submitted && registerForm.controls['password'].errors['minlength']">
                         password doit contenir au minimum 8 caractères
+                      </div>
                     </div>
-                </div>
-                  
+
                   </div>
-                  </div>
-                  <div class="form-outline">
-                    <div class="input-control">
+
+                  <div class="input-control col-md-4">
                     <label class="form-label" for="form2Example11">Confirm password</label>
-                    <input [ngClass]="{'is-invalid':submitted && registerForm.controls['passwordc'].errors}" placeholder="password2"
-                    formControlName="passwordc" type="password" class="form-control"  id="pass2" #pass2 (change)="checkPassword()">
+                    <input [ngClass]="{'is-invalid':submitted && registerForm.controls['passwordc'].errors}"
+                      placeholder="password2" formControlName="passwordc" type="password" class="form-control"
+                      id="pass2" #pass2 (change)="checkPassword()">
                     <div *ngIf="submitted && registerForm.controls['passwordc'].errors" class="text-danger">
-                    <div *ngIf="submitted && registerForm.controls['passwordc'].errors required">
-                        Ce champ est  require
+                      <div *ngIf="submitted && registerForm.controls['passwordc'].errors required">
+                        Ce champ est require
+                      </div>
+
                     </div>
-      
-                </div>
-                     
+
                   </div>
-                  </div>
-                  <div class="form-outline">
-                    <div class="input-control">
+
+                  <div class="input-control">
                     <label class="form-label" for="form2Example11">Photos</label>
-                    <input type="file" id="form2Example11" name="photo" class="form-control" accept="image/png, image/jpeg"
-                    (change)="onFileSelected($event)">
+                    <input type="file" id="form2Example11" name="photo" class="form-control"
+                      accept="image/png, image/jpeg" (change)="onFileSelected($event)">
 
                   </div>
-                  </div>
-
-                 <!--  <div class="text-center pt-1 mb-5 pb-1">
-                    <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="button">Log
-                      in</button>
-                    <a class="text-muted" href="#!">Forgot password?</a>
-                  </div> -->
-                  
                   <div class="d-flex align-items-center justify-content-center pb-4">
+                    <button type="button" (click)="onSubmit()" id="form2Example11" class="btn btn-outline-danger">
+                      <span class="visually" *ngIf="!spin" style="color:red">Inscription</span>
+                      <span class="spinner-border spinner-border-sm" *ngIf="spin" role="status" aria-hidden="false"
+                        style="color: white;"></span>
+                    </button>
 
-                 <button type="button"(click)="onSubmit()" id="form2Example11" class="btn btn-outline-danger" >
-                 <span class="visually" *ngIf="!spin" style="color:red">Inscription</span>
-                 <span class="spinner-border spinner-border-sm" *ngIf="spin" role="status" aria-hidden="false" style="color: white;"></span>
-                 </button>
-                 
                   </div>
 
                 </form>
@@ -170,7 +166,12 @@
               </div>
             </div>
             <div class="col-lg-6 d-flex align-items-center gradient-custom-2">
-              <div class="text-white px-3 py-4 p-md-5 mx-md-4">
+              <div class="text-white px-3 py-4 p-md-5 mx-md-4"> <div class="col-md-4">
+                                  <div class="form-group">
+                                      <label>City</label>
+                                      <input type="text" class="form-control" placeholder="City" value="Mike">
+                                  </div>
+                              </div>
                 <h4 class="mb-4">We are more than just a company</h4>
                 <p class="small mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
                   tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
@@ -182,8 +183,167 @@
       </div>
     </div>
   </div>
-
 </body>
-</html>
+</html> -->
 
-   
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+    crossorigin="anonymous"></script>
+  <title>Document</title>
+</head>
+
+<body>
+
+  <div class="container" style="height:800px;margin: 50px;">
+    <div class="row d-flex justify-content-center align-items-center">
+      <div class="col-xl-12">
+        <div class="card rounded-2 text-black">
+          <div class=" d-flex justify-content-center align-items-center row g-0">
+            <div class="col-lg-6">
+              <div class="card-body p-md-3 ">
+                <div class="text-center">
+                  <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/lotus.webp"
+                    style="width: 180px;margin-top: -40px;" alt="logo">
+                  <h3 class=" mb-3 pb-1" style="margin-top: -20px;">Ajouter un utilisateur</h3> <br>
+                </div>
+
+                <form id="form" style="height: 600px;  margin-top: -15px;"
+                  class="row d-flex justify-content-center no-wrap  " (submit)="onSubmit()" [formGroup]="registerForm">
+                  <div *ngIf="!verifPass" class="d-flex justify-content-center text text-danger" id="">
+                    <span>les deux password ne correspondent pas!</span>
+                  </div>
+                  <div *ngIf="imgHeight" class="d-flex justify-content-center text text-danger" id="">
+                    <span>La taille de l'image est trop grand</span>
+                  </div>
+                  <div *ngIf="errorMsg!" class="d-flex justify-content-center text text-danger" id="">
+                    <span>email deja existe!</span>
+                  </div>
+
+                  <div class="input-control col-md-6">
+                    <label class="form-label" for="form2Example11">Prenom</label><span style="color: red;">*</span>
+                    <input id="form2Example11" class=" p-3 rounded-0" name="prenom" type="text" id="roles"
+                      [ngClass]="{'is-invalid':submitted && registerForm.controls['prenom'].errors}"
+                      placeholder="prenom" formControlName="prenom" type="text" class="form-control">
+                    <div *ngIf="submitted && registerForm.controls['prenom'].errors" class="text-danger" name="prenom">
+                      <div *ngIf="submitted && registerForm.controls['prenom'].errors required">
+                        Ce champ est require
+                      </div>
+                      <div *ngIf="!submitted && registerForm.controls['prenom'].errors['cannotContainSpace']">
+                        ne met pas espace
+                      </div>
+                    </div>
+                  </div>
+
+                    <div class="input-control col-md-6">
+                      <label class="form-label" for="form2Example11">Nom</label><span style="color: red;">*</span>
+                      <input id="form2Example11" name="nom" class=" p-3 rounded-0" type="text" id="roles"
+                        [ngClass]="{'is-invalid':submitted && registerForm.controls['nom'].errors}" placeholder="nom"
+                        formControlName="nom" class="form-control">
+                      <div *ngIf="submitted && registerForm.controls['nom'].errors" class="text-danger" name="nom">
+                        <div *ngIf="submitted && registerForm.controls['nom'].errors required">
+                          Ce champ est require
+                        </div>
+                        <div *ngIf="!submitted && registerForm.controls['nom'].errors['cannotContainSpace']">
+                          ne met pas espace
+                        </div>
+                      </div>
+
+                    </div>
+                  
+
+                  <div class="input-control col-md-6">
+                    <label class="form-label" for="form2Example11">Email</label><span style="color: red;">*</span>
+                    <input id="form2Example11" name="email" class=" p-3 rounded-0" type="text"
+                      [ngClass]="{'is-invalid':submitted && registerForm.controls['email'].errors}" placeholder="email"
+                      formControlName="email" type="email" class="form-control" id="email" name="email">
+                    <div *ngIf="submitted && registerForm.controls['email'].errors" class="text-danger">
+                      <div *ngIf="submitted && registerForm.controls['email'].errors ['required']">
+                        Ce champ est require
+                      </div>
+                      <div *ngIf="submitted && registerForm.controls['email'].errors['email']">
+                        Email Address incorrect
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="input-control col-md-6">
+                    <label class="form-label" for="form2Example11">Role</label><span style="color: red;">*</span>
+                    <select id="form2Example11" name="roles" class="form-select p-3 rounded-0"
+                      [ngClass]="{'is-invalid':submitted && registerForm.controls['email'].errors}" placeholder="roles" id="roles"
+                      formControlName="roles" type="text" class="form-control" placeholder="Role">
+                      <option value=""></option>
+                      <option value="Admin">Admin</option>
+                      <option value="Utilisateur">Utilisateur</option>
+                    </select>
+                    <div *ngIf="submitted && registerForm.controls['roles'].errors" class="text-danger">
+                      <div *ngIf="submitted && registerForm.controls['roles'].errors ['required']">
+                        Ce champ est require
+                      </div>
+                      <div *ngIf="submitted && registerForm.controls['roles'].errors['roles']">
+                        role is not Valid
+
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="input-control col-md-6">
+                    <label class="form-label" for="form2Example11">Password</label><span style="color: red;">*</span>
+                    <input id="pass1" name="password" class=" p-3 rounded-0" type="password" placeholder="password"
+                      [ngClass]="{'is-invalid':submitted && registerForm.controls['password'].errors}"
+                      formControlName="password" type="password" class="form-control">
+                    <div *ngIf="submitted && registerForm.controls['password'].errors" class="text-danger">
+                      <div *ngIf="submitted && registerForm.controls['password'].errors required">
+                        Ce champ est require
+                      </div>
+                      <div *ngIf="submitted && registerForm.controls['password'].errors['minlength']">
+                        password doit contenir au minimum 8 caractères
+                      </div>
+                    </div>
+
+                  </div>
+
+                  <div class="input-control col-md-6">
+                    <label class="form-label" for="form2Example11">Confirm password</label><span style="color: red;">*</span>
+                    <input [ngClass]="{'is-invalid':submitted && registerForm.controls['passwordc'].errors}"
+                      placeholder="password2" formControlName="passwordc" class=" p-3 rounded-0" type="password" class="form-control"
+                      id="pass2" #pass2 (change)="checkPassword()">
+                    <div *ngIf="submitted && registerForm.controls['passwordc'].errors" class="text-danger">
+                      <div *ngIf="submitted && registerForm.controls['passwordc'].errors required">
+                        Ce champ est require
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="input-control col-md-6">
+                    <label class="form-label" for="form2Example11">Photos</label>
+                    <input type="file" id="form2Example11" name="photo" class="form-control"
+                      accept="image/png, image/jpeg" (change)="onFileSelected($event)">
+                  </div>
+
+                  <div class="d-flex align-items-center justify-content-center pb-4">
+                    <button type="button" (click)="onSubmit()" id="form2Example11" class="btn btn-outline-danger">
+                      <span class="visually" *ngIf="!spin">Inscription</span>
+                      <span class="spinner-border spinner-border-sm" *ngIf="spin" role="status" aria-hidden="false"
+                        style="color: white;"></span>
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
