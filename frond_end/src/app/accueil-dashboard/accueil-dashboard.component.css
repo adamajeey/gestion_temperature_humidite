@@ -6,7 +6,7 @@
    text-align: center;
 };
 .post-content {
-    background: none repeat scroll 0 0 #FFFFFF;
+    /* background: none repeat scroll 0 0 #FFFFFF; */
     opacity: 0.5;
     /* margin: -54px 20px 12px; */ 
     position: relative;

@@ -1,1 +1,91 @@
-<p>modification works!</p>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+<!-- <form  [formGroup]="userEditForm" (ngSubmit)="modifUsers()"  class="col-6" style="margin: 0 auto;">
+    <input type="text" formControlName="id"  hidden>
+    <span *ngIf="emailExiste" class="d-flex justify-content-center fadeIn">
+        <p class="text text-danger">{{emailExiste}}</p>
+    </span>
+    
+    <span *ngIf="verifPass">
+      <p class="text text-danger">Mot de passe non identique</p>
+  </span>
+<div class="form-outline mb-2">
+    <div class="input-control">
+    <label class="form-label" for="form2Example11">Password</label>
+    <input id="pass1" name="password"  class=" p-3 rounded-0" type="password"  placeholder="password"
+  
+    [ngClass]="{'is-invalid':submitted && userEditForm.controls['password'].errors}"
+    formControlName="password" type="password" class="form-control">
+  <div *ngIf="submitted && userEditForm.controls['password'].errors" class="text-danger" >
+    <div *ngIf="submitted && userEditForm.controls['password'].errors required">
+        Ce champ est  require
+    </div>
+    <div *ngIf="submitted && userEditForm.controls['password'].errors['minlength']">
+        password doit contenir au minimum 8 caractères
+    </div>
+  </div>
+  
+  </div>
+  </div>
+  <div class="form-outline mb-2">
+    <div class="input-control">
+    <label class="form-label" for="form2Example11">nouveau_password</label>
+    <input placeholder="password2" formControlName="password2" type="password" class="form-control"  id="pass2" #pass2 >
+   
+  </div>
+  </div> 
+  <div class="form-outline mb-2">
+    <div class="input-control">
+    <label class="form-label" for="form2Example11">Confirm_password</label>
+    <input placeholder="password3"formControlName="password3" type="password" class="form-control"  id="pass3" #pass2 (change)="checkPassword()">
+    <div *ngIf="submitted && userEditForm.controls['password3'].errors" class="text-danger">  
+  
+  </div>
+     
+  </div>
+  </div>  -->
+  
+  <form *ngIf="!showForm" [formGroup]="userEditForm" (ngSubmit)="modifUsers()" class="col-6" style="margin: 0 auto;">
+    <input type="text" formControlName="id" >
+    <span *ngIf="verifPass">
+        <p class="text text-danger">Mot de passe nom identique</p>
+    </span>
+    <div class="mb-3">
+      <label for="password" class="form-label">Password</label>
+      <input [ngClass]="{'is-invalid':submitted && registerForm.controls['password'].errors}" placeholder="password"
+        type="password" class="form-control" id="pass1" formControlName="password" #pass1>
+      <div *ngIf="submitted && registerForm.controls['password'].errors" class="text-danger">
+        <div *ngIf="submitted && registerForm.controls['password'].errors required">
+
+        </div>
+      </div>
+    </div>
+    <div class="mb-3">
+      <label class="form-label" for="password2">Password2</label>
+      <input [ngClass]="{'is-invalid':submitted && registerForm.controls['password2'].errors}" placeholder="password2"
+        formControlName="password2" type="password" class="form-control" id="pass2" #pass1>
+
+      <div *ngIf="submitted && registerForm.controls['password2'].errors" class="text-danger">
+        <div *ngIf="submitted && registerForm.controls['password2'].errors required">
+        </div>
+      </div>
+    </div>
+    <div class="d-flex justify-content-space">
+      <button type="submit" class="btn btn-primary">ENREGISTRER</button>
+      <button type="submit" class="btn btn-danger" (click)="this.ngOnInit()">Annuler</button>
+    </div>
+  </form>
+  
+  
+  </body>
+  
+  </html>

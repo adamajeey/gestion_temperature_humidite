@@ -8,19 +8,20 @@ import { UtilisateurComponent } from './users/utilisateur/utilisateur.component'
 import { LoginComponent } from './login/login.component';
 import { SimpleusersComponent } from './users/simpleusers/simpleusers.component';
 import { AccueilDashboardComponent } from './accueil-dashboard/accueil-dashboard.component';
-import { SidebarComponent } from './sidebar/sidebar.component';
+import { SidebarComponent } from './users/sidebar/sidebar.component';
 
 const routes: Routes = [
 {path: "pageArchive" , component: PageArchiveComponent},
 {path: "admin", component: UtilisateurComponent},
 {path: "profil", component: ProfilComponent},
 {path: "user", component: SimpleusersComponent},
+{path:"acceuil", component: AccueilDashboardComponent},
 {path:"inscription", component: InscrptionComponent},
-{path:"inscriptions", component: InscrptionComponent},
 {path:"login", component: LoginComponent},
 {path:"sides", component: SidebarComponent},
 {path:"", component: LoginComponent},
-{path:"acceuil", component: AccueilDashboardComponent},
+{path:"modification", component: ModificationComponent},
+
 
 
 
