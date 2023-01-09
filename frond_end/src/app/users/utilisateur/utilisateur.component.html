@@ -8,14 +8,41 @@
     <title>Document</title>
 </head>
 <body>
+  <div>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light w-100">
+      <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarSupportedContent">
+        
+        <form class="form-inline my-2 my-lg-0 ">
+          <input id="search" class="form-control" type="text" name="search" placeholder="Rechercher" [(ngModel)]="searchText">
+        </form>
+        <!-- <ul class="navbar-nav mr-auto">
+          
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Dropdown
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="#">Action</a>
+              <a class="dropdown-item" href="#">Another action</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#">Something else here</a>
+            </div>
+          </li>
+          
+        </ul> -->
+      </div>
+    </nav>
+  </div>
+  
   
   <div class="container"  *ngIf="!showForm">
-<nav id="nav">  
+<!-- <nav id="nav">  
    
         <div class="bouton">
         <input id="search" class="form-control" type="text" name="search" placeholder="Rechercher" [(ngModel)]="searchText">
         </div> 
-</nav> 
+</nav>  -->
     
  
       <table class="table table-bordered " >  
@@ -32,12 +59,12 @@
     </thead>     
           <tbody class="tbody">    
          <tr *ngFor="let user of userActif | paginate: { itemsPerPage:  itemsperpage, currentPage: p} | filter:searchText">  
-          <td>{{user.matricule}}</td> 
-          <td>{{user.nom}}</td> 
-          <td>{{user.prenom}}</td>             
-          <td>{{user.email}}</td>           
-          <td>{{user.roles}}</td>
-      <td class="d-flex justify-content-arround"> 
+          <td class="col-2">{{user.matricule}}</td> 
+          <td class="col-2">{{user.nom}}</td> 
+          <td class="col-2">{{user.prenom}}</td>             
+          <td class="col-2">{{user.email}}</td>           
+          <td class="col-2">{{user.roles}}</td>
+      <td class="d-flex justify-content-arround col-2"> 
         <span class="btn btn-outline-danger" title="archiver" (click)="deleteId(user._id,user.etat)"><i class="bi bi-archive" id="i1" ></i></span>
         &nbsp;
         <span  class="btn btn-outline-primary" title="modifier" (click)="getUserData(user._id,user.email,user.prenom,user.nom)"><i class="bi bi-pen-fill" id="i2" ></i></span>
