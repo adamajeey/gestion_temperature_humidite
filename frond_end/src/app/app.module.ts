@@ -20,6 +20,7 @@ import { HelperService } from './helper/helper.service';
 import { ProfilComponent } from './profil/profil.component';
 import { AccueilDashboardComponent } from './accueil-dashboard/accueil-dashboard.component';
 import { SidebarComponent } from './users/sidebar/sidebar.component';
+import { MenuComponent } from './menu/menu.component';
 
 
  
@@ -37,6 +38,7 @@ import { SidebarComponent } from './users/sidebar/sidebar.component';
         ProfilComponent,
         AccueilDashboardComponent,
         SidebarComponent,
+        MenuComponent,
        
         
     ],

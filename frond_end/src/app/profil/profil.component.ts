@@ -162,12 +162,13 @@ export class ProfilComponent implements OnInit {
   users: any;
   userEditForm: FormGroup;
   showForm = false;
+  showFormPass= false;
   p: number = 1;
   itemsperpage: number = 5;
   totalUser: any;
   searchText: any;
   user: any; userActif: any;
-  verifPass: any = false;
+  verifPass: any = true;
   registerForm!: FormGroup;
   submitted = false;
   emailUser = localStorage.getItem('email')?.replace(/['"]+/g, '');
@@ -182,7 +183,9 @@ spin= false;
       prenom: ['', [Validators.required]],
       nom: ['', [Validators.required]],
       email: ['', [Validators.required]],
+      password3: ['', [Validators.required]],
       password: ['', [Validators.required]],
+      password2: ['', [Validators.required]],
     
     });
   }
@@ -201,12 +204,72 @@ spin= false;
     );
 
   }
+/* recuperer les mots de passe qu'on doit modifier */
+  getUserPassword() {
+    
+    Swal.fire({  
+      title: 'Voulez-vous vraiment modifier votre mot de passe',  
+      text: 'Si oui met ok',  
+      icon: 'warning',  
+      showCancelButton: true,  
+      confirmButtonText: 'ok!',  
+      cancelButtonText: 'Annuler'  
+    }).then((result) => {  
+      if (result.value) {
+    this.showFormPass = true;
+    let id;
+   
+    for (const iterator of this.userActif) {
+      id = iterator._id
+    }
+ 
+    this.userEditForm = this.formBuilder.group({
+      id: [id],
+      password: ["", [Validators.required]],
+      password2: ['', [Validators.required]],
+    });
+      }
+    });
+  
+    this.image = localStorage.getItem('img')
+    const imgRead = this.convertFile(<any>this.image?.replace(/['"]+/g, ''))
+    this.img = this.sanitizer.bypassSecurityTrustResourceUrl(URL.createObjectURL(imgRead))
+    console.log(this.image)
+  }
+ 
+
+    
+
+/* modifier le mot de passe */
+modifUsersPassword(){
+
+  const id = this.userEditForm.value.id;
+  const user = {
+    // photo: this.userEditForm.value.photo,
+    password: this.userEditForm.value.password,
+    // password2: this.userEditForm.value.password2
+  }
+  console.log(user)
+
+  this.userService.modifUsers(id,user).subscribe(
+
+    data => {
+      console.log(data)
+       
+      this.ngOnInit();
+      this.showFormPass = false
+      this.userService.getLogOut();
+      this.router.navigateByUrl('login')
+    }
+  );
+}
+/* recuperer les email,nom et prenom qu'on va modifier */
 
   getUserData(id:any,email:any,prenom:any,nom:any){
 
   
     Swal.fire({  
-      title: 'Voulez-vous vraiment effectuer cette action?',  
+      title: 'Voulez-vous vraiment modifier votre profil?',  
       text: 'Si oui met ok',  
       icon: 'warning',  
       showCancelButton: true,  
@@ -220,10 +283,7 @@ spin= false;
             prenom: [prenom, [Validators.required]],
             nom: [nom, [Validators.required]],
             email: [email, [Validators.required]],
-            password: ['', [Validators.required]],
-            password2: ['', [Validators.required]],
-            password3: ['', [Validators.required]],
-         
+       
           });  
       }  
     })
@@ -245,8 +305,12 @@ spin= false;
 }
 
 
+
+/* modifier les nom,prenom et email */
 modifUsers(){
   const id =  this.userEditForm.value.id;
+  console.log(id);
+  
   for (const iterator of this.users) {
     this.submitted = true
     this.spin = true
@@ -269,11 +333,7 @@ modifUsers(){
     nom : this.userEditForm.value.nom,
     prenom: this.userEditForm.value.prenom,
     email: this.userEditForm.value.email,
-    
-    // photo: this.userEditForm.value.photo,
-    password: this.userEditForm.value.password,
-    password2: this.userEditForm.value.password,
-   
+  
   
   }
   console.log(user)
@@ -281,42 +341,37 @@ modifUsers(){
   this.userService.changeRole(id,user).subscribe(
    
     data=>{
-    
      this.ngOnInit();
-     this.showForm = false
-     console.log(data)
-     this.userService.getLogOut();
-     this.router.navigateByUrl('login')
+    this.showForm = false
+  
    },
    error =>{
      console.log(error )
    }
   );
  }
+/* controler les deux mots de passe */
+ checkPassword = () => {
 
- 
-checkPassword = () => {
+  let pass1 = this.userEditForm.value.password//(<HTMLInputElement>document.getElementById("pass1")).value;
+  let pass2 = this.userEditForm.value.password2//(<HTMLInputElement>document.getElementById("pass2")).value;
 
-  let pass2 = this.userEditForm.value.password2//(<HTMLInputElement>document.getElementById("pass1")).value;
-  let pass3 = this.userEditForm.value.password3//(<HTMLInputElement>document.getElementById("pass2")).value;
+  console.log(pass1 != pass2)
 
-  console.log(pass2 != pass3)
-
-  if (pass2 != pass3) {
-    this.verifPass = true;
+  if (pass1 != pass2) {
+    this.verifPass = false;
     this.registerForm = this.formBuilder.group(
       {
 
+        password: [''],
         password2: [''],
-        password3: [''],
 
       })
 
-    setTimeout(() => { this.verifPass = false }, 3001);
+    setTimeout(() => { this.verifPass = true }, 3001);
   }
   
 }
-
 
 logOut(){
   // this.userService.getLogOut();

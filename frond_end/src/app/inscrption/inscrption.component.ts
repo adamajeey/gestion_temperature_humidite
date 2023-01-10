@@ -77,7 +77,7 @@ export class InscrptionComponent {
    simpleAlert(){  
     Swal.fire('INSCRIPTION RÉUSSIE AVEC SUCCÉE'); 
     Swal.update({
-      icon: 'success'
+    icon: 'success' 
     }) 
   }  
 onSubmit(){
