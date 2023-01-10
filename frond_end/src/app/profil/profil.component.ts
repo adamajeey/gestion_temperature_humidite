@@ -400,17 +400,4 @@ convertFile(str: any) {
 
 }
 
-  
 }
-
-
-
-
-
-
-
-
-
-
-
-
