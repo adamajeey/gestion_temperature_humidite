@@ -258,8 +258,7 @@ modifUsersPassword(){
        
       this.ngOnInit();
       this.showFormPass = false
-      this.userService.getLogOut();
-      this.router.navigateByUrl('login')
+   
     }
   );
 }
