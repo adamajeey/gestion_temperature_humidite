@@ -150,6 +150,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { UsersService } from 'src/app/services/users.service';
 import Swal from 'sweetalert2'; 
+import { UsernameValidator } from '../username.validator';
 
 @Component({
   selector: 'app-profil',
@@ -175,14 +176,16 @@ export class ProfilComponent implements OnInit {
   img: any; image: any;
   emailExiste:any;
 spin= false;
+invalid= false;
+errorMsg:any;
 
   constructor(private userService: UsersService, private formBuilder: FormBuilder, private sanitizer: DomSanitizer, private router: Router) {
     this.userEditForm = this.formBuilder.group({
       id: [''],
       photo: ['', [Validators.required]],
-      prenom: ['', [Validators.required]],
-      nom: ['', [Validators.required]],
-      email: ['', [Validators.required]],
+      prenom: ['', [Validators.required,UsernameValidator.cannotContainSpace]],
+      nom: ['', [Validators.required,UsernameValidator.cannotContainSpace]],
+      email: ['', [Validators.required,Validators.email]],
       password3: ['', [Validators.required]],
       password: ['', [Validators.required]],
       password2: ['', [Validators.required]],
@@ -204,6 +207,82 @@ spin= false;
     );
 
   }
+
+
+getUserData(id:any,email:any,prenom:any,nom:any){
+
+  
+  Swal.fire({  
+    title: 'Voulez-vous vraiment effectuer cette action?',  
+    text: 'Si oui met ok',  
+    icon: 'warning',  
+    showCancelButton: true,  
+    confirmButtonText: 'ok!',  
+    cancelButtonText: 'Annuler'  
+  }).then((result) => {  
+    if (result.value) {  
+      this.showForm = true;
+      this.userEditForm = this.formBuilder.group({
+          id:[id],
+          prenom: [prenom, [Validators.required,UsernameValidator.cannotContainSpace]],
+          nom: [nom, [Validators.required,UsernameValidator.cannotContainSpace]],
+          email: [email, [Validators.required,Validators.email]],
+        });  
+    }  
+  })
+    
+  for (const iterator of this.userActif) {
+    id = iterator._id
+  }
+  console.log(id)
+ 
+  this.image = localStorage.getItem('img')
+  const imgRead = this.convertFile(<any>this.image?.replace(/['"]+/g, ''))
+  this.img = this.sanitizer.bypassSecurityTrustResourceUrl(URL.createObjectURL(imgRead))
+  console.log(this.image)
+}
+
+
+modifUsers (){
+  const id =  this.userEditForm.value.id;
+  for (const iterator of this.users) {
+    this.submitted = true
+    this.spin = true
+   if(this.userEditForm.invalid){
+    this.spin = false
+    return ;
+  }
+  
+  console.log(iterator.email  )
+  if(iterator.email == this.userEditForm.value.email && iterator._id != id){
+    this.emailExiste = "Email existe déjà";
+    setTimeout(() => {
+      this.emailExiste=""
+    }, 2000);
+    return;
+  }
+}
+
+ const user ={
+  nom : this.userEditForm.value.nom,
+  prenom: this.userEditForm.value.prenom,
+  email: this.userEditForm.value.email
+ }
+ 
+ this.userService.changeRole(id,user).subscribe(
+   
+   data=>{
+
+    this.ngOnInit();
+    this.showForm = false
+  },
+  error =>{
+    console.log(error )
+  }
+ );
+}
+
+
 /* recuperer les mots de passe qu'on doit modifier */
   getUserPassword() {
     
@@ -264,91 +343,7 @@ modifUsersPassword(){
 }
 /* recuperer les email,nom et prenom qu'on va modifier */
 
-  getUserData(id:any,email:any,prenom:any,nom:any){
-
   
-    Swal.fire({  
-      title: 'Voulez-vous vraiment modifier votre profil?',  
-      text: 'Si oui met ok',  
-      icon: 'warning',  
-      showCancelButton: true,  
-      confirmButtonText: 'ok!',  
-      cancelButtonText: 'Annuler'  
-    }).then((result) => {  
-      if (result.value) {  
-        this.showForm = true;
-        this.userEditForm = this.formBuilder.group({
-            id:[id],
-            prenom: [prenom, [Validators.required]],
-            nom: [nom, [Validators.required]],
-            email: [email, [Validators.required]],
-       
-          });  
-      }  
-    })
-  
-  
-    for (const iterator of this.userActif) {
-      id = iterator._id
-    }
-    console.log(id)
-  /*   this.userEditForm = this.formBuilder.group({ */
-
-    console.log(id)
-
-    this.image = localStorage.getItem('img')
-    const imgRead = this.convertFile(<any>this.image?.replace(/['"]+/g, ''))
-    this.img = this.sanitizer.bypassSecurityTrustResourceUrl(URL.createObjectURL(imgRead))
-    console.log(this.image)
- 
-}
-
-
-
-/* modifier les nom,prenom et email */
-modifUsers(){
-  const id =  this.userEditForm.value.id;
-  console.log(id);
-  
-  for (const iterator of this.users) {
-    this.submitted = true
-    this.spin = true
-   if(this.userEditForm.invalid){
-    this.spin = false
-    return ;
-  }
-  
-  console.log(iterator.email )
-  if(iterator.email == this.userEditForm.value.email && iterator._id != id){
-    this.emailExiste = "Email existe déjà";
-    setTimeout(() => {
-      this.emailExiste=""
-    }, 2000);
-    return;
-  }
-}
-
-  const user = {
-    nom : this.userEditForm.value.nom,
-    prenom: this.userEditForm.value.prenom,
-    email: this.userEditForm.value.email,
-  
-  
-  }
-  console.log(user)
-
-  this.userService.changeRole(id,user).subscribe(
-   
-    data=>{
-     this.ngOnInit();
-    this.showForm = false
-  
-   },
-   error =>{
-     console.log(error )
-   }
-  );
- }
 /* controler les deux mots de passe */
  checkPassword = () => {
 
