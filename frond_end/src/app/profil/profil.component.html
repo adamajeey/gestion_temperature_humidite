@@ -90,7 +90,7 @@
     </div>
   </div>
 <!-- formulaire pour modifier le profil showForm pour afficher ou cacher le formulaire -->
-  <div class="container" style="height:600px;margin:0; display: flex; flex-wrap: wrap; margin-top: 100px; width: 550px;" *ngIf="showForm" >
+  <div class="container card rounded-3 text-black"style="height:600px;margin:0; display: flex; flex-wrap: wrap; margin-top: 100px; width: 550px; " *ngIf="showForm" >
       
 
               <div class="text-center">
@@ -108,7 +108,7 @@
       <p class="text text-danger">{{emailExiste}}</p>
   </span>
 <!-- controle de saisie des champs du formulaire -->
-  <div class="form-outline mb-2">
+  <div class="form-outline mb-4">
     
     <div class="input-control">
 <label class="form-label" for="form2Example11">Nom</label>
@@ -149,7 +149,7 @@ ne met pas espace
   <input type="email" class="form-control" formControlName="email">
 </div> 
    
-<div class="d-flex justify-content-space">
+<div class="d-flex justify-content-space gap-5">
   <button type="submit" (click)="modifUsers()" class="btn btn-danger">Modifier</button>
   <button  class="btn btn-success" (click)="this.showForm = false;">Annuler</button>
 </div>
@@ -160,7 +160,7 @@ ne met pas espace
        
   
  <!-- Formulaire de modification mot de passe showFormPass pour afficher ou cacher le formulaire -->
- <div class="container" style="height:600px;margin:0; display: flex; flex-wrap: wrap; margin-top: 100px; width: 550px;" *ngIf="showFormPass" >
+ <div class="container card rounded-3 text-black" style="height:600px;margin:0; display: flex; flex-wrap: wrap; margin-top: 100px; width: 550px;" *ngIf="showFormPass" >
       
 
   <div class="text-center">
@@ -219,7 +219,7 @@ ne met pas espace
      
   </div>
   </div>
-  <div class="d-flex justify-content-space">
+  <div class="d-flex justify-content-space gap-3" >
     <button type="submit" class="btn btn-danger" (click)="modifUsersPassword()">ENREGISTRER</button><br>
     <button type="submit" class="btn btn-success" (click)="this.showFormPass = false;">Annuler</button>
   </div>

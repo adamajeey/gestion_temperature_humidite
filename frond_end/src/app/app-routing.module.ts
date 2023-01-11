@@ -9,6 +9,7 @@ import { LoginComponent } from './login/login.component';
 import { SimpleusersComponent } from './users/simpleusers/simpleusers.component';
 import { AccueilDashboardComponent } from './accueil-dashboard/accueil-dashboard.component';
 import { SidebarComponent } from './users/sidebar/sidebar.component';
+import { MenuComponent } from './menu/menu.component';
 
 const routes: Routes = [
 {path: "pageArchive" , component: PageArchiveComponent},
@@ -19,6 +20,7 @@ const routes: Routes = [
 {path:"inscription", component: InscrptionComponent},
 {path:"login", component: LoginComponent},
 {path:"sides", component: SidebarComponent},
+{path:"menu", component: MenuComponent},
 {path:"", component: LoginComponent},
 {path:"modification", component: ModificationComponent},
 
