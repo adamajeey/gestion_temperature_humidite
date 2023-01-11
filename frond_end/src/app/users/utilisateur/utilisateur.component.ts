@@ -20,13 +20,14 @@ users: any;
 userEditForm!: FormGroup;
 showForm = false; 
 p: number= 1;
-itemsperpage: number= 5;
+itemsperpage: number= 8;
 totalUser:any; 
 searchText:any;
 user = []; userActif:any = [];
 emailExiste:any;
 spin= false;
 errorMsg:any;
+show:boolean = false;
 
   constructor(private userService : UsersService, private formBuilder : FormBuilder){
     this.userEditForm = this.formBuilder.group({
@@ -200,6 +201,10 @@ modifUsers (){
     console.log(error )
   }
  );
+}
+
+public afficher():void{
+  this.show = !this.show;
 }
 
 }

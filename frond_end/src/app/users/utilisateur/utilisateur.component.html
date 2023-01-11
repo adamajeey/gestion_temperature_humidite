@@ -8,35 +8,19 @@
     <title>Document</title>
 </head>
 <body>
-  <div>
-
-    <nav class="navbar navbar-expand-lg navbar-light bg-light w-100">
-      <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarSupportedContent">
-        
-        <form class="form-inline my-2 my-lg-0 ">
-          <input id="search" class="form-control" type="text" name="search" placeholder="Rechercher" [(ngModel)]="searchText">
+  
+      <div class="container d-flex justify-content-end" style="margin-top: 100px;">       
+        <form class="form-inline my-2 my-lg-2 row">
+          <div class="d-flex gap-1">
+            <input *ngIf="show" id="search" class="form-control" type="text" name="search" placeholder="Rechercher" [(ngModel)]="searchText">
+            <button class="btn btn-outline-danger" (click)="afficher()"><i class="bi bi-search"></i></button>
+          </div>
         </form>
-        <!-- <ul class="navbar-nav mr-auto">
-          
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Dropdown
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="#">Action</a>
-              <a class="dropdown-item" href="#">Another action</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">Something else here</a>
-            </div>
-          </li>
-          
-        </ul> -->
       </div>
-    </nav>
-  </div>
+    
   
   
-  <div class="container"  *ngIf="!showForm">
+  <div class="container mt-5"  *ngIf="!showForm">
 <!-- <nav id="nav">  
    
         <div class="bouton">
@@ -58,7 +42,7 @@
       </tr>
     </thead>     
           <tbody class="tbody">    
-         <tr *ngFor="let user of userActif | paginate: { itemsPerPage:  itemsperpage, currentPage: p} | filter:searchText">  
+         <tr *ngFor="let user of userActif | filter:searchText | paginate: { itemsPerPage:  itemsperpage, currentPage: p}">  
           <td class="col-2">{{user.matricule}}</td> 
           <td class="col-2">{{user.nom}}</td> 
           <td class="col-2">{{user.prenom}}</td>             
@@ -76,7 +60,7 @@
      </table>
 
      <div class="mt-8 py-5">
-      <div>
+      <div class="pagination fixed-bottom justify-content-center">
         <pagination-controls (pageChange)="p = $event"></pagination-controls>
       </div>
    </div>
