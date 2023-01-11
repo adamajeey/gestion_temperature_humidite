@@ -48,23 +48,7 @@ retrieveData(){
      this.totalUser = data.length; 
   })
 }
-simpleAlert(){  
-  Swal.fire('INSCRIPTION RÉUSSIE AVEC SUCCÉE'); 
-  
-  Swal.fire({  
-    title: 'Voulez-vous vraiment desarchiver cette utilisateur?',  
-    text: 'Si oui met ok',  
-    icon: 'warning',  
-    showCancelButton: true,  
-    confirmButtonText: 'ok!',  
-    cancelButtonText: 'Annuler'  
-  }).then((result) => {  
-    if (result.value) {  
-      Swal.fire({
-       icon:'success' 
-       })  
-      
-    }
+
   
     // else if (result.dismiss === Swal.DismissReason.cancel) {  
     //   Swal.fire(  
@@ -72,10 +56,10 @@ simpleAlert(){
     //     'error'  
     //   )  
     // }  
-  })  
+   
   
 
-}  
+ 
 
 ddeleteId=(id:any,etat:any)=> {
 
@@ -88,7 +72,7 @@ ddeleteId=(id:any,etat:any)=> {
    }
   
    Swal.fire({  
-    title: 'Voulez-vous vraiment effectuer cette action?',  
+    title: 'Voulez-vous vraiment desarchiver cette utilisateur?',  
     text: 'Si oui met ok',  
     icon: 'warning',  
     showCancelButton: true,  
