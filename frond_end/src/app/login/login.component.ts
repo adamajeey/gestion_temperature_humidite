@@ -31,7 +31,6 @@ export class LoginComponent {
       })
   }
 
- 
   
 onSubmit(){
 this.submitted = true
@@ -51,7 +50,7 @@ this.spin = true
   }
 
   // console.log(user)
-
+  
   this.userService.getConnexion(user).subscribe(
     data=>{
       console.log(data)
