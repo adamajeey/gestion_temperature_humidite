@@ -8,11 +8,11 @@
   <title>Document</title>
 </head>
 
-<body>
+<body style="display: flex; justify-content: center;">
 <!-- pour le profil recuperer information de l'utilisateur connecter -->
-  <div class="container py-5 h-100 " *ngIf="!showForm && !showFormPass">
-    <div class="row d-flex justify-content-center align-items-center h-100 " *ngFor="let user of userActif">
-      <div class="col col-lg-10 mb-4  mb-lg-0 bg-body ">
+  <div class="container py-5  h-100" style="width: 1000px; " *ngIf="!showForm && !showFormPass">
+    <div class="row d-flex justify-content-center align-items-center" style="width: 1000px; " *ngFor="let user of userActif">
+      <div class="col col-lg-10 mb-4  mb-lg-0 bg-body " style="width: 900px; ">
         <div class="card mb-3 mt-3" style="border-radius: .5rem;">
           <div class="row g-0 ">
             <div class="col-md-4 shadow bg-danger gradient-custom text-center text-dark"
@@ -20,16 +20,16 @@
 
 
 
-              <img [attr.src]="img" alt="Avatar" class="img-fluid my-5 rounded" style="width: 80px;" />
+              <img [attr.src]="img" alt="Avatar" class="img-fluid my-5 rounded" style="width: 100px; border-radius: 50%;" />
               <!-- <img [attr.src]="img" class="rounded-circle border m-1   " height="50" />       -->
 
 
 
-              <h5 class="text-dark">
+              <h2 class="text-dark">
 
                 <p class="text-dark text-bold">{{user.prenom}}</p>
                 <p class="text-dark">{{user.nom}}</p>
-              </h5>
+              </h2>
               <!-- pour modifier profil -->
               <div ng="let user of userActif">
                 <span class="btn btn-outline-dark" title="modifier_Profil">
@@ -37,7 +37,7 @@
                <button (click)="getUserData(user._id,user.email,user.prenom,user.nom)" ><i class="bi bi-pen-fill" id="i2" style="color: black;" ></i>
                </button></span>
            
-              </div>
+              </div><br>
               <!-- on clique pour modifier password -->
               <div ng="let user of userActif">
              
@@ -49,7 +49,7 @@
             <!-- recupere et affiche les info de l'utilisateur connecter -->
             <div class="col-md-8 ">
               <div class="card-body p-4 shadow">
-                <h4> Vos Informations</h4>
+                <h2> Vos Informations</h2>
                 <hr class="mt-0 mb-4">
                 <div class="row pt-1">
                   <div class="col-6 mb-3">
@@ -90,7 +90,7 @@
     </div>
   </div>
 <!-- formulaire pour modifier le profil showForm pour afficher ou cacher le formulaire -->
-  <div class="container" style="height:600px;margin:0; display: flex; flex-wrap: wrap; margin-top: 100px; width: 550px;" *ngIf="showForm" >
+  <div class="container card rounded-3 text-black"style="height:600px;margin:0; display: flex; flex-wrap: wrap; margin-top: 100px; width: 550px; " *ngIf="showForm" >
       
 
               <div class="text-center">
@@ -108,7 +108,7 @@
       <p class="text text-danger">{{emailExiste}}</p>
   </span>
 <!-- controle de saisie des champs du formulaire -->
-  <div class="form-outline mb-2">
+  <div class="form-outline mb-4">
     
     <div class="input-control">
 <label class="form-label" for="form2Example11">Nom</label>
@@ -149,7 +149,7 @@ ne met pas espace
   <input type="email" class="form-control" formControlName="email">
 </div> 
    
-<div class="d-flex justify-content-space">
+<div class="d-flex justify-content-space gap-5">
   <button type="submit" (click)="modifUsers()" class="btn btn-danger">Modifier</button>
   <button  class="btn btn-success" (click)="this.showForm = false;">Annuler</button>
 </div>
@@ -160,7 +160,7 @@ ne met pas espace
        
   
  <!-- Formulaire de modification mot de passe showFormPass pour afficher ou cacher le formulaire -->
- <div class="container" style="height:600px;margin:0; display: flex; flex-wrap: wrap; margin-top: 100px; width: 550px;" *ngIf="showFormPass" >
+ <div class="container card rounded-3 text-black" style="height:600px;margin:0; display: flex; flex-wrap: wrap; margin-top: 100px; width: 550px;" *ngIf="showFormPass" >
       
 
   <div class="text-center">
@@ -219,7 +219,7 @@ ne met pas espace
      
   </div>
   </div>
-  <div class="d-flex justify-content-space">
+  <div class="d-flex justify-content-space gap-3" >
     <button type="submit" class="btn btn-danger" (click)="modifUsersPassword()">ENREGISTRER</button><br>
     <button type="submit" class="btn btn-success" (click)="this.showFormPass = false;">Annuler</button>
   </div>

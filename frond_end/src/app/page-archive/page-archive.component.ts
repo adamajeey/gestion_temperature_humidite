@@ -15,10 +15,11 @@ users: any;
 userEditForm : FormGroup;
 showForm = false; 
 p: number= 1;
-itemsperpage: number= 5;
+itemsperpage: number= 8;
 totalUser:any; 
 searchText:any;
 user = []; userArchive =[];
+show:boolean = false;
 
   constructor(private userService : UsersService, private formBuilder : FormBuilder){
     this.userEditForm = this.formBuilder.group({
@@ -110,6 +111,10 @@ ddeleteId=(id:any,etat:any)=> {
     }
   }) 
   
+}
+
+public afficher():void{
+  this.show = !this.show;
 }
 
 /* 

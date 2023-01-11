@@ -12,8 +12,8 @@ export class SidebarComponent implements OnInit {
 image:any; roles:any; img:any; userActif:any; users:any;
 emailUser = localStorage.getItem('email')?.replace(/['"]+/g, '');
 
-
 constructor(private userService : UsersService, private sanitizer: DomSanitizer, private router: Router){
+ 
   
 }
 ngOnInit(): void {
