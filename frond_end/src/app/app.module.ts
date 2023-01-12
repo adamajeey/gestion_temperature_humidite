@@ -48,7 +48,6 @@ import { MenuComponent } from './menu/menu.component';
         AppRoutingModule,
         HttpClientModule,
         FormsModule,
-        FormsModule,
         ReactiveFormsModule,  
         NgxPaginationModule,
         CommonModule,

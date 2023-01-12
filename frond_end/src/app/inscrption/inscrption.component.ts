@@ -111,7 +111,8 @@ this.submitted = true
     //  this.popup = true;
       this.spin = false;
       this.simpleAlert()
-      this.router.navigateByUrl('login'); 
+      /* this.router.navigateByUrl('login');  */
+      window.location.reload();
       
   
     }, 
