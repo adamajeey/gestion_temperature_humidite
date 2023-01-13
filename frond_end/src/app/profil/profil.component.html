@@ -10,7 +10,7 @@
 
 <body style="display: flex; justify-content: center;">
 <!-- pour le profil recuperer information de l'utilisateur connecter -->
-  <div class="container py-5  h-100" style="width: 1000px; " *ngIf="!showForm && !showFormPass">
+  <div class="container py-5  h-100 shadow-lg p-3 mb-5 bg-white rounded" style="width: 1000px; " *ngIf="!showForm && !showFormPass">
     <div class="row d-flex justify-content-center align-items-center" style="width: 1000px; " *ngFor="let user of userActif">
       <div class="col col-lg-10 mb-4  mb-lg-0 bg-body " style="width: 900px; ">
         <div class="card mb-3 mt-3" style="border-radius: .5rem;">
@@ -32,17 +32,17 @@
               </h2>
               <!-- pour modifier profil -->
               <div ng="let user of userActif">
-                <span class="btn btn-outline-dark" title="modifier_Profil">
+                <span class="btn btn-outline-dark rounded-5" title="modifier_Profil">
                   <!-- get pour recuperer des objets email,nom etc dans la table d'objet -->
-               <button (click)="getUserData(user._id,user.email,user.prenom,user.nom)" ><i class="bi bi-pen-fill" id="i2" style="color: black;" ></i>
+               <button (click)="getUserData(user._id,user.email,user.prenom,user.nom)" class="rounded-5" ><i class="bi bi-pen-fill" id="i2" style="color: black;" ></i>
                </button></span>
            
               </div><br>
               <!-- on clique pour modifier password -->
               <div ng="let user of userActif">
              
-                <span class="btn btn-outline-dark" title="modifier_Password">
-                  <button (click)="getUserPassword()" ><i class="bi bi-pen-fill" id="i2"style="color: black;" ></i>
+                <span class="btn btn-outline-dark rounded-5 " title="modifier_Password">
+                  <button (click)="getUserPassword()" class="rounded-5"><i class="bi bi-pen-fill" id="i2"style="color: black;" ></i>
                   </button></span>
               </div>
             </div>
@@ -90,7 +90,7 @@
     </div>
   </div>
 <!-- formulaire pour modifier le profil showForm pour afficher ou cacher le formulaire -->
-<div class="container card rounded-3 text-black"style="height:600px;margin:0; display: flex; flex-wrap: wrap; margin-top: 100px; width: 550px; " *ngIf="showForm" >
+<div class="container card rounded-5 text-black shadow-lg p-3 mb-5 bg-white rounded" style="height:600px;margin:0; display: flex; flex-wrap: wrap; margin-top: 100px; width: 550px;" *ngIf="showForm" >
       
 
   <div class="text-center">
@@ -167,7 +167,7 @@
  </div>
   
  <!-- Formulaire de modification mot de passe showFormPass pour afficher ou cacher le formulaire -->
- <div class="container card rounded-3 text-black" style="height:600px;margin:0; display: flex; flex-wrap: wrap; margin-top: 100px; width: 550px;" *ngIf="showFormPass" >
+ <div class="container card rounded-5 text-black shadow-lg p-3 mb-5 bg-white rounded" style="height:600px;margin:0; display: flex; flex-wrap: wrap; margin-top: 100px; width: 550px;" *ngIf="showFormPass" >
       
 
   <div class="text-center">
@@ -176,23 +176,28 @@
     <h3 class=" mb-3 pb-1">Modifier Mot de passe</h3>
   </div>
 
-<form  [formGroup]="userEditForm" (ngSubmit)="modifUsersPassword()" class="col-6" style="margin: 0 auto;">
+
+
+  <form id="form" style="height: 600px;  margin-top: -15px;" [formGroup]="userEditForm"  class="col-6" style="margin: 0 auto;"
+    class="row d-flex justify-content-center no-wrap  " >
   <input type="text" formControlName="id" hidden style="height: 500px;" >
   <div *ngIf="!verifPass" class="d-flex justify-content-center text text-danger" id="">
     <span>les deux password ne correspondent pas!</span>
   </div>
-  <div class="form-outline mb-2">
-    <div class="input-control">
-    <label for="password3" class="form-label">Old_Password</label>
-    <div [ngClass]="{'invalid':submitted && userEditForm.controls['password3'].errors}">
-    <input  placeholder="password3" type="password" class="form-control" formControlName="password3" #pass1>
+  <div class="input-control col-md-12">
+    <label class="form-label" for="form2Example11">Old_Password</label><span style="color: red;">*</span>
+    <div   [ngClass]="{'invalid':submitted && userEditForm.controls['prenom'].errors}">
+    <input  class=" p-3 rounded-0" name="password3" type="text" id="password3"
+      placeholder="Old_Password" formControlName="password3" type="password" class="form-control">
     </div>
-    <div *ngIf="submitted && userEditForm.controls['password3'].errors" class="text-danger">
+    <div *ngIf="submitted && userEditForm.controls['password3'].errors" class="text-danger" name="password3">
       <div *ngIf="submitted && userEditForm.controls['password3'].errors['required']">
-      entrer l'ancien mot de passe
+        Ce champ est require
+      </div>
+      <div *ngIf="submitted && userEditForm.controls['password3'].errors['cannotContainSpace']">
+        ne met pas espace
       </div>
     </div>
-  </div>
   </div>
 
   <div class="form-outline mb-2">
@@ -209,6 +214,9 @@
     <div *ngIf="submitted && userEditForm.controls['password'].errors['minlength']">
         password doit contenir au minimum 8 caractères
     </div>
+    <div *ngIf="submitted && userEditForm.controls['password'].errors['cannotContainSpace']">
+      ne met pas espace
+    </div>
 </div>
   
   </div>
@@ -216,19 +224,21 @@
   <div class="form-outline mb-2">
     <div class="input-control">
     <label class="form-label" for="form2Example11">Confirm password</label>
-    <div [ngClass]="{'invalid':submitted && userEditForm.controls['passwordc'].errors}">
+    <div [ngClass]="{'invalid':submitted && userEditForm.controls['password2'].errors}">
     <input  placeholder="password2" formControlName="password2" type="password" class="form-control"  id="pass2" #pass2 (change)="checkPassword()">
   </div>
     <div *ngIf="submitted && userEditForm.controls['password2'].errors" class="text-danger">
     <div *ngIf="submitted && userEditForm.controls['password2'].errors['required']">
         Ce champ est  require
     </div>
-
+    <div *ngIf="submitted && userEditForm.controls['password2'].errors['cannotContainSpace']">
+      ne met pas espace
+    </div>
 </div>
      
   </div>
   </div>
-  <div class="d-flex justify-content-space gap-3" >
+  <div class="d-flex justify-content-center gap-5" style="margin-top: 60px;">
     <button type="submit" class="btn btn-danger" (click)="modifUsersPassword()">ENREGISTRER</button><br>
     <button type="submit" class="btn btn-success" (click)="this.showFormPass = false;">Annuler</button>
   </div>
