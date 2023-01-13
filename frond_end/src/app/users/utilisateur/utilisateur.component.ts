@@ -81,6 +81,8 @@ changeRole=(id:any,roles:any)=> {
   title: 'Voulez-vous vraiment changer le role de cet utilisateur?',  
   text: 'Si oui met ok',  
   icon: 'warning',  
+  confirmButtonColor: "#B82010", 
+  cancelButtonColor: "green" , 
   showCancelButton: true,  
   confirmButtonText: 'ok!',  
   cancelButtonText: 'Annuler'  
@@ -117,6 +119,8 @@ etat == "false" ? etat = true : etat = false
   title: 'Voulez-vous vraiment archiver cet utilisateur?',  
   text: 'Si oui met ok',  
   icon: 'warning',  
+  confirmButtonColor: "#B82010", 
+  cancelButtonColor: "green" , 
   showCancelButton: true,  
   confirmButtonText: 'ok!',  
   cancelButtonText: 'Annuler'  
@@ -147,6 +151,8 @@ getUserData(id:any,email:any,prenom:any,nom:any){
     title: 'Voulez-vous vraiment modifier le profil de utilisateur?',  
     text: 'Si oui met ok',  
     icon: 'warning',  
+    confirmButtonColor: "#B82010", 
+    cancelButtonColor: "green" , 
     showCancelButton: true,  
     confirmButtonText: 'ok!',  
     cancelButtonText: 'Annuler'  

@@ -186,9 +186,9 @@ errorMsg:any;
       prenom: ['', [Validators.required,UsernameValidator.cannotContainSpace]],
       nom: ['', [Validators.required,UsernameValidator.cannotContainSpace]],
       email: ['', [Validators.required,Validators.email]],
-      password3: ['', [Validators.required]],
-      password: ['', [Validators.required]],
-      password2: ['', [Validators.required]],
+      password3: ['', [Validators.required,UsernameValidator.cannotContainSpace]],
+      password: ['', [Validators.required,UsernameValidator.cannotContainSpace]],
+      password2: ['', [Validators.required,Validators.minLength(6)]],
     
     });
   }
@@ -208,14 +208,16 @@ errorMsg:any;
 
   }
 
-
+/* recuperer les email,nom et prenom qu'on va modifier */
 getUserData(id:any,email:any,prenom:any,nom:any){
 
   
   Swal.fire({  
-    title: 'Voulez-vous vraiment effectuer cette action?',  
+    title: 'Voulez-vous vraiment modifier votre profil?',  
     text: 'Si oui met ok',  
-    icon: 'warning',  
+    icon: 'warning', 
+    confirmButtonColor: "#B82010", 
+    cancelButtonColor: "green" ,  
     showCancelButton: true,  
     confirmButtonText: 'ok!',  
     cancelButtonText: 'Annuler'  
@@ -290,6 +292,8 @@ modifUsers (){
       title: 'Voulez-vous vraiment modifier votre mot de passe',  
       text: 'Si oui met ok',  
       icon: 'warning',  
+      confirmButtonColor: "#B82010", 
+      cancelButtonColor: "green" , 
       showCancelButton: true,  
       confirmButtonText: 'ok!',  
       cancelButtonText: 'Annuler'  
@@ -304,8 +308,8 @@ modifUsers (){
  
     this.userEditForm = this.formBuilder.group({
       id: [id],
-      password: ["", [Validators.required]],
-      password2: ['', [Validators.required]],
+      password: ["", [Validators.required,UsernameValidator.cannotContainSpace]],
+      password2: ['', [Validators.required,Validators.minLength(6)]],
     });
       }
     });
@@ -323,25 +327,34 @@ modifUsers (){
 modifUsersPassword(){
 
   const id = this.userEditForm.value.id;
+    this.submitted = true
+    this.spin = true
+   if(this.userEditForm.invalid){
+    this.spin = false
+    return ;
+  }
+
   const user = {
     // photo: this.userEditForm.value.photo,
     password: this.userEditForm.value.password,
     // password2: this.userEditForm.value.password2
   }
-  console.log(user)
 
-  this.userService.modifUsers(id,user).subscribe(
+  this.userService.changeRole(id,user).subscribe(
 
     data => {
-      console.log(data)
-       
+    
       this.ngOnInit();
       this.showFormPass = false
 
+    },
+    error =>{
+      console.log(error )
     }
-  );
+   );
+  
 }
-/* recuperer les email,nom et prenom qu'on va modifier */
+
 
   
 /* controler les deux mots de passe */

@@ -76,6 +76,8 @@ ddeleteId=(id:any,etat:any)=> {
     title: 'Voulez-vous vraiment desarchiver cette utilisateur?',  
     text: 'Si oui met ok',  
     icon: 'warning',  
+    confirmButtonColor: '#B82010',  
+    cancelButtonColor: 'green' ,
     showCancelButton: true,  
     confirmButtonText: 'ok!',  
     cancelButtonText: 'Annuler'  
