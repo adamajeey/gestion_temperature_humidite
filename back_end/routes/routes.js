@@ -109,7 +109,7 @@ catch(error){
 res.status(500).json({message: error.message})
 }
 })
-/* get by id method */
+/* get by id methode */
 router.get('/getOne/:id', async(req, res) => {
 const data = await Model.findById(req.params.id);
 res.json(data)

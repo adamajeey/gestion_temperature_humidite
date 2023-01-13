@@ -16,7 +16,7 @@ export class UsersService {
     this.currentUserSubject = new BehaviorSubject<User>(JSON.parse((localStorage.getItem('currentUser')!)));
     if (this.currentUserSubject.value == null) {
       this.getLogOut();
-      this.router.navigateByUrl('login')
+      this.router.navigateByUrl('login');
     }
   }
 
@@ -70,6 +70,7 @@ export class UsersService {
   getLogOut(){
     // return this.httpClient.post<User>(`${env.apiUrl}/post`,user);
     localStorage.clear();
+    this.router.navigateByUrl('login');
   }
 }
 
