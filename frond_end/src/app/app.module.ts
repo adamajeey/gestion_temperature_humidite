@@ -39,6 +39,7 @@ import { MenuComponent } from './menu/menu.component';
         AccueilDashboardComponent,
         SidebarComponent,
         MenuComponent,
+        
        
         
     ],
