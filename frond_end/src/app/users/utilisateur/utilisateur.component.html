@@ -7,40 +7,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-<body>
+<body class="d-flex justify-content-center">
   
-      <div class="container d-flex justify-content-end" style="margin-top: 100px;">       
-        <form class="form-inline my-2 my-lg-2 row">
-          <div class="d-flex gap-1">
-            <input *ngIf="show" id="search" class="form-control" type="text" name="search" placeholder="Rechercher" [(ngModel)]="searchText">
-            <button class="btn btn-outline-danger" (click)="afficher()"><i class="bi bi-search"></i></button>
-          </div>
-        </form>
-      </div>
+      
     
   
   
-  <div class="container mt-5"  *ngIf="!showForm">
-<!-- <nav id="nav">  
-   
-        <div class="bouton">
-        <input id="search" class="form-control" type="text" name="search" placeholder="Rechercher" [(ngModel)]="searchText">
-        </div> 
-</nav>  -->
-    
- 
+  <div class="container"  *ngIf="!showForm">
+
+    <div class="container d-flex justify-content-end" style="margin-top: 100px;">       
+      <form class="form-inline my-2 my-lg-2 row">
+        <div class="d-flex gap-1">
+          <input *ngIf="show" id="search" class="form-control" type="text" name="search" placeholder="Rechercher" [(ngModel)]="searchText">
+          <button class="btn btn-outline-danger" (click)="afficher()"><i class="bi bi-search"></i></button>
+        </div>
+      </form>
+    </div>
+
       <table class="table table-bordered " >  
-    <thead>
-      <tr class="bg-danger" > 
-       
-        <th scope="col">MATRICULE</th>
-        <th scope="col">NOM</th>
-        <th scope="col">PRENOM</th>
-        <th scope="col">EMAIL</th>
-        <th scope="col">ROLES</th>
-        <th scope="col">ACTION</th>
-      </tr>
-    </thead>     
+        <thead>
+          <tr class="bg-danger" > 
+          
+            <th scope="col">MATRICULE</th>
+            <th scope="col">NOM</th>
+            <th scope="col">PRENOM</th>
+            <th scope="col">EMAIL</th>
+            <th scope="col">ROLES</th>
+            <th scope="col">ACTION</th>
+          </tr>
+        </thead>     
           <tbody class="tbody">    
          <tr *ngFor="let user of userActif | filter:searchText | paginate: { itemsPerPage:  itemsperpage, currentPage: p}">  
           <td class="col-2">{{user.matricule}}</td> 
@@ -64,9 +59,10 @@
         <pagination-controls (pageChange)="p = $event"></pagination-controls>
       </div>
    </div>
-   </div>  
+   </div>
    
    <div class="container card rounded-5 text-black shadow-lg p-3 mb-5 bg-white rounded" style="height:600px;margin:0; display: flex; flex-wrap: wrap; margin-top: 100px; width: 550px;" *ngIf="showForm" >
+
       
 
     <div class="text-center">
