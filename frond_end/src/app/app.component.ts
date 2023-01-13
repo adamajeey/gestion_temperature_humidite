@@ -9,11 +9,16 @@ import { UsersService } from 'src/app/services/users.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  currentDate = new Date();
+  CurrentTime: any;
   title = 'simplonApi2';
   showHead:any;
   history: Set<any> = new Set()
 hist: any[] = []
   constructor(private userService : UsersService, private router: Router) {
+    setInterval(() => {
+      this.CurrentTime = new Date().getHours() + ':' + new Date().getMinutes() + ':'+  new Date().getSeconds()}, + 1);
+  
 
     router.events.forEach((event) => {
       if (event instanceof NavigationStart) {
@@ -26,7 +31,7 @@ hist: any[] = []
       }
     });
 
-    this.router.events.subscribe(() => {
+    /* this.router.events.subscribe(() => {
    
       this.history.add(this.router.routerState.snapshot.url)
       this.hist = Array.from(this.history)
@@ -37,11 +42,11 @@ hist: any[] = []
           this.history.delete(value)
         }
       })
-    })
+    }) */
   }
 
   logout() {
-    this.userService.getLogOut()
+    this.userService.getLogOut();
   }
 
 }
