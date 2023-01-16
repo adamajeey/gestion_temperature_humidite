@@ -15,7 +15,7 @@
   
   <div class="container"  *ngIf="!showForm">
 
-    <div class="container d-flex justify-content-end" style="margin-top: 100px;">       
+    <div class="container d-flex justify-content-end" style="margin-top: 50px;">       
       <form class="form-inline my-2 my-lg-2 row">
         <div class="d-flex gap-1">
           <input *ngIf="show" id="search" class="form-control" type="text" name="search" placeholder="Rechercher" [(ngModel)]="searchText">
@@ -24,7 +24,7 @@
       </form>
     </div>
 
-      <table class="table table-bordered " >  
+      <table class="table table-bordered shadow-lg p-3 mb-5 bg-white rounded-3" >  
         <thead>
           <tr class="bg-danger" > 
           
