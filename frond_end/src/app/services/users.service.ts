@@ -39,6 +39,14 @@ export class UsersService {
       }));
 
   }
+  getToken() {
+    return localStorage.getItem('currentUser');
+  }
+ 
+  get isLoggedIn(): boolean {
+    let authToken = localStorage.getItem('currentUser');
+    return authToken !== null ? true : false;
+  }
 
   getLoggedIn(){
 
@@ -69,8 +77,12 @@ export class UsersService {
 
   getLogOut(){
     // return this.httpClient.post<User>(`${env.apiUrl}/post`,user);
-    localStorage.clear();
-    this.router.navigateByUrl('login');
+    /* localStorage.clear(); */
+    /* this.router.navigateByUrl('login'); */
+    let removeToken = localStorage.removeItem('currentUser');
+    if (removeToken == null) {
+      this.router.navigate(['']);
+    }
   }
 }
 
