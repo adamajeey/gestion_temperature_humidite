@@ -204,13 +204,13 @@
   <div class="form-outline mb-2">
     <div class="input-control">
     <label class="form-label" for="form2Example11">New_Password</label>
-    <div [ngClass]="{'invalid': userEditForm.controls['password'].errors}">
+    <div [ngClass]="{'invalid':!userEditForm.controls['password'].errors}">
     <input id="pass1" name="password"  class=" p-3 rounded-0" type="password"  placeholder="password"
   formControlName="password" type="password" class="form-control">
   </div>
 <div *ngIf="userEditForm.controls['password'].errors" class="text-danger" >
     <div *ngIf="userEditForm.controls['password'].errors['required']">
-        Ce champ est  require
+        Ce champ est obligatoire
     </div>
     <div *ngIf="userEditForm.controls['password'].errors['minlength']">
         password doit contenir au minimum 8 caractères
