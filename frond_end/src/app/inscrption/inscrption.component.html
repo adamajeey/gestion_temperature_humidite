@@ -44,12 +44,12 @@
                     <label class="form-label" for="form2Example11">Prenom</label><span style="color: red;">*</span>
                     <input id="form2Example11" class=" p-3 rounded-0" name="prenom" type="text" id="roles"
                       [ngClass]="{'is-invalid':submitted && registerForm.controls['prenom'].errors}"
-                      placeholder="prenom" formControlName="prenom" type="text" class="form-control">
+                      placeholder="prenom" formControlName="prenom" type="text" class="form-control" autocomplete="on">
                     <div *ngIf="submitted && registerForm.controls['prenom'].errors" class="text-danger" name="prenom">
                       <div *ngIf="submitted && registerForm.controls['prenom'].errors required">
                         Ce champ est requis
                       </div>
-                      <div *ngIf="!submitted && registerForm.controls['prenom'].errors['cannotContainSpace']">
+                      <div *ngIf="submitted && registerForm.controls['prenom'].errors['cannotContainSpace']">
                         ne met pas espace
                       </div>
                     </div>
