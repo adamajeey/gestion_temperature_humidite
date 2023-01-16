@@ -10,19 +10,20 @@ import { SimpleusersComponent } from './users/simpleusers/simpleusers.component'
 import { AccueilDashboardComponent } from './accueil-dashboard/accueil-dashboard.component';
 import { SidebarComponent } from './users/sidebar/sidebar.component';
 import { MenuComponent } from './menu/menu.component';
+import { AuthGuard } from "./services/user.guard";
 
 const routes: Routes = [
-{path: "pageArchive" , component: PageArchiveComponent},
-{path: "admin", component: UtilisateurComponent},
-{path: "profil", component: ProfilComponent},
-{path: "user", component: SimpleusersComponent},
-{path:"acceuil", component: AccueilDashboardComponent},
-{path:"inscription", component: InscrptionComponent},
+{path: "pageArchive" , component: PageArchiveComponent, canActivate: [AuthGuard]},
+{path: "admin", component: UtilisateurComponent, canActivate: [AuthGuard]},
+{path: "profil", component: ProfilComponent, canActivate: [AuthGuard]},
+{path: "user", component: SimpleusersComponent, canActivate: [AuthGuard]},
+{path:"acceuil", component: AccueilDashboardComponent, canActivate: [AuthGuard]},
+{path:"inscription", component: InscrptionComponent, canActivate: [AuthGuard]},
 {path:"login", component: LoginComponent},
-{path:"sides", component: SidebarComponent},
-{path:"menu", component: MenuComponent},
+{path:"sides", component: SidebarComponent, canActivate: [AuthGuard]},
+{path:"menu", component: MenuComponent, canActivate: [AuthGuard]},
 {path:"", component: LoginComponent},
-{path:"modification", component: ModificationComponent},
+{path:"modification", component: ModificationComponent, canActivate: [AuthGuard]},
 
 
 

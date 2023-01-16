@@ -186,9 +186,9 @@ errorMsg:any;
       prenom: ['', [Validators.required,UsernameValidator.cannotContainSpace]],
       nom: ['', [Validators.required,UsernameValidator.cannotContainSpace]],
       email: ['', [Validators.required,Validators.email]],
-      password3: ['', [Validators.required,UsernameValidator.cannotContainSpace]],
-      password: ['', [Validators.required,UsernameValidator.cannotContainSpace]],
-      password2: ['', [Validators.required,Validators.minLength(6)]],
+      password3: ['', [Validators.required,UsernameValidator.cannotContainSpace,Validators.minLength(8)]],
+      password: ['', [Validators.required,Validators.minLength(8)]],
+      password2: ['', [Validators.required,Validators.minLength(8)]],
     
     });
   }
@@ -226,7 +226,7 @@ getUserData(id:any,email:any,prenom:any,nom:any){
       this.showForm = true;
       this.userEditForm = this.formBuilder.group({
           id:[id],
-          prenom: [prenom, [Validators.required,UsernameValidator.cannotContainSpace]],
+          prenom: [prenom, [Validators.required,UsernameValidator.cannotContainSpace,]],
           nom: [nom, [Validators.required,UsernameValidator.cannotContainSpace]],
           email: [email, [Validators.required,Validators.email]],
         });  
@@ -308,8 +308,9 @@ modifUsers (){
  
     this.userEditForm = this.formBuilder.group({
       id: [id],
-      password: ["", [Validators.required,UsernameValidator.cannotContainSpace]],
-      password2: ['', [Validators.required,Validators.minLength(6)]],
+      password: ["", [Validators.required,Validators.minLength(8)]],
+      password2: ['', [Validators.required,Validators.minLength(8)]],
+      password3: ['', [Validators.required,Validators.minLength(8)]],
     });
       }
     });

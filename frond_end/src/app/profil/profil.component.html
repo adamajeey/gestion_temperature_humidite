@@ -167,7 +167,7 @@
  </div>
   
  <!-- Formulaire de modification mot de passe showFormPass pour afficher ou cacher le formulaire -->
- <div class="container card rounded-5 text-black shadow-lg p-3 mb-5 bg-white rounded" style="height:600px;margin:0; display: flex; flex-wrap: wrap; margin-top: 100px; width: 550px;" *ngIf="showFormPass" >
+ <div class="container card rounded-5 text-black shadow-lg p-3 mb-5 bg-white rounded" style="height:700px;margin:0; display: flex; flex-wrap: wrap; margin-top: 100px; width: 550px;" *ngIf="showFormPass" >
       
 
   <div class="text-center">
@@ -190,33 +190,32 @@
     <input  class=" p-3 rounded-0" name="password3" type="text" id="password3"
       placeholder="Old_Password" formControlName="password3" type="password" class="form-control">
     </div>
-    <div *ngIf="submitted && userEditForm.controls['password3'].errors" class="text-danger" name="password3">
-      <div *ngIf="submitted && userEditForm.controls['password3'].errors['required']">
-        Ce champ est require
+    <div *ngIf=" userEditForm.controls['password3'].errors" class="text-danger" name="password3">
+      <div *ngIf="userEditForm.controls['password3'].errors['required']">
+        Ce champ est require 
       </div>
-      <div *ngIf="submitted && userEditForm.controls['password3'].errors['cannotContainSpace']">
-        ne met pas espace
-      </div>
+      <div *ngIf="userEditForm.controls['password3'].errors['minlength']">
+        password doit contenir au minimum 8 caractères
+    </div>
+     
     </div>
   </div>
 
   <div class="form-outline mb-2">
     <div class="input-control">
     <label class="form-label" for="form2Example11">New_Password</label>
-    <div [ngClass]="{'invalid':submitted && userEditForm.controls['password'].errors}">
+    <div [ngClass]="{'invalid':!userEditForm.controls['password'].errors}">
     <input id="pass1" name="password"  class=" p-3 rounded-0" type="password"  placeholder="password"
   formControlName="password" type="password" class="form-control">
   </div>
-<div *ngIf="submitted && userEditForm.controls['password'].errors" class="text-danger" >
-    <div *ngIf="submitted && userEditForm.controls['password'].errors['required']">
-        Ce champ est  require
+<div *ngIf="userEditForm.controls['password'].errors" class="text-danger" >
+    <div *ngIf="userEditForm.controls['password'].errors['required']">
+        Ce champ est obligatoire
     </div>
-    <div *ngIf="submitted && userEditForm.controls['password'].errors['minlength']">
+    <div *ngIf="userEditForm.controls['password'].errors['minlength']">
         password doit contenir au minimum 8 caractères
     </div>
-    <div *ngIf="submitted && userEditForm.controls['password'].errors['cannotContainSpace']">
-      ne met pas espace
-    </div>
+   
 </div>
   
   </div>
@@ -224,15 +223,12 @@
   <div class="form-outline mb-2">
     <div class="input-control">
     <label class="form-label" for="form2Example11">Confirm password</label>
-    <div [ngClass]="{'invalid':submitted && userEditForm.controls['password2'].errors}">
+    <div [ngClass]="{'invalid':userEditForm.controls['password2'].errors}">
     <input  placeholder="password2" formControlName="password2" type="password" class="form-control"  id="pass2" #pass2 (change)="checkPassword()">
   </div>
-    <div *ngIf="submitted && userEditForm.controls['password2'].errors" class="text-danger">
-    <div *ngIf="submitted && userEditForm.controls['password2'].errors['required']">
+    <div *ngIf="userEditForm.controls['password2'].errors" class="text-danger">
+    <div *ngIf="userEditForm.controls['password2'].errors['required']">
         Ce champ est  require
-    </div>
-    <div *ngIf="submitted && userEditForm.controls['password2'].errors['cannotContainSpace']">
-      ne met pas espace
     </div>
 </div>
      
