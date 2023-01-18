@@ -186,7 +186,7 @@ errorMsg:any;
       prenom: ['', [Validators.required,UsernameValidator.cannotContainSpace]],
       nom: ['', [Validators.required,UsernameValidator.cannotContainSpace]],
       email: ['', [Validators.required,Validators.email]],
-      password3: ['', [Validators.required,UsernameValidator.cannotContainSpace,Validators.minLength(8)]],
+      password3: ['', [Validators.required,Validators.minLength(8)]],
       password: ['', [Validators.required,Validators.minLength(8)]],
       password2: ['', [Validators.required,Validators.minLength(8)]],
     
