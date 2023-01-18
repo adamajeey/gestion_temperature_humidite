@@ -47,6 +47,7 @@ hist: any[] = []
 
   logout() {
     this.userService.getLogOut();
+    this.router.navigateByUrl('login')
   }
 
 }
