@@ -26,7 +26,7 @@ export class LoginComponent {
     
       email:['',[Validators.required,Validators.email]],
       
-      password:['',[Validators.required,Validators.minLength(4)]],
+      password:['',[Validators.required,Validators.minLength(8)]],
       
       })
   }

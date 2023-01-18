@@ -408,17 +408,4 @@ convertFile(str: any) {
 
 }
 
-  
 }
-
-
-
-
-
-
-
-
-
-
-
-
