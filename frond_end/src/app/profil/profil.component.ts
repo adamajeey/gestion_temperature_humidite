@@ -186,7 +186,7 @@ errorMsg:any;
       prenom: ['', [Validators.required,UsernameValidator.cannotContainSpace]],
       nom: ['', [Validators.required,UsernameValidator.cannotContainSpace]],
       email: ['', [Validators.required,Validators.email]],
-      password3: ['', [Validators.required,UsernameValidator.cannotContainSpace,Validators.minLength(8)]],
+      password3: ['', [Validators.required,Validators.minLength(8)]],
       password: ['', [Validators.required,Validators.minLength(8)]],
       password2: ['', [Validators.required,Validators.minLength(8)]],
     
@@ -286,7 +286,7 @@ modifUsers (){
 
 
 /* recuperer les mots de passe qu'on doit modifier */
-  getUserPassword() {
+  getUserPassword(id:any) {
     
     Swal.fire({  
       title: 'Voulez-vous vraiment modifier votre mot de passe',  
@@ -300,18 +300,18 @@ modifUsers (){
     }).then((result) => {  
       if (result.value) {
     this.showFormPass = true;
-    let id;
-   
-    for (const iterator of this.userActif) {
-      id = iterator._id
-    }
- 
     this.userEditForm = this.formBuilder.group({
       id: [id],
       password: ["", [Validators.required,Validators.minLength(8)]],
       password2: ['', [Validators.required,Validators.minLength(8)]],
       password3: ['', [Validators.required,Validators.minLength(8)]],
     });
+   
+   
+    for (const iterator of this.userActif) {
+      id = iterator._id
+    }
+ 
       }
     });
   
