@@ -18,7 +18,7 @@ p: number= 1;
 itemsperpage: number= 8;
 totalUser:any; 
 searchText:any;
-user = []; userArchive =[];
+user = []; userArchive = [];
 show:boolean = false;
 
   constructor(private userService : UsersService, private formBuilder : FormBuilder){
