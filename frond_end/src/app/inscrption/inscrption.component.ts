@@ -28,7 +28,7 @@ export class InscrptionComponent implements OnInit{
     this.registerForm = this.formBuilder.group({
       id:[''],
       prenom: ['', [Validators.required, UsernameValidator.cannotContainSpace]],
-      nom: ['', [Validators.required]],
+      nom: ['', [Validators.required, UsernameValidator.cannotContainSpace]],
       email: ['', [Validators.required]],
       password: ['', [Validators.required]],
       roles: ['', [Validators.required]],
@@ -39,7 +39,7 @@ export class InscrptionComponent implements OnInit{
   ngOnInit():void {
     this.registerForm = this.formBuilder.group({
      prenom:['',[Validators.required, UsernameValidator.cannotContainSpace]],
-      nom:['',Validators.required, UsernameValidator.cannotContainSpace],
+      nom: ['', [Validators.required, UsernameValidator.cannotContainSpace]],
       email:['',[Validators.required, Validators.email]],
       roles:['',Validators.required],
       password:['',[Validators.required, Validators.minLength(8)]],

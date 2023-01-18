@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-  
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -45,43 +45,47 @@
                     <input id="form2Example11" class=" p-3 rounded-0" name="prenom" type="text" id="roles"
                       [ngClass]="{'is-invalid':submitted && registerForm.controls['prenom'].errors}"
                       placeholder="prenom" formControlName="prenom" type="text" class="form-control" autocomplete="on">
-                    <div *ngIf="submitted && registerForm.controls['prenom'].errors" class="text-danger" name="prenom">
-                      <div *ngIf="submitted && registerForm.controls['prenom'].errors required">
+                    <div *ngIf="registerForm.controls['prenom'].dirty && registerForm.controls['prenom'].errors"
+                      class="text-danger" name="prenom">
+                      <div *ngIf="registerForm.controls['prenom'].errors['required']">
                         Ce champ est requis
                       </div>
-                      <div *ngIf="submitted && registerForm.controls['prenom'].errors['cannotContainSpace']">
-                        ne met pas espace
+                      <div
+                        *ngIf="!registerForm.controls['prenom'].errors['required'] && registerForm.controls['prenom'].errors['cannotContainSpace']">
+                        Ne met pas espace
                       </div>
                     </div>
                   </div>
 
-                    <div class="input-control col-md-6">
-                      <label class="form-label" for="form2Example11">Nom</label><span style="color: red;">*</span>
-                      <input id="form2Example11" name="nom" class=" p-3 rounded-0" type="text" id="roles"
-                        [ngClass]="{'is-invalid':submitted && registerForm.controls['nom'].errors}" placeholder="nom"
-                        formControlName="nom" class="form-control">
-                      <div *ngIf="submitted && registerForm.controls['nom'].errors" class="text-danger" name="nom">
-                        <div *ngIf="submitted && registerForm.controls['nom'].errors required">
-                          Ce champ est requis
-                        </div>
-                        <div *ngIf="!submitted && registerForm.controls['nom'].errors['cannotContainSpace']">
-                          ne met pas espace
-                        </div>
+                  <div class="input-control col-md-6">
+                    <label class="form-label" for="form2Example11">Nom</label><span style="color: red;">*</span>
+                    <input id="form2Example11" class=" p-3 rounded-0" name="nom" type="text" id="roles"
+                      [ngClass]="{'is-invalid':submitted && registerForm.controls['nom'].errors}" placeholder="nom"
+                      formControlName="nom" type="text" class="form-control" autocomplete="on">
+                      <div *ngIf="registerForm.controls['nom'].dirty && registerForm.controls['nom'].errors"
+                      class="text-danger" name="nom">
+                      <div *ngIf="registerForm.controls['nom'].errors['required']">
+                        Ce champ est requis
                       </div>
-
+                      <div
+                        *ngIf="!registerForm.controls['nom'].errors['required'] && registerForm.controls['nom'].errors['cannotContainSpace']">
+                        Ne met pas espace
+                      </div>
                     </div>
-                  
+                  </div>
+
 
                   <div class="input-control col-md-6">
                     <label class="form-label" for="form2Example11">Email</label><span style="color: red;">*</span>
                     <input id="form2Example11" name="email" class=" p-3 rounded-0" type="text"
                       [ngClass]="{'is-invalid':submitted && registerForm.controls['email'].errors}" placeholder="email"
                       formControlName="email" type="email" class="form-control" id="email" name="email">
-                    <div *ngIf="submitted && registerForm.controls['email'].errors" class="text-danger">
-                      <div *ngIf="submitted && registerForm.controls['email'].errors ['required']">
+                    <div *ngIf="registerForm.controls['email'].dirty && registerForm.controls['email'].errors"
+                      class="text-danger">
+                      <div *ngIf="registerForm.controls['email'].errors ['required']">
                         Ce champ est requis
                       </div>
-                      <div *ngIf="submitted && registerForm.controls['email'].errors['email']">
+                      <div *ngIf="registerForm.controls['email'].errors['email']">
                         Email Address incorrect
                       </div>
                     </div>
@@ -90,17 +94,18 @@
                   <div class="input-control col-md-6">
                     <label class="form-label" for="form2Example11">Role</label><span style="color: red;">*</span>
                     <select id="form2Example11" name="roles" class="form-select p-3 rounded-0"
-                      [ngClass]="{'is-invalid':submitted && registerForm.controls['email'].errors}" placeholder="roles" id="roles"
-                      formControlName="roles" type="text" class="form-control" placeholder="Role">
+                      [ngClass]="{'is-invalid':submitted && registerForm.controls['email'].errors}" placeholder="roles"
+                      id="roles" formControlName="roles" type="text" class="form-control" placeholder="Role">
                       <option value=""></option>
                       <option value="Admin">Admin</option>
                       <option value="Utilisateur">Utilisateur</option>
                     </select>
-                    <div *ngIf="submitted && registerForm.controls['roles'].errors" class="text-danger">
-                      <div *ngIf="submitted && registerForm.controls['roles'].errors ['required']">
+                    <div *ngIf="registerForm.controls['roles'].dirty && registerForm.controls['roles'].errors"
+                      class="text-danger">
+                      <div *ngIf="registerForm.controls['roles'].errors ['required']">
                         Ce champ est requis
                       </div>
-                      <div *ngIf="submitted && registerForm.controls['roles'].errors['roles']">
+                      <div *ngIf="registerForm.controls['roles'].errors['roles']">
                         role is not Valid
 
                       </div>
@@ -112,24 +117,29 @@
                     <input id="pass1" name="password" class=" p-3 rounded-0" type="password" placeholder="password"
                       [ngClass]="{'is-invalid':submitted && registerForm.controls['password'].errors}"
                       formControlName="password" type="password" class="form-control">
-                    <div *ngIf="submitted && registerForm.controls['password'].errors" class="text-danger">
-                      <div *ngIf="submitted && registerForm.controls['password'].errors required">
+                    <div *ngIf="registerForm.controls['password'].dirty && registerForm.controls['password'].errors"
+                      class="text-danger">
+                      <div
+                        *ngIf="registerForm.controls['password'].dirty && registerForm.controls['password'].errors['required']">
                         Ce champ est requis
                       </div>
-                      <div *ngIf="submitted && registerForm.controls['password'].errors['minlength']">
-                        password doit contenir au minimum 8 caractères
+                      <div
+                        *ngIf="!registerForm.controls['password'].errors['required'] && registerForm.controls['password'].errors['minlength']">
+                        Password doit contenir au minimum 8 caractères
                       </div>
                     </div>
 
                   </div>
 
                   <div class="input-control col-md-6">
-                    <label class="form-label" for="form2Example11">Confirm password</label><span style="color: red;">*</span>
+                    <label class="form-label" for="form2Example11">Confirm password</label><span
+                      style="color: red;">*</span>
                     <input [ngClass]="{'is-invalid':submitted && registerForm.controls['passwordc'].errors}"
-                      placeholder="Confirm" formControlName="passwordc" class=" p-3 rounded-0" type="password" class="form-control"
-                      id="pass2" #pass2 (change)="checkPassword()">
-                    <div *ngIf="submitted && registerForm.controls['passwordc'].errors" class="text-danger">
-                      <div *ngIf="submitted && registerForm.controls['passwordc'].errors required">
+                      placeholder="Confirm" formControlName="passwordc" class=" p-3 rounded-0" type="password"
+                      class="form-control" id="pass2" #pass2 (change)="checkPassword()">
+                    <div *ngIf="registerForm.controls['passwordc'].dirty && registerForm.controls['passwordc'].errors"
+                      class="text-danger">
+                      <div *ngIf="registerForm.controls['passwordc'].errors required">
                         Ce champ est requis
                       </div>
                     </div>
@@ -157,4 +167,5 @@
     </div>
   </div>
 </body>
+
 </html>
