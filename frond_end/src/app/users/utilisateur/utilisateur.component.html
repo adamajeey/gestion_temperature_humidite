@@ -84,11 +84,11 @@
         <input  class=" p-3 rounded-0" name="prenom" type="text" id="prenom"
           placeholder="prenom" formControlName="prenom" type="text" class="form-control">
         </div>
-        <div *ngIf="submitted && userEditForm.controls['prenom'].errors" class="text-danger" name="prenom">
-          <div *ngIf="submitted && userEditForm.controls['prenom'].errors required">
+        <div *ngIf="userEditForm.controls['prenom'].dirty && userEditForm.controls['prenom'].errors" class="text-danger" name="prenom">
+          <div *ngIf="userEditForm.controls['prenom'].errors required">
             Ce champ est require
           </div>
-          <div *ngIf="submitted && userEditForm.controls['prenom'].errors['cannotContainSpace']">
+          <div *ngIf="userEditForm.controls['prenom'].errors['cannotContainSpace']">
             ne met pas espace
           </div>
         </div>
@@ -100,11 +100,11 @@
           <input id="form2Example11" name="nom" class=" p-3 rounded-0" type="text" id="nom"
            placeholder="nom" formControlName="nom" class="form-control">
           </div>
-          <div *ngIf="submitted && userEditForm.controls['nom'].errors" class="text-danger" name="nom">
-            <div *ngIf="submitted && userEditForm.controls['nom'].errors required">
+          <div *ngIf="userEditForm.controls['nom'].dirty && userEditForm.controls['nom'].errors" class="text-danger" name="nom">
+            <div *ngIf="userEditForm.controls['nom'].errors required">
               Ce champ est require
             </div>
-            <div *ngIf="submitted && userEditForm.controls['nom'].errors['cannotContainSpace']">
+            <div *ngIf="userEditForm.controls['nom'].errors['cannotContainSpace']">
               ne met pas espace
             </div>
           </div>
@@ -117,11 +117,11 @@
         <input id="form2Example11" name="email" class=" p-3 rounded-0" type="text"
           [ngClass]="{'is-invalid':submitted && userEditForm.controls['email'].errors}" placeholder="email"
           formControlName="email" type="email" class="form-control" id="email" name="email">
-        <div *ngIf="submitted && userEditForm.controls['email'].errors" class="text-danger">
-          <div *ngIf="submitted && userEditForm.controls['email'].errors ['required']">
+        <div *ngIf="userEditForm.controls['email'].dirty && userEditForm.controls['email'].errors" class="text-danger">
+          <div *ngIf="userEditForm.controls['email'].errors ['required']">
             Ce champ est require
           </div>
-          <div *ngIf="submitted && userEditForm.controls['email'].errors['email']">
+          <div *ngIf="userEditForm.controls['email'].errors['email']">
             Email Address incorrect
           </div>
         </div>
