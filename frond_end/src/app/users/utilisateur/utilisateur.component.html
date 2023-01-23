@@ -39,19 +39,26 @@
           <td class="col-2">{{user.prenom}}</td>             
           <td class="col-2">{{user.email}}</td>           
           <td class="col-2">{{user.roles}}</td>
-      <td class="d-flex justify-content-arround col-2"> 
+      <td class="d-flex justify-content-arround col-2" *ngIf="isActif; else archive"> 
         <span class="btn btn-outline-danger" title="archiver" (click)="deleteId(user._id,user.etat)"><i class="bi bi-archive" id="i1" ></i></span>
         &nbsp;
         <span  class="btn btn-outline-primary" title="modifier" (click)="getUserData(user._id,user.email,user.prenom,user.nom)"><i class="bi bi-pen-fill" id="i2" ></i></span>
         &nbsp;
-        <span  class="btn btn-outline-primary" title="changer" (click)="changeRole(user._id,user.roles)"><i class="bi bi-arrow-clockwise" ></i></span></td> 
+        <span  class="btn btn-outline-primary" title="changer" (click)="changeRole(user._id,user.roles)"><i class="bi bi-arrow-clockwise" ></i></span></td>
+        <ng-template #archive>
+          <td> 
+      
+        
+            <span class="btn btn-outline-danger" title="désarchiver" (click)="ddeleteId(user._id,user.etat)"><i class="bi bi-trash-fill" id="i1"  ></i></span>
+            </td>  
+        </ng-template> 
                       
         </tr>   
         </tbody>
      </table>
 
      <div class="mt-8 py-5">
-      <div class="pagination fixed-bottom justify-content-center">
+      <div class="pagination fixed-bottom justify-content-center footer">
         <pagination-controls (pageChange)="p = $event"></pagination-controls>
       </div>
    </div>

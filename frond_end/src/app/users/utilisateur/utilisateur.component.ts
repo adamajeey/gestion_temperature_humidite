@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, NgModel, Validators } from '@angular/forms';
 import { UsersService } from 'src/app/services/users.service';
@@ -11,6 +12,8 @@ import Swal from 'sweetalert2';
 })
 
 export class UtilisateurComponent implements OnInit {
+  route!:string
+  isActif:boolean= false
   registerForm!:FormGroup;
   title = 'angularvalidate';
   submitted = false;
@@ -29,13 +32,16 @@ spin= false;
 errorMsg:any;
 show:boolean = false;
 
-  constructor(private userService : UsersService, private formBuilder : FormBuilder){
+
+  constructor(private userService : UsersService, private formBuilder : FormBuilder, private router: Router){
     this.userEditForm = this.formBuilder.group({
       id:[''],
       prenom: ['', [Validators.required,UsernameValidator.cannotContainSpace]],
       nom: ['', [Validators.required,UsernameValidator.cannotContainSpace]],
       email: ['', [Validators.required,Validators.email]],
     });
+    this.route = this.router.routerState.snapshot.url
+    this.isActif = this.route == '/admin' ? true : false
   } 
 
   simpleAlert(){  
@@ -54,7 +60,7 @@ ngOnInit(): void {
 
         this.users = data;
 
-        this.userActif = this.users.filter((e:any)=> e.etat == true && e.email != localStorage.getItem('email')?.replace(/['"]+/g, ''))
+        this.userActif = this.users.filter((e:any)=> e.etat == this.isActif && e.email != localStorage.getItem('email')?.replace(/['"]+/g, ''))
         
       }
 ); 
@@ -70,7 +76,7 @@ retrieveData(){
 
 
 changeRole=(id:any,roles:any)=> {
- roles == "admin" ? roles ="utilisateur": roles = "admin"
+ roles == "admin" ? roles = "utilisateur": roles = "admin"
 
  const user ={
   roles : roles
@@ -211,6 +217,42 @@ modifUsers (){
 
 public afficher():void{
   this.show = !this.show;
+}
+ddeleteId=(id:any,etat:any)=> {
+
+
+  etat == true ? etat = false : etat = true
+
+ const user ={
+ etat : etat
+
+ }
+
+ Swal.fire({  
+  title: 'Voulez-vous vraiment desarchiver cette utilisateur?',  
+  text: 'Si oui met ok',  
+  icon: 'warning',  
+  confirmButtonColor: '#B82010',  
+  cancelButtonColor: 'green' ,
+  showCancelButton: true,  
+  confirmButtonText: 'ok!',  
+  cancelButtonText: 'Annuler'  
+}).then((result) => {  
+  if (result.value) {  
+
+    this.userService.modifUsers(id,user).subscribe(
+
+      data=>{
+  
+        Swal.fire({
+          icon:'success' 
+        })
+        this.ngOnInit();
+      }
+   );  
+  }
+}) 
+
 }
 
 }
