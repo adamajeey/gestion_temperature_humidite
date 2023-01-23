@@ -1,9 +1,9 @@
 const express = require('express');/* recupere la variable express dans la boite express */
 const mongoose  = require('mongoose');
 require('dotenv').config();/* pour recuperer le fichier env */
-
+var MongoClient = require('mongodb').MongoClient;
 var cors = require('cors')
-
+const { Movie } = require('../back_end/models/movie.model')
 const routes = require('./routes/routes');
 
 const databaseLink = process.env.DATABASE_URL/* permet de recuperer le lien de la base de donnée */
@@ -25,11 +25,97 @@ console.log(error)
 
 })
 
+const http = require('http').Server(app);
+
+const io = require('socket.io')(http);
+
 database.once('connected', ()=> {
     
 console.log('Database Connected')
 
 })
-app.listen(3001, ()=>{
+
+var fs = require('fs');
+/* var index = fs.readFileSync( '/'); */
+
+var SerialPort = require('serialport');
+const router = require('./routes/routes');
+const parsers = SerialPort.parsers;
+
+const parser = new parsers.Readline({
+    delimiter: '\r\n'
+});
+
+
+var port = new SerialPort('/dev/ttyACM0',{ 
+    baudRate: 9600,
+    dataBits: 8,
+    parity: 'none',
+    stopBits: 1,
+    flowControl: false
+});
+
+port.pipe(parser);
+var url = "mongodb://localhost:27017/";
+
+
+
+
+io.on('connection', function(socket) {
+    
+    console.log('Node is listening to port');
+   
+    
+});
+
+parser.on('data', function(data) {
+    
+    console.log('les information sont: ' + data);
+    temp = data.split('/');
+    console.log(data.split('/'));
+    io.emit('data', {"temperature": temp[0], "humidite": temp[1]});
+    var datHeure = new Date();
+    var min = datHeure.getMinutes();
+    var heur = datHeure.getHours(); //heure
+    var sec = datHeure.getSeconds(); //secondes
+    var mois = datHeure.getDate(); //renvoie le chiffre du jour du mois 
+    var numMois = datHeure.getMonth() + 1; //le mois en chiffre
+    var laDate = datHeure.getFullYear(); // me renvoie en chiffre l'annee
+    if (numMois < 10) { numMois = '0' + numMois; }
+    if (mois < 10) { mois = '0' + mois; }
+    if (sec < 10) { sec = '0' + sec; }
+    if (min < 10) { min = '0' + min; }
+    var heureInsertion = heur + ':' + min + ':' + sec;
+    var heureEtDate = mois + '/' + numMois + '/' + laDate;
+    console.log(heureInsertion);
+    console.log(heureEtDate);
+    const fetchMovies = (socket) => {
+        data.findAll()
+            .then(data => io.emit('fetchMovies', data))
+            .catch(logError)
+    }
+   
+    var tempEtHum = { "temperature": temp[0], "humidite": temp[1],'Date': heureEtDate, 'Heure': heureInsertion };
+    if ((heur == 08 && min == 00 && sec == 00) || (heur == 12 && min == 00 && sec == 00) || (heur == 19 && min == 00 && sec == 00)) {
+         //Connexion a mongodb et insertion Temperature et humidite
+         MongoClient.connect(url, { useUnifiedTopology: false }, function(err, db) {
+            if (err) throw err;
+            var dbo = db.db("dhtTemp2");
+            dbo.collection("tempHum2").insertOne(tempEtHum, function(err, res) {
+                if (err) throw err;
+                console.log("1 document inserted");
+                db.close();
+            });
+        })
+    } //Fin if
+}
+    
+);
+router.get('/', (req, res) => {
+    res.json(data)
+  });
+
+  http.listen(3000, ()=>{
     console.log('server started at ${3001}')/* apres avoir ecouter le port 3000 affiche les données */
 })
+
