@@ -26,12 +26,11 @@ export class LoginComponent {
     
       email:['',[Validators.required,Validators.email]],
       
-      password:['',[Validators.required,Validators.minLength(4)]],
+      password:['',[Validators.required,Validators.minLength(8)]],
       
       })
   }
 
- 
   
 onSubmit(){
 this.submitted = true
@@ -51,15 +50,15 @@ this.spin = true
   }
 
   // console.log(user)
-
+  
   this.userService.getConnexion(user).subscribe(
     data=>{
       console.log(data)
       if (data.data?.roles.replace(/['"]+/g, '') == "Admin" || data.data?.roles.replace(/['"]+/g, '') == "admin") {
-          this.route.navigateByUrl('admin')
+          this.route.navigateByUrl('acceuil')
           this.spin = true
       } else {
-        this.route.navigateByUrl('user')
+        this.route.navigateByUrl('acceuil')
         this.spin = true
       }
     }, 

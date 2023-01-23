@@ -8,11 +8,11 @@
   <title>Document</title>
 </head>
 
-<body>
-
-  <div class="container py-5 h-100 " *ngIf="!showForm">
-    <div class="row d-flex justify-content-center align-items-center h-100 " *ngFor="let user of userActif">
-      <div class="col col-lg-10 mb-4  mb-lg-0 bg-body ">
+<body style="display: flex; justify-content: center;">
+<!-- pour le profil recuperer information de l'utilisateur connecter -->
+  <div class="container py-5  shadow-lg p-3 mb-5 bg-white rounded" style="width: 1000px; " *ngIf="!showForm && !showFormPass">
+    <div class="row d-flex justify-content-center align-items-center" style="width: 1000px; " *ngFor="let user of userActif">
+      <div class="col col-lg-10 mb-4  mb-lg-0 bg-body " style="width: 900px; ">
         <div class="card mb-3 mt-3" style="border-radius: .5rem;">
           <div class="row g-0 ">
             <div class="col-md-4 shadow bg-danger gradient-custom text-center text-dark"
@@ -20,26 +20,36 @@
 
 
 
-              <img [attr.src]="img" alt="Avatar" class="img-fluid my-5 rounded" style="width: 80px;" />
+              <img [attr.src]="img" alt="Avatar" class="img-fluid my-5 rounded" style="width: 70px; border-radius: 50%;" />
               <!-- <img [attr.src]="img" class="rounded-circle border m-1   " height="50" />       -->
 
 
 
-              <h5 class="text-dark">
+              <h2 class="text-dark">
 
                 <p class="text-dark text-bold">{{user.prenom}}</p>
                 <p class="text-dark">{{user.nom}}</p>
-              </h5>
+              </h2>
+              <!-- pour modifier profil -->
               <div ng="let user of userActif">
-                <span class="btn btn-outline-dark" title="modifier">
-                  <i class="bi bi-pen-fill" id="i2" (click)="getUserData(user._id,user.email,user.prenom,user.nom)"></i>
-                </span>
+                <span class="btn btn-outline-dark rounded-5" title="modifier_Profil">
+                  <!-- get pour recuperer des objets email,nom etc dans la table d'objet -->
+               <button (click)="getUserData(user._id,user.email,user.prenom,user.nom)" class="rounded-5" ><i class="bi bi-pen-fill" id="i2" style="color: black;" ></i>
+               </button></span>
            
+              </div><br>
+              <!-- on clique pour modifier password -->
+              <div ng="let user of userActif">
+             
+                <span class="btn btn-outline-dark rounded-5 " title="modifier_Password">
+                  <button (click)="getUserPassword(user._id)" class="rounded-5"><i class="bi bi-pen-fill" id="i2"style="color: black;" ></i>
+                  </button></span>
               </div>
             </div>
+            <!-- recupere et affiche les info de l'utilisateur connecter -->
             <div class="col-md-8 ">
               <div class="card-body p-4 shadow">
-                <h4> Vos Informations</h4>
+                <h2> Vos Informations</h2>
                 <hr class="mt-0 mb-4">
                 <div class="row pt-1">
                   <div class="col-6 mb-3">
@@ -64,7 +74,7 @@
                 <div class="row pt-1">
                   <div class="col-10 mb-3">
 
-                    <p class="text-muted">Mamy sy ©copyright 2022</p>
+                    <p class="text-muted">Groupe Charia ©copyright 2023</p>
                   </div>
                 </div>
                 <div class="d-flex justify-content-start">
@@ -79,105 +89,155 @@
       </div>
     </div>
   </div>
+<!-- formulaire pour modifier le profil showForm pour afficher ou cacher le formulaire -->
+<div class="container card rounded-5 text-black shadow-lg p-3 mb-5 bg-white rounded" style="height:600px;margin:0; display: flex; flex-wrap: wrap; margin-top: 100px; width: 550px;" *ngIf="showForm" >
+      
 
+  <div class="text-center">
+    <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/lotus.webp"
+      style="width: 180px;margin-top: -40px;" alt="logo">
+    <h3 class=" mb-3 pb-1" style="margin-top: -20px;">Modifier votre profil</h3> <br>
+  </div>
 
- <div *ngIf="showForm" class="container" style="background:linear-gradient(rgba(0,0,0,.5),rgba(0,0,0,.1));
- display: flex; flex-wrap: wrap; justify-content: center;">
-  <h1 style="color:white">Modifier votre profil</h1>
+  <form id="form" style="height: 600px;  margin-top: -15px;" [formGroup]="userEditForm"  class="col-6" style="margin: 0 auto;"
+    class="row d-flex justify-content-center no-wrap  " >
+    <input type="text" formControlName="id"  hidden>
+    <span *ngIf="emailExiste" class="d-flex justify-content-center fadeIn">
+        <p class="text text-danger">{{emailExiste}}</p>
+    </span>
+   
+    <div *ngIf="errorMsg!" class="d-flex justify-content-center text text-danger" id="">
+      <span>email deja existe!</span>
+    </div>
 
- <form  [formGroup]="userEditForm" (ngSubmit)="modifUsers()"  class="col-6" style="margin: 0 auto;">
-  <input type="text" formControlName="id"  hidden>
-  <span *ngIf="emailExiste" class="d-flex justify-content-center fadeIn">
-      <p class="text text-danger">{{emailExiste}}</p>
-  </span>
+    <div class="input-control col-md-12">
+      <label class="form-label" for="form2Example11">Prenom</label><span style="color: red;">*</span>
+      <div   [ngClass]="{'invalid':submitted && userEditForm.controls['prenom'].errors}">
+      <input  class=" p-3 rounded-0" name="prenom" type="text" id="prenom"
+        placeholder="prenom" formControlName="prenom" type="text" class="form-control">
+      </div>
+      <div *ngIf="userEditForm.controls['prenom'].dirty && userEditForm.controls['prenom'].errors" class="text-danger" name="prenom">
+        <div *ngIf="userEditForm.controls['prenom'].errors['required']">
+          Ce champ est require
+        </div>
+        <div *ngIf="!userEditForm.controls['prenom'].errors['required'] && userEditForm.controls['prenom'].errors['cannotContainSpace']">
+          ne met pas espace
+        </div>
+      </div>
+    </div>
+
+    <div class="input-control col-md-12">
+      <label class="form-label" for="form2Example11">Nom</label><span style="color: red;">*</span>
+      <div   [ngClass]="{'invalid':submitted && userEditForm.controls['nom'].errors}">
+      <input  class=" p-3 rounded-0" name="nom" type="text" id="nom"
+        placeholder="nom" formControlName="nom" type="text" class="form-control">
+      </div>
+      <div *ngIf="userEditForm.controls['nom'].dirty && userEditForm.controls['nom'].errors" class="text-danger" name="prenom">
+        <div *ngIf="userEditForm.controls['nom'].errors['required']">
+          Ce champ est require
+        </div>
+        <div *ngIf="!userEditForm.controls['nom'].errors['required'] && userEditForm.controls['nom'].errors['cannotContainSpace']">
+          ne met pas espace
+        </div>
+      </div>
+    </div>
+
+    
+
+    <div class="input-control col-md-12">
+      <label class="form-label" for="form2Example11">Email</label><span style="color: red;">*</span>
+      <input id="form2Example11" name="email" class=" p-3 rounded-0" type="text"
+        [ngClass]="{'is-invalid':submitted && userEditForm.controls['email'].errors}" placeholder="email"
+        formControlName="email" type="email" class="form-control" id="email" name="email">
+      <div *ngIf="userEditForm.controls['email'].dirty  && userEditForm.controls['email'].errors" class="text-danger">
+        <div *ngIf="userEditForm.controls['email'].errors ['required']">
+          Ce champ est require
+        </div>
+        <div *ngIf="userEditForm.controls['email'].errors['email']">
+          Email Address incorrect
+        </div>
+      </div>
+    </div>
+<div class="d-flex justify-content-center gap-5" style="margin-top: 60px;">
+  <button type="submit" class="btn btn-danger" (click)="modifUsers()">Modifier</button>
+  <button  class="btn btn-success" (click)="this.showForm = false;">Annuler</button>
+</div>
+</form> 
+ 
+ </div>
   
-  <span *ngIf="verifPass">
-    <p class="text text-danger">Mot de passe non identique</p>
-</span>
+ <!-- Formulaire de modification mot de passe showFormPass pour afficher ou cacher le formulaire -->
+ <div class="container card rounded-5 text-black shadow-lg p-3 mb-5 bg-white rounded" style="height:700px;margin:0; display: flex; flex-wrap: wrap; margin-top: 100px; width: 550px;" *ngIf="showFormPass" >
+      
+
+  <div class="text-center">
+    <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/lotus.webp"
+      style="width: 180px;" alt="logo">
+    <h3 class=" mb-3 pb-1">Modifier Mot de passe</h3>
+  </div>
+
+
+
+  <form id="form" style="height: 600px;  margin-top: -15px;" [formGroup]="userEditForm"  class="col-6" style="margin: 0 auto;"
+    class="row d-flex justify-content-center no-wrap  " >
+  <input type="text" formControlName="id" hidden style="height: 500px;" >
+  <div *ngIf="!verifPass" class="d-flex justify-content-center text text-danger" id="">
+    <span>les deux password ne correspondent pas!</span>
+  </div>
+  <div class="input-control col-md-12">
+    <label class="form-label" for="form2Example11">Old_Password</label><span style="color: red;">*</span>
+    <div   [ngClass]="{'invalid':submitted && userEditForm.controls['prenom'].errors}">
+    <input  class=" p-3 rounded-0" name="password3" type="text" id="password3"
+      placeholder="Old_Password" formControlName="password3" type="password" class="form-control">
+    </div>
+    <div *ngIf="userEditForm.controls['password3'].dirty && userEditForm.controls['password3'].errors" class="text-danger" name="password3">
+      <div *ngIf="userEditForm.controls['password3'].errors['required']">
+        Ce champ est require 
+      </div>
+      <div *ngIf="userEditForm.controls['password3'].errors['minlength']">
+        password doit contenir au minimum 8 caractères
+    </div>
+    </div>
+  </div>
 
   <div class="form-outline mb-2">
     <div class="input-control">
-<label class="form-label" for="form2Example11">Nom</label>
-<input id="form2Example11" name="nom"  class=" p-3 rounded-0" type="text"
-[ngClass]="{'is-invalid':submitted && userEditForm.controls['nom'].errors}" placeholder="nom"
-formControlName="nom" class="form-control">
-<div *ngIf="submitted && userEditForm.controls['nom'].errors" class="text-danger" name="nom">
-<div *ngIf="submitted && userEditForm.controls['nom'].errors required">
-    Ce champ est  require
-</div> 
- <div *ngIf="!submitted && userEditForm.controls['nom'].errors['cannotContainSpace']">
-    ne met pas espace
-</div> 
-</div>
-
-</div>
-</div>
-
-<div class="form-outline mb-2">
-<div class="input-control">
-<label class="form-label" for="form2Example11">Prenom</label>
-<input id="form2Example11" name="prenom"  class=" p-3 rounded-0" type="text"
-[ngClass]="{'is-invalid':submitted && userEditForm.controls['prenom'].errors}" placeholder="prenom"
-formControlName="prenom" class="form-control">
-<div *ngIf="submitted && userEditForm.controls['prenom'].errors" class="text-danger" name="prenom">
-<div *ngIf="submitted && userEditForm.controls['prenom'].errors required">
-Ce champ est  require
-</div> 
-<div *ngIf="!submitted && userEditForm.controls['prenom'].errors['cannotContainSpace']">
-ne met pas espace
-</div> 
-</div>
-
-</div>
-</div>
-<div class="mb-3">
-    <label class="form-label"  for="email">EMAIL</label>
-  <input type="email" class="form-control" formControlName="email">
-</div> 
- 
-
-<div class="form-outline mb-2">
-  <div class="input-control">
-  <label class="form-label" for="form2Example11">Password</label>
-  <input id="pass1" name="password"  class=" p-3 rounded-0" type="password"  placeholder="password"
-
-  [ngClass]="{'is-invalid':submitted && userEditForm.controls['password'].errors}"
+    <label class="form-label" for="form2Example11">New_Password</label>
+    <div [ngClass]="{'invalid':!userEditForm.controls['password'].errors}">
+    <input id="pass1" name="password"  class=" p-3 rounded-0" type="password"  placeholder="password"
   formControlName="password" type="password" class="form-control">
-<div *ngIf="submitted && userEditForm.controls['password'].errors" class="text-danger" >
-  <div *ngIf="submitted && userEditForm.controls['password'].errors required">
-      Ce champ est  require
   </div>
-  <div *ngIf="submitted && userEditForm.controls['password'].errors['minlength']">
-      password doit contenir au minimum 8 caractères
-  </div>
-</div>
-
-</div>
-</div>
-<div class="form-outline mb-2">
-  <div class="input-control">
-  <label class="form-label" for="form2Example11">nouveau_password</label>
-  <input placeholder="password2" formControlName="password2" type="password" class="form-control"  id="pass2" #pass2 >
- 
-</div>
-</div> 
-<div class="form-outline mb-2">
-  <div class="input-control">
-  <label class="form-label" for="form2Example11">Confirm_password</label>
-  <input placeholder="password3"formControlName="password3" type="password" class="form-control"  id="pass3" #pass2 (change)="checkPassword()">
-  <div *ngIf="submitted && userEditForm.controls['password3'].errors" class="text-danger">  
-
-</div>
+<div *ngIf="userEditForm.controls['password'].dirty && userEditForm.controls['password'].errors" class="text-danger" >
+    <div *ngIf="userEditForm.controls['password'].errors['required']">
+        Ce champ est require
+    </div>
+    <div *ngIf="userEditForm.controls['password'].errors['minlength']">
+        password doit contenir au minimum 8 caractères
+    </div>
    
 </div>
-</div> 
- 
-   
-<div class="d-flex justify-content-space">
-  <button type="submit" (click)="modifUsers()" class="btn btn-primary">Modifier</button>
-  <button  class="btn btn-dark" (click)="this.showForm = false;">Annuler</button>
+  
+  </div>
+  </div>
+  <div class="form-outline mb-2">
+    <div class="input-control">
+    <label class="form-label" for="form2Example11">Confirm password</label>
+    <div [ngClass]="{'invalid':userEditForm.controls['password2'].errors}">
+    <input  placeholder="password2" formControlName="password2" type="password" class="form-control"  id="pass2" #pass2 (change)="checkPassword()">
+  </div>
+    <div *ngIf="userEditForm.controls['password2'].dirty && userEditForm.controls['password2'].errors" class="text-danger">
+    <div *ngIf="userEditForm.controls['password2'].errors['required']">
+        Ce champ est  require
+    </div>
 </div>
-</form> 
+     
+  </div>
+  </div>
+  <div class="d-flex justify-content-center gap-5" style="margin-top: 60px;">
+    <button type="submit" class="btn btn-danger" (click)="modifUsersPassword()">ENREGISTRER</button><br>
+    <button type="submit" class="btn btn-success" (click)="this.showFormPass = false;">Annuler</button>
+  </div>
+</form>
 </div>
 
 

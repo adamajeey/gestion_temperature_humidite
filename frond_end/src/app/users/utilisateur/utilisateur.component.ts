@@ -1,6 +1,8 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, NgModel, Validators } from '@angular/forms';
 import { UsersService } from 'src/app/services/users.service';
+import { UsernameValidator } from './username.validator';
 import Swal from 'sweetalert2'; 
 
 @Component({
@@ -10,28 +12,44 @@ import Swal from 'sweetalert2';
 })
 
 export class UtilisateurComponent implements OnInit {
+  route!:string
+  isActif:boolean= false
   registerForm!:FormGroup;
   title = 'angularvalidate';
   submitted = false;
+  invalid= false;
   verifPass:any = true;
 users: any;
-userEditForm : FormGroup;
+userEditForm!: FormGroup;
 showForm = false; 
 p: number= 1;
-itemsperpage: number= 5;
+itemsperpage: number= 8;
 totalUser:any; 
 searchText:any;
 user = []; userActif:any = [];
 emailExiste:any;
 spin= false;
+errorMsg:any;
+show:boolean = false;
 
-  constructor(private userService : UsersService, private formBuilder : FormBuilder){
+
+  constructor(private userService : UsersService, private formBuilder : FormBuilder, private router: Router){
     this.userEditForm = this.formBuilder.group({
       id:[''],
-      prenom: ['', [Validators.required]],
-      nom: ['', [Validators.required]],
-      email: ['', [Validators.required]],
+      prenom: ['', [Validators.required,UsernameValidator.cannotContainSpace]],
+      nom: ['', [Validators.required,UsernameValidator.cannotContainSpace]],
+      email: ['', [Validators.required,Validators.email]],
     });
+    this.route = this.router.routerState.snapshot.url
+    this.isActif = this.route == '/admin' ? true : false
+  } 
+
+  simpleAlert(){  
+    Swal.fire(
+      'modification reussie!',
+      'You clicked the button!',
+      'success'
+    ) 
   } 
  
 
@@ -42,7 +60,7 @@ ngOnInit(): void {
 
         this.users = data;
 
-        this.userActif = this.users.filter((e:any)=> e.etat == true && e.email != localStorage.getItem('email')?.replace(/['"]+/g, ''))
+        this.userActif = this.users.filter((e:any)=> e.etat == this.isActif && e.email != localStorage.getItem('email')?.replace(/['"]+/g, ''))
         
       }
 ); 
@@ -58,7 +76,7 @@ retrieveData(){
 
 
 changeRole=(id:any,roles:any)=> {
- roles == "admin" ? roles ="utilisateur": roles = "admin"
+ roles == "admin" ? roles = "utilisateur": roles = "admin"
 
  const user ={
   roles : roles
@@ -66,9 +84,11 @@ changeRole=(id:any,roles:any)=> {
  }
 
  Swal.fire({  
-  title: 'Voulez-vous vraiment effectuer cette action?',  
+  title: 'Voulez-vous vraiment changer le role de cet utilisateur?',  
   text: 'Si oui met ok',  
   icon: 'warning',  
+  confirmButtonColor: "#B82010", 
+  cancelButtonColor: "green" , 
   showCancelButton: true,  
   confirmButtonText: 'ok!',  
   cancelButtonText: 'Annuler'  
@@ -102,9 +122,11 @@ etat == "false" ? etat = true : etat = false
  }
 
  Swal.fire({  
-  title: 'Voulez-vous vraiment effectuer cette action?',  
+  title: 'Voulez-vous vraiment archiver cet utilisateur?',  
   text: 'Si oui met ok',  
   icon: 'warning',  
+  confirmButtonColor: "#B82010", 
+  cancelButtonColor: "green" , 
   showCancelButton: true,  
   confirmButtonText: 'ok!',  
   cancelButtonText: 'Annuler'  
@@ -127,13 +149,16 @@ etat == "false" ? etat = true : etat = false
  
 }
 
+
 getUserData(id:any,email:any,prenom:any,nom:any){
 
   
   Swal.fire({  
-    title: 'Voulez-vous vraiment effectuer cette action?',  
+    title: 'Voulez-vous vraiment modifier le profil de utilisateur?',  
     text: 'Si oui met ok',  
     icon: 'warning',  
+    confirmButtonColor: "#B82010", 
+    cancelButtonColor: "green" , 
     showCancelButton: true,  
     confirmButtonText: 'ok!',  
     cancelButtonText: 'Annuler'  
@@ -142,9 +167,9 @@ getUserData(id:any,email:any,prenom:any,nom:any){
       this.showForm = true;
       this.userEditForm = this.formBuilder.group({
           id:[id],
-          prenom: [prenom, [Validators.required]],
-          nom: [nom, [Validators.required]],
-          email: [email, [Validators.required]],
+          prenom: [prenom, [Validators.required,UsernameValidator.cannotContainSpace]],
+          nom: [nom, [Validators.required,UsernameValidator.cannotContainSpace]],
+          email: [email, [Validators.required,Validators.email]],
         });  
     }  
   })
@@ -180,7 +205,7 @@ modifUsers (){
  this.userService.changeRole(id,user).subscribe(
    
    data=>{
-   
+    this.simpleAlert(); 
     this.ngOnInit();
     this.showForm = false
   },
@@ -188,6 +213,46 @@ modifUsers (){
     console.log(error )
   }
  );
+}
+
+public afficher():void{
+  this.show = !this.show;
+}
+ddeleteId=(id:any,etat:any)=> {
+
+
+  etat == true ? etat = false : etat = true
+
+ const user ={
+ etat : etat
+
+ }
+
+ Swal.fire({  
+  title: 'Voulez-vous vraiment desarchiver cette utilisateur?',  
+  text: 'Si oui met ok',  
+  icon: 'warning',  
+  confirmButtonColor: '#B82010',  
+  cancelButtonColor: 'green' ,
+  showCancelButton: true,  
+  confirmButtonText: 'ok!',  
+  cancelButtonText: 'Annuler'  
+}).then((result) => {  
+  if (result.value) {  
+
+    this.userService.modifUsers(id,user).subscribe(
+
+      data=>{
+  
+        Swal.fire({
+          icon:'success' 
+        })
+        this.ngOnInit();
+      }
+   );  
+  }
+}) 
+
 }
 
 }

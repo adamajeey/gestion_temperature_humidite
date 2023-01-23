@@ -18,7 +18,7 @@
  
       <table class="table table-bordered ">  
     <thead>
-      <tr class="bg-primary" >
+      <tr class="bg-danger" >
         <th scope="col">MATRiCULE</th>
         <th scope="col">NOM</th>
         <th scope="col">PRENOM</th>
@@ -28,7 +28,7 @@
       </tr>
     </thead>     
           <tbody class="tbody">    
-         <tr *ngFor="let user of userActif | paginate: { itemsPerPage:  itemsperpage, currentPage: p} | filter:searchText">  
+         <tr *ngFor="let user of userActif | filter:searchText | paginate: { itemsPerPage:  itemsperpage, currentPage: p}">  
           <td>{{user.matricule}}</td> 
           <td>{{user.nom}}</td> 
           <td>{{user.prenom}}</td>             
@@ -44,7 +44,7 @@
         </tbody>
      </table>
      <div class="mt-8 py-5">
-      <div>
+      <div class="pagination fixed-bottom justify-content-center">
         <pagination-controls (pageChange)="p = $event"></pagination-controls>
       </div>
    </div>

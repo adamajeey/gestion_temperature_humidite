@@ -1,9 +1,9 @@
 const express = require('express');/* recupere la variable express dans la boite express */
-const mongoose  = require('mongoose');
+const mongoose  = require('mongoose'); //gere link api base de donnees
 require('dotenv').config();/* pour recuperer le fichier env */
-var MongoClient = require('mongodb').MongoClient;
-var cors = require('cors')
-const { Movie } = require('../back_end/models/movie.model')
+
+var cors = require('cors') //configuration des differentes requettes pour acceder aux ressources
+
 const routes = require('./routes/routes');
 
 const databaseLink = process.env.DATABASE_URL/* permet de recuperer le lien de la base de donnée */
@@ -13,7 +13,7 @@ const database = mongoose.connection
 
 const app = express(); /* express sert a ecouté les ports et à envoyer des données */
 
-app.use(cors({origin:'*'}));/*  */
+app.use(cors({origin:'*'}));/*   */
 
 app.use(express.json());/* affiche les fichiers au format json */
 

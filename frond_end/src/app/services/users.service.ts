@@ -16,7 +16,7 @@ export class UsersService {
     this.currentUserSubject = new BehaviorSubject<User>(JSON.parse((localStorage.getItem('currentUser')!)));
     if (this.currentUserSubject.value == null) {
       this.getLogOut();
-      this.router.navigateByUrl('login')
+      this.router.navigateByUrl('login');
     }
   }
 
@@ -38,6 +38,14 @@ export class UsersService {
         return user;
       }));
 
+  }
+  getToken() {
+    return localStorage.getItem('currentUser');
+  }
+ 
+  get isLoggedIn(): boolean {
+    let authToken = localStorage.getItem('currentUser');
+    return authToken !== null ? true : false;
   }
 
   getLoggedIn(){
@@ -69,7 +77,12 @@ export class UsersService {
 
   getLogOut(){
     // return this.httpClient.post<User>(`${env.apiUrl}/post`,user);
-    localStorage.clear();
+    /* localStorage.clear(); */
+    /* this.router.navigateByUrl('login'); */
+    let removeToken = localStorage.removeItem('currentUser');
+    if (removeToken == null) {
+      this.router.navigate(['']);
+    }
   }
 }
 

@@ -33,13 +33,13 @@
                                                 [ngClass]="{'is-invalid':submitted && registerForm.controls['email'].errors}"
                                                 placeholder="" formControlName="email" type="email" class="form-control"
                                                 id="email" name="email">
-                                            <div *ngIf="submitted && registerForm.controls['email'].errors"
+                                            <div *ngIf="registerForm.controls['email'].dirty && registerForm.controls['email'].errors"
                                                 class="text-danger">
                                                 <div
-                                                    *ngIf="submitted && registerForm.controls['email'].errors ['required']">
+                                                    *ngIf="registerForm.controls['email'].errors ['required']">
                                                     Ce champ est require
                                                 </div>
-                                                <div *ngIf="submitted && registerForm.controls['email'].errors['email']">
+                                                <div *ngIf="registerForm.controls['email'].errors['email']">
                                                     Email Address incorrect
                                                 </div>
                                             </div>
@@ -52,14 +52,13 @@
                                                 name="password" class=" p-3 rounded-0" type="password" placeholder=""
                                                 [ngClass]="{'is-invalid':submitted && registerForm.controls['password'].errors}"
                                                 formControlName="password" type="password" class="form-control" id="pass2">
-                                            <div *ngIf="submitted && registerForm.controls['password'].errors"
-                                                class="text-danger">
-                                                <div *ngIf="submitted && registerForm.controls['password'].errors required">
-                                                    Ce champ est require
+                                                <div *ngIf="registerForm.controls['password'].dirty && registerForm.controls['password'].errors"
+                                                   class="text-danger">
+                                                <div *ngIf="registerForm.controls['password'].dirty && registerForm.controls['password'].errors['required']">
+                                                    Ce champ est requis
                                                 </div>
-                                                <div
-                                                    *ngIf="submitted && registerForm.controls['password'].errors['minlength']">
-                                                    password doit contenir au minimum 8 caractères
+                                                <div *ngIf="!registerForm.controls['password'].errors['required'] && registerForm.controls['password'].errors['minlength']">
+                                                  Password doit contenir au minimum 8 caractères
                                                 </div>
                                             </div>
     
@@ -67,13 +66,14 @@
                                     </div>
     
                                     <div class="text-center pt-1 mb-5 pb-1">
+
                                         <button type="submit" id="button" class="btn btn-outline-danger">
                                             <span class="visually" *ngIf="!spin">Se connecter</span>
                                             <span class="spinner-border spinner-border-sm" *ngIf="spin" role="status"
                                                 aria-hidden="false" style="color: white;"></span>
                                         </button>
                                     </div>
-    
+
                                 </form>
     
                             </div>

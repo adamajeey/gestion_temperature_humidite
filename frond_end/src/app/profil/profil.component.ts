@@ -150,6 +150,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { UsersService } from 'src/app/services/users.service';
 import Swal from 'sweetalert2'; 
+import { UsernameValidator } from '../username.validator';
 
 @Component({
   selector: 'app-profil',
@@ -162,27 +163,32 @@ export class ProfilComponent implements OnInit {
   users: any;
   userEditForm: FormGroup;
   showForm = false;
+  showFormPass= false;
   p: number = 1;
   itemsperpage: number = 5;
   totalUser: any;
   searchText: any;
   user: any; userActif: any;
-  verifPass: any = false;
+  verifPass: any = true;
   registerForm!: FormGroup;
   submitted = false;
   emailUser = localStorage.getItem('email')?.replace(/['"]+/g, '');
   img: any; image: any;
   emailExiste:any;
 spin= false;
+invalid= false;
+errorMsg:any;
 
   constructor(private userService: UsersService, private formBuilder: FormBuilder, private sanitizer: DomSanitizer, private router: Router) {
     this.userEditForm = this.formBuilder.group({
       id: [''],
       photo: ['', [Validators.required]],
-      prenom: ['', [Validators.required]],
-      nom: ['', [Validators.required]],
-      email: ['', [Validators.required]],
-      password: ['', [Validators.required]],
+      prenom: ['', [Validators.required,UsernameValidator.cannotContainSpace]],
+      nom: ['', [Validators.required,UsernameValidator.cannotContainSpace]],
+      email: ['', [Validators.required,Validators.email]],
+      password3: ['', [Validators.required,Validators.minLength(8)]],
+      password: ['', [Validators.required,Validators.minLength(8)]],
+      password2: ['', [Validators.required,Validators.minLength(8)]],
     
     });
   }
@@ -202,50 +208,44 @@ spin= false;
 
   }
 
-  getUserData(id:any,email:any,prenom:any,nom:any){
+/* recuperer les email,nom et prenom qu'on va modifier */
+getUserData(id:any,email:any,prenom:any,nom:any){
 
   
-    Swal.fire({  
-      title: 'Voulez-vous vraiment effectuer cette action?',  
-      text: 'Si oui met ok',  
-      icon: 'warning',  
-      showCancelButton: true,  
-      confirmButtonText: 'ok!',  
-      cancelButtonText: 'Annuler'  
-    }).then((result) => {  
-      if (result.value) {  
-        this.showForm = true;
-        this.userEditForm = this.formBuilder.group({
-            id:[id],
-            prenom: [prenom, [Validators.required]],
-            nom: [nom, [Validators.required]],
-            email: [email, [Validators.required]],
-            password: ['', [Validators.required]],
-            password2: ['', [Validators.required]],
-            password3: ['', [Validators.required]],
-         
-          });  
-      }  
-    })
-  
-  
-    for (const iterator of this.userActif) {
-      id = iterator._id
-    }
-    console.log(id)
-  /*   this.userEditForm = this.formBuilder.group({ */
-
-    console.log(id)
-
-    this.image = localStorage.getItem('img')
-    const imgRead = this.convertFile(<any>this.image?.replace(/['"]+/g, ''))
-    this.img = this.sanitizer.bypassSecurityTrustResourceUrl(URL.createObjectURL(imgRead))
-    console.log(this.image)
+  Swal.fire({  
+    title: 'Voulez-vous vraiment modifier votre profil?',  
+    text: 'Si oui met ok',  
+    icon: 'warning', 
+    confirmButtonColor: "#B82010", 
+    cancelButtonColor: "green" ,  
+    showCancelButton: true,  
+    confirmButtonText: 'ok!',  
+    cancelButtonText: 'Annuler'  
+  }).then((result) => {  
+    if (result.value) {  
+      this.showForm = true;
+      this.userEditForm = this.formBuilder.group({
+          id:[id],
+          prenom: [prenom, [Validators.required,UsernameValidator.cannotContainSpace,]],
+          nom: [nom, [Validators.required,UsernameValidator.cannotContainSpace]],
+          email: [email, [Validators.required,Validators.email]],
+        });  
+    }  
+  })
+    
+  for (const iterator of this.userActif) {
+    id = iterator._id
+  }
+  console.log(id)
  
+  this.image = localStorage.getItem('img')
+  const imgRead = this.convertFile(<any>this.image?.replace(/['"]+/g, ''))
+  this.img = this.sanitizer.bypassSecurityTrustResourceUrl(URL.createObjectURL(imgRead))
+  console.log(this.image)
 }
 
 
-modifUsers(){
+modifUsers (){
   const id =  this.userEditForm.value.id;
   for (const iterator of this.users) {
     this.submitted = true
@@ -255,7 +255,7 @@ modifUsers(){
     return ;
   }
   
-  console.log(iterator.email )
+  console.log(iterator.email  )
   if(iterator.email == this.userEditForm.value.email && iterator._id != id){
     this.emailExiste = "Email existe déjà";
     setTimeout(() => {
@@ -265,58 +265,121 @@ modifUsers(){
   }
 }
 
-  const user = {
-    nom : this.userEditForm.value.nom,
-    prenom: this.userEditForm.value.prenom,
-    email: this.userEditForm.value.email,
+ const user ={
+  nom : this.userEditForm.value.nom,
+  prenom: this.userEditForm.value.prenom,
+  email: this.userEditForm.value.email
+ }
+ 
+ this.userService.changeRole(id,user).subscribe(
+   
+   data=>{
+
+    this.ngOnInit();
+    this.showForm = false
+  },
+  error =>{
+    console.log(error )
+  }
+ );
+}
+
+
+/* recuperer les mots de passe qu'on doit modifier */
+  getUserPassword(id:any) {
     
+    Swal.fire({  
+      title: 'Voulez-vous vraiment modifier votre mot de passe',  
+      text: 'Si oui met ok',  
+      icon: 'warning',  
+      confirmButtonColor: "#B82010", 
+      cancelButtonColor: "green" , 
+      showCancelButton: true,  
+      confirmButtonText: 'ok!',  
+      cancelButtonText: 'Annuler'  
+    }).then((result) => {  
+      if (result.value) {
+    this.showFormPass = true;
+    this.userEditForm = this.formBuilder.group({
+      id: [id],
+      password: ["", [Validators.required,Validators.minLength(8)]],
+      password2: ['', [Validators.required,Validators.minLength(8)]],
+      password3: ['', [Validators.required,Validators.minLength(8)]],
+    });
+   
+   
+    for (const iterator of this.userActif) {
+      id = iterator._id
+    }
+ 
+      }
+    });
+  
+    this.image = localStorage.getItem('img')
+    const imgRead = this.convertFile(<any>this.image?.replace(/['"]+/g, ''))
+    this.img = this.sanitizer.bypassSecurityTrustResourceUrl(URL.createObjectURL(imgRead))
+    console.log(this.image)
+  }
+ 
+
+    
+
+/* modifier le mot de passe */
+modifUsersPassword(){
+
+  const id = this.userEditForm.value.id;
+    this.submitted = true
+    this.spin = true
+   if(this.userEditForm.invalid){
+    this.spin = false
+    return ;
+  }
+
+  const user = {
     // photo: this.userEditForm.value.photo,
     password: this.userEditForm.value.password,
-    password2: this.userEditForm.value.password,
-   
-  
+    // password2: this.userEditForm.value.password2
   }
-  console.log(user)
 
   this.userService.changeRole(id,user).subscribe(
-   
-    data=>{
+
+    data => {
     
-     this.ngOnInit();
-     this.showForm = false
-     console.log(data)
-     this.userService.getLogOut();
-     this.router.navigateByUrl('login')
-   },
-   error =>{
-     console.log(error )
-   }
-  );
- }
+      this.ngOnInit();
+      this.showFormPass = false
 
- 
-checkPassword = () => {
-
-  let pass2 = this.userEditForm.value.password2//(<HTMLInputElement>document.getElementById("pass1")).value;
-  let pass3 = this.userEditForm.value.password3//(<HTMLInputElement>document.getElementById("pass2")).value;
-
-  console.log(pass2 != pass3)
-
-  if (pass2 != pass3) {
-    this.verifPass = true;
-    this.registerForm = this.formBuilder.group(
-      {
-
-        password2: [''],
-        password3: [''],
-
-      })
-
-    setTimeout(() => { this.verifPass = false }, 3001);
-  }
+    },
+    error =>{
+      console.log(error )
+    }
+   );
   
 }
 
+
+  
+/* controler les deux mots de passe */
+ checkPassword = () => {
+
+  let pass1 = this.userEditForm.value.password//(<HTMLInputElement>document.getElementById("pass1")).value;
+  let pass2 = this.userEditForm.value.password2//(<HTMLInputElement>document.getElementById("pass2")).value;
+
+  console.log(pass1 != pass2)
+
+  if (pass1 != pass2) {
+    this.verifPass = false;
+    this.registerForm = this.formBuilder.group(
+      {
+
+        password: [''],
+        password2: [''],
+
+      })
+
+    setTimeout(() => { this.verifPass = true }, 3001);
+  }
+  
+}
 
 logOut(){
   // this.userService.getLogOut();
@@ -345,17 +408,4 @@ convertFile(str: any) {
 
 }
 
-  
 }
-
-
-
-
-
-
-
-
-
-
-
-

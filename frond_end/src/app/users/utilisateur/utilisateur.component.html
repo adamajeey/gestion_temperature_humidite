@@ -7,108 +7,138 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-<body>
+<body class="d-flex justify-content-center">
   
   <div class="container"  *ngIf="!showForm">
-<nav id="nav">  
-   
-        <div class="bouton">
-        <input id="search" class="form-control" type="text" name="search" placeholder="Rechercher" [(ngModel)]="searchText">
-        </div> 
-</nav> 
-    
- 
-      <table class="table table-bordered " >  
-    <thead>
-      <tr class="bg-danger" > 
-       
-        <th scope="col">MATRICULE</th>
-        <th scope="col">NOM</th>
-        <th scope="col">PRENOM</th>
-        <th scope="col">EMAIL</th>
-        <th scope="col">ROLES</th>
-        <th scope="col">ACTION</th>
-      </tr>
-    </thead>     
+
+    <div class="container d-flex justify-content-end" style="margin-top: 50px;">       
+      <form class="form-inline my-2 my-lg-2 row">
+        <div class="d-flex gap-1">
+          <input *ngIf="show" id="search" class="form-control" type="text" name="search" placeholder="Rechercher" [(ngModel)]="searchText">
+          <button class="btn btn-outline-danger" (click)="afficher()"><i class="bi bi-search"></i></button>
+        </div>
+      </form>
+    </div>
+
+      <table class="table table-bordered shadow-lg p-3 mb-5 bg-white rounded-3" >  
+        <thead>
+          <tr class="bg-danger" > 
+          
+            <th scope="col">MATRICULE</th>
+            <th scope="col">NOM</th>
+            <th scope="col">PRENOM</th>
+            <th scope="col">EMAIL</th>
+            <th scope="col">ROLES</th>
+            <th scope="col">ACTION</th>
+          </tr>
+        </thead>     
           <tbody class="tbody">    
-         <tr *ngFor="let user of userActif | paginate: { itemsPerPage:  itemsperpage, currentPage: p} | filter:searchText">  
-          <td>{{user.matricule}}</td> 
-          <td>{{user.nom}}</td> 
-          <td>{{user.prenom}}</td>             
-          <td>{{user.email}}</td>           
-          <td>{{user.roles}}</td>
-      <td class="d-flex justify-content-arround"> 
+         <tr *ngFor="let user of userActif | filter:searchText | paginate: { itemsPerPage:  itemsperpage, currentPage: p}">  
+          <td class="col-2">{{user.matricule}}</td> 
+          <td class="col-2">{{user.nom}}</td> 
+          <td class="col-2">{{user.prenom}}</td>             
+          <td class="col-2">{{user.email}}</td>           
+          <td class="col-2">{{user.roles}}</td>
+      <td class="d-flex justify-content-arround col-2" *ngIf="isActif; else archive"> 
         <span class="btn btn-outline-danger" title="archiver" (click)="deleteId(user._id,user.etat)"><i class="bi bi-archive" id="i1" ></i></span>
         &nbsp;
         <span  class="btn btn-outline-primary" title="modifier" (click)="getUserData(user._id,user.email,user.prenom,user.nom)"><i class="bi bi-pen-fill" id="i2" ></i></span>
         &nbsp;
-        <span  class="btn btn-outline-primary" title="changer" (click)="changeRole(user._id,user.roles)"><i class="bi bi-arrow-clockwise" ></i></span></td> 
+        <span  class="btn btn-outline-primary" title="changer" (click)="changeRole(user._id,user.roles)"><i class="bi bi-arrow-clockwise" ></i></span></td>
+        <ng-template #archive>
+          <td> 
+      
+        
+            <span class="btn btn-outline-danger" title="désarchiver" (click)="ddeleteId(user._id,user.etat)"><i class="bi bi-trash-fill" id="i1"  ></i></span>
+            </td>  
+        </ng-template> 
                       
         </tr>   
         </tbody>
      </table>
 
      <div class="mt-8 py-5">
-      <div>
+      <div class="pagination fixed-bottom justify-content-center footer">
         <pagination-controls (pageChange)="p = $event"></pagination-controls>
       </div>
    </div>
-   </div>  
+   </div>
    
-   
+   <div class="container card rounded-5 text-black shadow-lg p-3 mb-5 bg-white rounded" style="height:600px;margin:0; display: flex; flex-wrap: wrap; margin-top: 100px; width: 550px;" *ngIf="showForm" >
 
+      
 
-  <form *ngIf="showForm" [formGroup]="userEditForm"  class="col-6" style="margin: 0 auto;">
-    <input type="text" formControlName="id"  hidden>
-    <span *ngIf="emailExiste" class="d-flex justify-content-center fadeIn">
-        <p class="text text-danger">{{emailExiste}}</p>
-    </span>
- 
-    <div class="form-outline mb-2">
-      <div class="input-control">
-  <label class="form-label" for="form2Example11">Nom</label>
-  <input id="form2Example11" name="nom"  class=" p-3 rounded-0" type="text"
-  [ngClass]="{'is-invalid':submitted && userEditForm.controls['nom'].errors}" placeholder="nom"
-  formControlName="nom" class="form-control">
- <div *ngIf="submitted && userEditForm.controls['nom'].errors" class="text-danger" name="nom">
-  <div *ngIf="submitted && userEditForm.controls['nom'].errors required">
-      Ce champ est  require
-  </div> 
-   <div *ngIf="!submitted && userEditForm.controls['nom'].errors['cannotContainSpace']">
-      ne met pas espace
-  </div> 
-  </div>
- 
-</div>
-</div>
- 
-<div class="form-outline mb-2">
-  <div class="input-control">
-<label class="form-label" for="form2Example11">Prenom</label>
-<input id="form2Example11" name="prenom"  class=" p-3 rounded-0" type="text"
-[ngClass]="{'is-invalid':submitted && userEditForm.controls['prenom'].errors}" placeholder="prenom"
-formControlName="prenom" class="form-control">
-<div *ngIf="submitted && userEditForm.controls['prenom'].errors" class="text-danger" name="prenom">
-<div *ngIf="submitted && userEditForm.controls['prenom'].errors required">
-  Ce champ est  require
-</div> 
-<div *ngIf="!submitted && userEditForm.controls['prenom'].errors['cannotContainSpace']">
-  ne met pas espace
-</div> 
-</div>
+    <div class="text-center">
+      <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/lotus.webp"
+        style="width: 180px;margin-top: -40px;" alt="logo">
+      <h3 class=" mb-3 pb-1" style="margin-top: -20px;">Modifier un utilisateur</h3> <br>
+    </div>
 
-</div>
-</div>
-  <div class="mb-3">
-      <label class="form-label" for="email">EMAIL</label>
-    <input type="email" class="form-control" formControlName="email">
-  </div>
-  <div class="d-flex justify-content-space">
-    <button type="submit" (click)="modifUsers()" class="btn btn-primary">Modifier</button>
-    <button  class="btn btn-danger" (click)="this.showForm = false;">Annuler</button>
+    <form id="form" style="height: 600px;  margin-top: -15px;" [formGroup]="userEditForm"  class="col-6" style="margin: 0 auto;"
+      class="row d-flex justify-content-center no-wrap  " >
+      <input type="text" formControlName="id"  hidden>
+      <span *ngIf="emailExiste" class="d-flex justify-content-center fadeIn">
+          <p class="text text-danger">{{emailExiste}}</p>
+      </span>
+     
+      <div *ngIf="errorMsg!" class="d-flex justify-content-center text text-danger" id="">
+        <span>email deja existe!</span>
+      </div>
+
+      
+    <div class="input-control col-md-12">
+      <label class="form-label" for="form2Example11">Prenom</label><span style="color: red;">*</span>
+      <div   [ngClass]="{'invalid':submitted && userEditForm.controls['prenom'].errors}">
+      <input  class=" p-3 rounded-0" name="prenom" type="text" id="prenom"
+        placeholder="prenom" formControlName="prenom" type="text" class="form-control">
+      </div>
+      <div *ngIf="userEditForm.controls['prenom'].dirty && userEditForm.controls['prenom'].errors" class="text-danger" name="prenom">
+        <div *ngIf="userEditForm.controls['prenom'].errors['required']">
+          Ce champ est require
+        </div>
+        <div *ngIf="!userEditForm.controls['prenom'].errors['required'] && userEditForm.controls['prenom'].errors['cannotContainSpace']">
+          ne met pas espace
+        </div>
+      </div>
+    </div>
+
+    <div class="input-control col-md-12">
+      <label class="form-label" for="form2Example11">Nom</label><span style="color: red;">*</span>
+      <div   [ngClass]="{'invalid':submitted && userEditForm.controls['nom'].errors}">
+      <input  class=" p-3 rounded-0" name="nom" type="text" id="nom"
+        placeholder="nom" formControlName="nom" type="text" class="form-control">
+      </div>
+      <div *ngIf="userEditForm.controls['nom'].dirty && userEditForm.controls['nom'].errors" class="text-danger" name="prenom">
+        <div *ngIf="userEditForm.controls['nom'].errors['required']">
+          Ce champ est require
+        </div>
+        <div *ngIf="!userEditForm.controls['nom'].errors['required'] && userEditForm.controls['nom'].errors['cannotContainSpace']">
+          ne met pas espace
+        </div>
+      </div>
+    </div>
+      
+
+      <div class="input-control col-md-12">
+        <label class="form-label" for="form2Example11">Email</label><span style="color: red;">*</span>
+        <input id="form2Example11" name="email" class=" p-3 rounded-0" type="text"
+          [ngClass]="{'is-invalid':submitted && userEditForm.controls['email'].errors}" placeholder="email"
+          formControlName="email" type="email" class="form-control" id="email" name="email">
+        <div *ngIf="userEditForm.controls['email'].dirty && userEditForm.controls['email'].errors" class="text-danger">
+          <div *ngIf="userEditForm.controls['email'].errors ['required']">
+            Ce champ est require
+          </div>
+          <div *ngIf="userEditForm.controls['email'].errors['email']">
+            Email Address incorrect
+          </div>
+        </div>
+      </div>
+  <div class="d-flex justify-content-center gap-5" style="margin-top: 60px;">
+    <button type="submit" class="btn btn-danger" (click)="modifUsers()">Modifier</button>
+    <button  class="btn btn-success" (click)="this.showForm = false;">Annuler</button>
   </div>
 </form> 
    
-
+   </div>
 </body>
 </html>

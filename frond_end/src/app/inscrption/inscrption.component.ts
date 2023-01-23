@@ -14,7 +14,7 @@ import { Router } from '@angular/router';
   templateUrl: './inscrption.component.html',
   styleUrls: ['./inscrption.component.css']
 })
-export class InscrptionComponent {
+export class InscrptionComponent implements OnInit{
   registerForm!:FormGroup;
   title = 'angularvalidate';
   submitted = false;
@@ -27,8 +27,8 @@ export class InscrptionComponent {
   constructor(private userService : UsersService, private formBuilder: FormBuilder, private router: Router) {
     this.registerForm = this.formBuilder.group({
       id:[''],
-      prenom: ['', [Validators.required,UsernameValidator.cannotContainSpace]],
-      nom: ['', [Validators.required]],
+      prenom: ['', [Validators.required, UsernameValidator.cannotContainSpace]],
+      nom: ['', [Validators.required, UsernameValidator.cannotContainSpace]],
       email: ['', [Validators.required]],
       password: ['', [Validators.required]],
       roles: ['', [Validators.required]],
@@ -38,12 +38,12 @@ export class InscrptionComponent {
   }
   ngOnInit():void {
     this.registerForm = this.formBuilder.group({
-     prenom:['',[Validators.required,UsernameValidator.cannotContainSpace]],
-      nom:['',Validators.required,UsernameValidator.cannotContainSpace],
-      email:['',[Validators.required,Validators.email]],
+     prenom:['',[Validators.required, UsernameValidator.cannotContainSpace]],
+      nom: ['', [Validators.required, UsernameValidator.cannotContainSpace]],
+      email:['',[Validators.required, Validators.email]],
       roles:['',Validators.required],
-      password:['',[Validators.required,Validators.minLength(8)]],
-      passwordc:['',Validators.required]
+      password:['',[Validators.required, Validators.minLength(8)]],
+      passwordc:['', Validators.required]
       })
   }
 
@@ -77,7 +77,7 @@ export class InscrptionComponent {
    simpleAlert(){  
     Swal.fire('INSCRIPTION RÉUSSIE AVEC SUCCÉE'); 
     Swal.update({
-      icon: 'success'
+    icon: 'success' 
     }) 
   }  
 onSubmit(){
@@ -111,7 +111,8 @@ this.submitted = true
     //  this.popup = true;
       this.spin = false;
       this.simpleAlert()
-      this.router.navigateByUrl('login'); 
+      /* this.router.navigateByUrl('login');  */
+      window.location.reload();
       
   
     }, 

@@ -1,10 +1,9 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { NgChartsModule } from 'ng2-charts'; 
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './users/header/header.component';
@@ -20,10 +19,8 @@ import { HelperService } from './helper/helper.service';
 import { ProfilComponent } from './profil/profil.component';
 import { AccueilDashboardComponent } from './accueil-dashboard/accueil-dashboard.component';
 import { SidebarComponent } from './users/sidebar/sidebar.component';
-import { DiagrammeComponent } from './diagramme/diagramme.component';
-import { TableHistoriqueComponent } from './table-historique/table-historique.component';
-import  {  SocketIoModule ,  SocketIoConfig  }  from  'ngx-socket-io' ;
-const  config : SocketIoConfig  =  {  url : 'http://localhost:3001' ,  options : { }  } ;
+
+
  
 
 @NgModule({
@@ -39,9 +36,6 @@ const  config : SocketIoConfig  =  {  url : 'http://localhost:3001' ,  options :
         ProfilComponent,
         AccueilDashboardComponent,
         SidebarComponent,
-        DiagrammeComponent,
-        TableHistoriqueComponent,
-       
        
         
     ],
@@ -50,7 +44,6 @@ const  config : SocketIoConfig  =  {  url : 'http://localhost:3001' ,  options :
         BrowserModule,
         AppRoutingModule,
         HttpClientModule,
-        FormsModule,
         FormsModule,
         ReactiveFormsModule,  
         NgxPaginationModule,

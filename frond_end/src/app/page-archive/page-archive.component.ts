@@ -15,10 +15,11 @@ users: any;
 userEditForm : FormGroup;
 showForm = false; 
 p: number= 1;
-itemsperpage: number= 5;
+itemsperpage: number= 8;
 totalUser:any; 
 searchText:any;
-user = []; userArchive =[];
+user = []; userArchive = [];
+show:boolean = false;
 
   constructor(private userService : UsersService, private formBuilder : FormBuilder){
     this.userEditForm = this.formBuilder.group({
@@ -48,32 +49,18 @@ retrieveData(){
      this.totalUser = data.length; 
   })
 }
-simpleAlert(){  
-  Swal.fire('INSCRIPTION RÉUSSIE AVEC SUCCÉE'); 
+
   
-  Swal.fire({  
-    title: 'Voulez-vous vraiment desarchiver cette utilisateur?',  
-    text: 'Si oui met ok',  
-    icon: 'warning',  
-    showCancelButton: true,  
-    confirmButtonText: 'ok!',  
-    cancelButtonText: 'Annuler'  
-  }).then((result) => {  
-    if (result.value) {  
-      Swal.fire({
-       icon:'success' 
-       }    
-           
-      )  
-    }
     // else if (result.dismiss === Swal.DismissReason.cancel) {  
     //   Swal.fire(  
     //     'Annuler',    
     //     'error'  
     //   )  
     // }  
-  })  
-}  
+   
+  
+
+ 
 
 ddeleteId=(id:any,etat:any)=> {
 
@@ -85,15 +72,35 @@ ddeleteId=(id:any,etat:any)=> {
   
    }
   
-   this.userService.modifUsers(id,user).subscribe(
+   Swal.fire({  
+    title: 'Voulez-vous vraiment desarchiver cette utilisateur?',  
+    text: 'Si oui met ok',  
+    icon: 'warning',  
+    confirmButtonColor: '#B82010',  
+    cancelButtonColor: 'green' ,
+    showCancelButton: true,  
+    confirmButtonText: 'ok!',  
+    cancelButtonText: 'Annuler'  
+  }).then((result) => {  
+    if (result.value) {  
   
-    data=>{
-      this.simpleAlert();
-      this.ngOnInit();
+      this.userService.modifUsers(id,user).subscribe(
+  
+        data=>{
+    
+          Swal.fire({
+            icon:'success' 
+          })
+          this.ngOnInit();
+        }
+     );  
     }
-   );
+  }) 
   
-  
+}
+
+public afficher():void{
+  this.show = !this.show;
 }
 
 /* 
