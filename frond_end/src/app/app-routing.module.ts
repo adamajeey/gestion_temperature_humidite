@@ -13,7 +13,7 @@ import { MenuComponent } from './menu/menu.component';
 import { AuthGuard } from "./services/user.guard";
 
 const routes: Routes = [
-{path: "pageArchive" , component: PageArchiveComponent, canActivate: [AuthGuard]},
+{path: "pageArchive" , component: UtilisateurComponent, canActivate: [AuthGuard]},
 {path: "admin", component: UtilisateurComponent, canActivate: [AuthGuard]},
 {path: "profil", component: ProfilComponent, canActivate: [AuthGuard]},
 {path: "user", component: SimpleusersComponent, canActivate: [AuthGuard]},
