@@ -2,6 +2,23 @@ import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { UsersService } from 'src/app/services/users.service';
+
+declare const $: any;
+declare interface RouteInfo {
+    path: string;
+    title: string;
+    icon: string;
+    class: string;
+}
+export const ROUTES: RouteInfo[] = [
+    { path: '/acceuil', title: 'Dashboard',  icon: 'bi bi-speedometer2', class: '' },
+    { path: '/profil', title: 'Profil',  icon:'bi bi-person-circle', class: '' },
+    { path: '/admin', title: 'Liste Active',  icon:'bi bi-table', class: '' },
+    { path: '/pageArchive', title: 'Liste Archive',  icon:'bi bi-table', class: '' },
+    { path: '/historique', title: 'Historique',  icon:'bi bi-collection', class: '' },
+    { path: '/inscription', title: 'Inscription',  icon:'bi bi-people', class: '' }
+];
+
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
@@ -9,11 +26,13 @@ import { UsersService } from 'src/app/services/users.service';
 })
 export class SidebarComponent implements OnInit {
 
+  menuItems!: any[];
+
 image:any; roles:any; img:any; userActif:any; users:any;
 emailUser = localStorage.getItem('email')?.replace(/['"]+/g, '');
 
 constructor(private userService : UsersService, private sanitizer: DomSanitizer, private router: Router){
- 
+  this.menuItems = ROUTES.filter(menuItem => menuItem);
   
 }
 ngOnInit(): void {

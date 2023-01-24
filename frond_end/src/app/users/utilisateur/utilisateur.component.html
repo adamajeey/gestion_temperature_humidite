@@ -39,19 +39,26 @@
           <td class="col-2">{{user.prenom}}</td>             
           <td class="col-2">{{user.email}}</td>           
           <td class="col-2">{{user.roles}}</td>
-      <td class="d-flex justify-content-arround col-2"> 
+      <td class="d-flex justify-content-arround col-2" *ngIf="isActif; else archive"> 
         <span class="btn btn-outline-danger" title="archiver" (click)="deleteId(user._id,user.etat)"><i class="bi bi-archive" id="i1" ></i></span>
         &nbsp;
         <span  class="btn btn-outline-primary" title="modifier" (click)="getUserData(user._id,user.email,user.prenom,user.nom)"><i class="bi bi-pen-fill" id="i2" ></i></span>
         &nbsp;
-        <span  class="btn btn-outline-primary" title="changer" (click)="changeRole(user._id,user.roles)"><i class="bi bi-arrow-clockwise" ></i></span></td> 
+        <span  class="btn btn-outline-primary" title="changer" (click)="changeRole(user._id,user.roles)"><i class="bi bi-arrow-clockwise" ></i></span></td>
+        <ng-template #archive>
+          <td> 
+      
+        
+            <span class="btn btn-outline-danger" title="désarchiver" (click)="ddeleteId(user._id,user.etat)"><i class="bi bi-trash-fill" id="i1"  ></i></span>
+            </td>  
+        </ng-template> 
                       
         </tr>   
         </tbody>
      </table>
 
      <div class="mt-8 py-5">
-      <div class="pagination fixed-bottom justify-content-center">
+      <div class="pagination fixed-bottom justify-content-center footer">
         <pagination-controls (pageChange)="p = $event"></pagination-controls>
       </div>
    </div>
@@ -78,38 +85,38 @@
         <span>email deja existe!</span>
       </div>
 
-      <div class="input-control col-md-12">
-        <label class="form-label" for="form2Example11">Prenom</label><span style="color: red;">*</span>
-        <div   [ngClass]="{'invalid':submitted && userEditForm.controls['prenom'].errors}">
-        <input  class=" p-3 rounded-0" name="prenom" type="text" id="prenom"
-          placeholder="prenom" formControlName="prenom" type="text" class="form-control">
+      
+    <div class="input-control col-md-12">
+      <label class="form-label" for="form2Example11">Prenom</label><span style="color: red;">*</span>
+      <div   [ngClass]="{'invalid':submitted && userEditForm.controls['prenom'].errors}">
+      <input  class=" p-3 rounded-0" name="prenom" type="text" id="prenom"
+        placeholder="prenom" formControlName="prenom" type="text" class="form-control">
+      </div>
+      <div *ngIf="userEditForm.controls['prenom'].dirty && userEditForm.controls['prenom'].errors" class="text-danger" name="prenom">
+        <div *ngIf="userEditForm.controls['prenom'].errors['required']">
+          Ce champ est require
         </div>
-        <div *ngIf="userEditForm.controls['prenom'].dirty && userEditForm.controls['prenom'].errors" class="text-danger" name="prenom">
-          <div *ngIf="userEditForm.controls['prenom'].errors required">
-            Ce champ est require
-          </div>
-          <div *ngIf="userEditForm.controls['prenom'].errors['cannotContainSpace']">
-            ne met pas espace
-          </div>
+        <div *ngIf="!userEditForm.controls['prenom'].errors['required'] && userEditForm.controls['prenom'].errors['cannotContainSpace']">
+          ne met pas espace
         </div>
       </div>
+    </div>
 
-        <div class="input-control col-md-12">
-          <label class="form-label" for="form2Example11">Nom</label><span style="color: red;">*</span>
-          <div   [ngClass]="{'invalid':submitted && userEditForm.controls['nom'].errors}">
-          <input id="form2Example11" name="nom" class=" p-3 rounded-0" type="text" id="nom"
-           placeholder="nom" formControlName="nom" class="form-control">
-          </div>
-          <div *ngIf="userEditForm.controls['nom'].dirty && userEditForm.controls['nom'].errors" class="text-danger" name="nom">
-            <div *ngIf="userEditForm.controls['nom'].errors required">
-              Ce champ est require
-            </div>
-            <div *ngIf="userEditForm.controls['nom'].errors['cannotContainSpace']">
-              ne met pas espace
-            </div>
-          </div>
-
+    <div class="input-control col-md-12">
+      <label class="form-label" for="form2Example11">Nom</label><span style="color: red;">*</span>
+      <div   [ngClass]="{'invalid':submitted && userEditForm.controls['nom'].errors}">
+      <input  class=" p-3 rounded-0" name="nom" type="text" id="nom"
+        placeholder="nom" formControlName="nom" type="text" class="form-control">
+      </div>
+      <div *ngIf="userEditForm.controls['nom'].dirty && userEditForm.controls['nom'].errors" class="text-danger" name="prenom">
+        <div *ngIf="userEditForm.controls['nom'].errors['required']">
+          Ce champ est require
         </div>
+        <div *ngIf="!userEditForm.controls['nom'].errors['required'] && userEditForm.controls['nom'].errors['cannotContainSpace']">
+          ne met pas espace
+        </div>
+      </div>
+    </div>
       
 
       <div class="input-control col-md-12">
