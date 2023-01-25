@@ -57,7 +57,7 @@ var port = new SerialPort('/dev/ttyUSB0',{
 });
 
 port.pipe(parser);
-var url = "mongodb://localhost:27017/";
+var url = "mongodb+srv://MamySy:<mamy>@cluster0.qwexmvm.mongodb.net/" ;
 
 
 
@@ -114,7 +114,7 @@ parser.on('data', function(data) {
 );
 
 
-  http.listen(3000, ()=>{
+  http.listen(3001, ()=>{
     console.log('server started at ${3001}')/* apres avoir ecouter le port 3000 affiche les données */
 })
 parser.on('mute', function(mute){

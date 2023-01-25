@@ -19,7 +19,13 @@ import { HelperService } from './helper/helper.service';
 import { ProfilComponent } from './profil/profil.component';
 import { AccueilDashboardComponent } from './accueil-dashboard/accueil-dashboard.component';
 import { SidebarComponent } from './users/sidebar/sidebar.component';
+import { SocketIoConfig, SocketIoModule } from 'ngx-socket-io';
 
+
+const config: SocketIoConfig = { url: 'http://localhost:3000', options: {
+        transports:["websocket+"]
+    }
+};
 
  
 
@@ -51,7 +57,6 @@ import { SidebarComponent } from './users/sidebar/sidebar.component';
         Ng2SearchPipeModule,
         NgStyle,
         NgClass,
-        NgChartsModule,
         SocketIoModule . forRoot ( config )
 
     ],
