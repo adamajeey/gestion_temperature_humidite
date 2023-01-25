@@ -51,8 +51,7 @@ import { SidebarComponent } from './users/sidebar/sidebar.component';
         Ng2SearchPipeModule,
         NgStyle,
         NgClass,
-        NgChartsModule,
-        SocketIoModule . forRoot ( config )
+       
 
     ],
     providers: [

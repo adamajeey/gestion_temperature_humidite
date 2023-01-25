@@ -47,7 +47,7 @@ const parser = new parsers.Readline({
 });
 
 
-var port = new SerialPort('/dev/ttyACM0',{ 
+var port = new SerialPort('/dev/ttyUSB0',{ 
     baudRate: 9600,
     dataBits: 8,
     parity: 'none',
