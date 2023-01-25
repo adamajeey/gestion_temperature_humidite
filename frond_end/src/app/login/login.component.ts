@@ -1,7 +1,9 @@
+import { Temp_Humid } from './../services/interfaces/movie';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UsersService } from 'src/app/services/users.service';
+import { data } from 'jquery';
 /* import { Person } from './Person'; */
 
 
@@ -76,6 +78,18 @@ this.spin = true
 
 
 }
+
+Temp(){
+  
+
+  this.userService.getDonnee().subscribe(data=>{
+    console.log(data);
+    
+  })
+  
+}
+
+
 
 }
 

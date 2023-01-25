@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { User } from '../models/user';
+import { Socket } from 'ngx-socket-io';
 import { env } from 'src/env';
 import { BehaviorSubject, map } from 'rxjs';
 import { Router } from '@angular/router';
@@ -12,7 +13,7 @@ import { Router } from '@angular/router';
 export class UsersService {
   private currentUserSubject: BehaviorSubject<User>;
 
-  constructor(private httpClient:HttpClient, private router: Router) {
+  constructor(private httpClient:HttpClient, private router: Router, private socket: Socket) {
     this.currentUserSubject = new BehaviorSubject<User>(JSON.parse((localStorage.getItem('currentUser')!)));
     if (this.currentUserSubject.value == null) {
       this.getLogOut();
@@ -54,6 +55,10 @@ export class UsersService {
       return false;
     }
     return localStorage.getItem('role');
+  }
+
+  getDonnee() {
+    return this.socket.fromEvent('data');
   }
 
   getUsers(){

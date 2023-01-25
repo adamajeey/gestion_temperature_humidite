@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -22,7 +23,9 @@ import { SidebarComponent } from './users/sidebar/sidebar.component';
 
 
  
-
+const config: SocketIoConfig = { url: 'ws://localhost:3001', options: {
+    transports:["websocket"]
+} };
 @NgModule({
     declarations: [
         AppComponent,
@@ -51,6 +54,7 @@ import { SidebarComponent } from './users/sidebar/sidebar.component';
         Ng2SearchPipeModule,
         NgStyle,
         NgClass,
+        SocketIoModule.forRoot(config)
         
 
     ],

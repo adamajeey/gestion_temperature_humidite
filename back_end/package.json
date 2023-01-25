@@ -10,6 +10,8 @@
   "author": "Mamy sy",
   "license": "ISC",
   "dependencies": {
+    "@serialport/bindings-cpp": "^10.8.0",
+    "@serialport/parser-readline": "^10.5.0",
     "bcrypt": "^5.1.0",
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
@@ -18,8 +20,12 @@
     "install": "^0.13.0",
     "jsonwebtoken": "^9.0.0",
     "mongoose": "^6.7.4",
+    "node-gyp": "^9.3.1",
     "nodemon": "^2.0.20",
-    "serialport": "^9.0.1",
-    "socket.io": "^2.0.4"
+    "serialport": "^10.5.0",
+    "socket.io": "^3.0"
+  },
+  "devDependencies": {
+    "@types/socket.io": "^3.0.2"
   }
 }

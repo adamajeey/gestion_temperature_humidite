@@ -123,6 +123,15 @@ const updatedData = req.body;
 const options = { new: true };
 
 if (updatedData.password){
+    const newpassword= updatedData.password;
+    const ancienpassword= updatedData.ancienpassword
+    const user =await Model.findById(id)
+    const comp = await bcrypt.compare(ancienpassword, user.password)
+    console.log(bcrypt.compare(ancienpassword, user.password));
+    if(!comp){
+      res.status(400).json({message: "veuillez saisir le bon actuel mot de passe!"})
+      return;
+    } 
     const hash = await bcrypt.hash(updatedData.password, 10);
     updatedData.password = hash;
     

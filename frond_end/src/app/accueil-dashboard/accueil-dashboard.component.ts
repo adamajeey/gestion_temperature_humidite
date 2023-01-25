@@ -6,4 +6,9 @@ import { Router } from '@angular/router';
   templateUrl: './accueil-dashboard.component.html',
   styleUrls: ['./accueil-dashboard.component.css']
 })
-export class AccueilDashboardComponent {}
+export class AccueilDashboardComponent {
+  check:string = 'off';
+  checked(){
+    this.check == "off" ? this.check = "on": this.check = "off"
+  }
+}
