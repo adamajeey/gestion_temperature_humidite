@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './users/header/header.component';
@@ -18,7 +19,6 @@ import { HelperService } from './helper/helper.service';
 import { ProfilComponent } from './profil/profil.component';
 import { AccueilDashboardComponent } from './accueil-dashboard/accueil-dashboard.component';
 import { SidebarComponent } from './users/sidebar/sidebar.component';
-import { MenuComponent } from './menu/menu.component';
 
 
  
@@ -36,8 +36,6 @@ import { MenuComponent } from './menu/menu.component';
         ProfilComponent,
         AccueilDashboardComponent,
         SidebarComponent,
-        MenuComponent,
-        
        
         
     ],
@@ -52,7 +50,9 @@ import { MenuComponent } from './menu/menu.component';
         CommonModule,
         Ng2SearchPipeModule,
         NgStyle,
-        NgClass
+        NgClass,
+        NgChartsModule,
+        SocketIoModule . forRoot ( config )
 
     ],
     providers: [
