@@ -57,7 +57,7 @@ var port = new SerialPort('/dev/ttyUSB0',{
 });
 
 port.pipe(parser);
-var url = "mongodb://localhost:27017/";
+var url = "mongodb+srv://MamySy:mamy@cluster0.qwexmvm.mongodb.net/?retryWrites=true&w=majority";
 
 
 
