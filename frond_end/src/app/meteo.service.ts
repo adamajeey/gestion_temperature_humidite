@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { data } from 'jquery';
 import { Socket } from 'ngx-socket-io';
 import { Temp_Humid } from './services/interfaces/movie';
 
@@ -26,7 +27,11 @@ export class SocketService {
 	}
 
 	// listen event
-	onFetchMovies() {
-		return this.socket.fromEvent('fetchMovies');
+	onFetch() {
+		return this.socket.fromEvent('data');
 	}
+	onFetchitem() {
+		return this.socket.fromEvent('mute');
+	}
+	
 }
