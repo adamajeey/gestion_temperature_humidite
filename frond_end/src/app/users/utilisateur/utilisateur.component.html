@@ -74,7 +74,7 @@
       <h3 class=" mb-3 pb-1" style="margin-top: -20px;">Modifier un utilisateur</h3> <br>
     </div>
 
-    <form id="form" style="height: 600px;  margin-top: -15px;" [formGroup]="userEditForm"  class="col-6" style="margin: 0 auto;"
+    <form id="form" style="height: 600px;  margin-top: -15px;" [formGroup]="userEditForm"  () class="col-6" style="margin: 0 auto;"
       class="row d-flex justify-content-center no-wrap  " >
       <input type="text" formControlName="id"  hidden>
       <span *ngIf="emailExiste" class="d-flex justify-content-center fadeIn">
