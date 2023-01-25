@@ -1,7 +1,7 @@
 const express = require('express');/* recupere la variable express dans la boite express */
 const mongoose  = require('mongoose'); //gere link api base de donnees
 require('dotenv').config();/* pour recuperer le fichier env */
-
+var MongoClient = require('mongodb').MongoClient;
 var cors = require('cors') //configuration des differentes requettes pour acceder aux ressources
 
 const routes = require('./routes/routes');
@@ -40,6 +40,7 @@ var fs = require('fs');
 
 var SerialPort = require('serialport');
 const router = require('./routes/routes');
+const { Socket } = require('socket.io');
 const parsers = SerialPort.parsers;
 
 const parser = new parsers.Readline({
@@ -111,11 +112,22 @@ parser.on('data', function(data) {
 }
     
 );
-router.get('/', (req, res) => {
-    res.json(data)
-  });
+
 
   http.listen(3000, ()=>{
     console.log('server started at ${3001}')/* apres avoir ecouter le port 3000 affiche les données */
 })
+parser.on('mute', function(mute){
+MongoClient.connect(url, { useUnifiedTopology: true }, function(err, db) {
+    if (err) throw err;
+    var dbo = db.db("dhtTemp2");
+    var col = dbo.collection('tempHum2');
+    col.find().toArray(function(err, items) {
+        console.log(items);
+        io.emit('mute', items);     
+console.log(items);
+        
+})
 
+})
+} )
