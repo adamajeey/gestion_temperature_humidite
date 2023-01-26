@@ -17,8 +17,8 @@
         <div class="card-body mt-3 mr-auto " >
             <h3 class="text-center">Actuellement</h3>
              <div class="d-flex justify-content-around mt-3 mr-auto ">
-            <div  style="font-size: 50px; color: red;">23°C</div>
-            <div  style="font-size: 50px; color: green; margin-left: 75px;">38%</div>
+            <div  style="font-size: 50px; color: red;" *ngFor="let i of tempHum">{{i.temperature}}°C</div>
+            <div  style="font-size: 50px; color: green; margin-left: 75px;" *ngFor="let i of tempHum">{{i.humidite}}%</div>
          </div>
           <div class="d-flex justify-content-around " >
             <div>Temperature</div>
@@ -29,7 +29,11 @@
     
     
        <!--  affichage ventilateur -->
+<<<<<<< HEAD
         <div class="card d-flex flex-column align-items-center " style="width: 350px; border: solid red;">
+=======
+        <div class="card d-flex align-items-center " style="width: 350px; border: solid red;">
+>>>>>>> ac81ac2ddb636c7195739f231e530b78f1d4e8ad
          
           <div class="card-body mt-3 mr-auto  ">
             
@@ -39,12 +43,16 @@
               
             </div>
             <div class=" d-flex justify-content-center">
+<<<<<<< HEAD
             <!--   <h1>Angular Toggle Button</h1> -->
             <!--   <toggle-button (changed)="checked=$event"> -->
              <!--  </toggle-button> -->
              <!--  <p>The state is {{checked ? 'ON' : 'OFF'}}.</p> -->
 
             
+=======
+              <button type="button" class="btn btn-success ">On</button> 
+>>>>>>> ac81ac2ddb636c7195739f231e530b78f1d4e8ad
             </div>
             
           </div>

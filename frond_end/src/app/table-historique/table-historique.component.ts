@@ -1,11 +1,13 @@
+import { data } from 'jquery';
 
 import { Component, OnInit } from '@angular/core';
-
+import { Temphum } from '../models/temphum'; 
 import { SocketService } from '../meteo.service';
 import { io } from 'socket.io-client';
 
 import { Temp_Humid } from '../services/interfaces/movie';
 import { BehaviorSubject } from 'rxjs';
+import { UsersService } from '../services/users.service';
 @Component({
   selector: 'app-table-historique',
   templateUrl: './table-historique.component.html',
@@ -14,25 +16,22 @@ import { BehaviorSubject } from 'rxjs';
 export class TableHistoriqueComponent implements OnInit{
   public message$: BehaviorSubject<string> = new BehaviorSubject('');
 
-	temphum: Temp_Humid[] = [];
+ temphum!: Temphum[] ;
 
-	constructor() { }
-  socket = io('http://localhost:3000');
-	ngOnInit()  {
-    this.socket.on('data', (data) => {
-     console.log(data);
-     this.message$.next(data)
-     this.message$.asObservable().subscribe((d) => {
-      console.log(d);
+
+	constructor(private serServe :UsersService) { }
+  ngOnInit()  {
+    this.serServe.historique().subscribe((data)=>{
+      console.log(data);
+     this.temphum = data as unknown as Temphum[];
+    console.log(this.temphum);
+    
+     
       
-     })
-    }); }
-
-	
-
-
+     
+    })     
+  }
 }
-
 
 
 

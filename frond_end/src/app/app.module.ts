@@ -20,7 +20,10 @@ import { HelperService } from './helper/helper.service';
 import { ProfilComponent } from './profil/profil.component';
 import { AccueilDashboardComponent } from './accueil-dashboard/accueil-dashboard.component';
 import { SidebarComponent } from './users/sidebar/sidebar.component';
-
+import { TableHistoriqueComponent } from './table-historique/table-historique.component';
+const config: SocketIoConfig = { url: 'http://localhost:3001', options: {
+    transports: ["websocket"]
+} };
 
 
 const config: SocketIoConfig = { url: 'http://localhost:3000', options: {
@@ -43,7 +46,7 @@ const config: SocketIoConfig = { url: 'http://localhost:3000', options: {
         ProfilComponent,
         AccueilDashboardComponent,
         SidebarComponent,
-       
+        TableHistoriqueComponent
         
     ],
     bootstrap: [AppComponent],
@@ -59,7 +62,11 @@ const config: SocketIoConfig = { url: 'http://localhost:3000', options: {
         Ng2SearchPipeModule,
         NgStyle,
         NgClass,
+<<<<<<< HEAD
         SocketIoModule . forRoot ( config )
+=======
+        SocketIoModule.forRoot(config)
+>>>>>>> ac81ac2ddb636c7195739f231e530b78f1d4e8ad
 
     ],
     providers: [

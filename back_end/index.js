@@ -38,17 +38,17 @@ console.log('Database Connected')
 var fs = require('fs');
 /* var index = fs.readFileSync( '/'); */
 
-var SerialPort = require('serialport');
+const { SerialPort } = require('serialport');
+var { ReadlineParser } = require("@serialport/parser-readline")
 const router = require('./routes/routes');
-const { Socket } = require('socket.io');
+/* const { Socket } = require('socket.io'); */
 const parsers = SerialPort.parsers;
-
-const parser = new parsers.Readline({
-    delimiter: '\r\n'
-});
+/* var path = require('path') */
 
 
-var port = new SerialPort('/dev/ttyUSB0',{ 
+
+
+var port = new SerialPort({ path:'/dev/ttyUSB0',
     baudRate: 9600,
     dataBits: 8,
     parity: 'none',
@@ -56,8 +56,10 @@ var port = new SerialPort('/dev/ttyUSB0',{
     flowControl: false
 });
 
+var parser = port.pipe(new ReadlineParser({ delimiter: '\r\n' }));
+
 port.pipe(parser);
-var url = "mongodb+srv://MamySy:<mamy>@cluster0.qwexmvm.mongodb.net/" ;
+var url = "mongodb+srv://MamySy:mamy@cluster0.qwexmvm.mongodb.net/";
 
 
 
@@ -73,8 +75,10 @@ parser.on('data', function(data) {
     
     console.log('les information sont: ' + data);
     temp = data.split('/');
+    var temperature = data.slice(0, 2); //decoupe de la temperature
+    var humidite = data.slice(3, 5); //decoupe de l'humidite
     console.log(data.split('/'));
-    io.emit('data', {"temperature": temp[0], "humidite": temp[1]});
+    io.emit('data', {"temperature": temperature, "humidite": humidite});
     var datHeure = new Date();
     var min = datHeure.getMinutes();
     var heur = datHeure.getHours(); //heure
@@ -101,7 +105,7 @@ parser.on('data', function(data) {
          //Connexion a mongodb et insertion Temperature et humidite
          MongoClient.connect(url, { useUnifiedTopology: false }, function(err, db) {
             if (err) throw err;
-            var dbo = db.db("dhtTemp2");
+            var dbo = db.db("test");
             dbo.collection("tempHum2").insertOne(tempEtHum, function(err, res) {
                 if (err) throw err;
                 console.log("1 document inserted");
