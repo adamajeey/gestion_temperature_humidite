@@ -6,7 +6,7 @@ const jwt = require("jsonwebtoken");
 const check = require('./midleware');
 var MongoClient = require('mongodb').MongoClient;
 const router = express.Router();
-var url = "mongodb://localhost:27017/";
+var url = "mongodb+srv://MamySy:mamy@cluster0.qwexmvm.mongodb.net/";
 module.exports = router;
 
 
@@ -167,7 +167,7 @@ router.get('/pap', async(req, res) => {
   res.json(data) */
   MongoClient.connect(url, { useUnifiedTopology: true }, function(err, db) {
     if (err) throw err;
-    var dbo = db.db("dhtTemp2");
+    var dbo = db.db("test");
     var col = dbo.collection('tempHum2');
     col.find().toArray(function(err, items) {
         console.log(items);

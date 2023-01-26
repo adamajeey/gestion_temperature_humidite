@@ -1,3 +1,4 @@
+import { data } from 'jquery';
 
 import { Component, OnInit } from '@angular/core';
 import { Temphum } from '../models/temphum'; 
@@ -20,9 +21,9 @@ export class TableHistoriqueComponent implements OnInit{
 
 	constructor(private serServe :UsersService) { }
   ngOnInit()  {
-    this.serServe.getData().subscribe((items)=>{
-      console.log(items);
-     this.temphum = items as unknown as Temphum[];
+    this.serServe.historique().subscribe((data)=>{
+      console.log(data);
+     this.temphum = data as unknown as Temphum[];
     console.log(this.temphum);
     
      
@@ -31,7 +32,6 @@ export class TableHistoriqueComponent implements OnInit{
     })     
   }
 }
-
 
 
 

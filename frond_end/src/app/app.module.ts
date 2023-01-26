@@ -40,8 +40,7 @@ const config: SocketIoConfig = { url: 'http://localhost:3001', options: {
         ProfilComponent,
         AccueilDashboardComponent,
         SidebarComponent,
-        TableHistoriqueComponent,
-       
+        TableHistoriqueComponent
         
     ],
     bootstrap: [AppComponent],
