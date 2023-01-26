@@ -13,7 +13,8 @@ export class AccueilDashboardComponent implements OnInit {
   tempHum: any = []
 
   constructor(private meteoservice:SocketService){}
-
+  
+//recuperer les donnees envoyer par le socket
   ngOnInit(): void {
     this.meteoservice.onFetch().subscribe((data)=>{
       console.log(data);  

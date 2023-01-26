@@ -26,10 +26,10 @@ const config: SocketIoConfig = { url: 'http://localhost:3001', options: {
 } };
 
 
-const config: SocketIoConfig = { url: 'http://localhost:3000', options: {
+/* const config: SocketIoConfig = { url: 'http://localhost:3000', options: {
         transports:["websocket+"]
     }
-};
+}; */
 
  
 
@@ -62,11 +62,7 @@ const config: SocketIoConfig = { url: 'http://localhost:3000', options: {
         Ng2SearchPipeModule,
         NgStyle,
         NgClass,
-<<<<<<< HEAD
-        SocketIoModule . forRoot ( config )
-=======
         SocketIoModule.forRoot(config)
->>>>>>> ac81ac2ddb636c7195739f231e530b78f1d4e8ad
 
     ],
     providers: [

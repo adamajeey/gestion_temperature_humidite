@@ -33,16 +33,9 @@ export class LoginComponent implements OnInit {
       password:['',[Validators.required,Validators.minLength(8)]],
       
       })
-<<<<<<< HEAD
-      this.meteoservice.onFetch().subscribe((data)=>{
-        console.log(data);
-        
-      })
-=======
 
       
       
->>>>>>> ac81ac2ddb636c7195739f231e530b78f1d4e8ad
       this.meteoservice.onFetchitem().subscribe((mute)=>{
         console.log(mute);
         
