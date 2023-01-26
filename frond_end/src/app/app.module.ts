@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -20,8 +20,9 @@ import { HelperService } from './helper/helper.service';
 import { ProfilComponent } from './profil/profil.component';
 import { AccueilDashboardComponent } from './accueil-dashboard/accueil-dashboard.component';
 import { SidebarComponent } from './users/sidebar/sidebar.component';
-const config: SocketIoConfig = { url: 'http://localhost:3000', options: {
-    transports: ["websocket+"]
+import { TableHistoriqueComponent } from './table-historique/table-historique.component';
+const config: SocketIoConfig = { url: 'http://localhost:3001', options: {
+    transports: ["websocket"]
 } };
 
  
@@ -39,6 +40,7 @@ const config: SocketIoConfig = { url: 'http://localhost:3000', options: {
         ProfilComponent,
         AccueilDashboardComponent,
         SidebarComponent,
+        TableHistoriqueComponent,
        
         
     ],

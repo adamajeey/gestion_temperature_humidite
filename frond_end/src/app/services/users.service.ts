@@ -59,6 +59,10 @@ export class UsersService {
   getUsers(){
     return this.httpClient.get(`${env.apiUrl}/getAll`)
   };
+  getData(){
+    return this.httpClient.get(`${env.apiUrl}/pap`)
+  };
+
 
   changeRole(id:any,user: User){
    

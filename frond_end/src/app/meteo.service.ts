@@ -30,8 +30,6 @@ export class SocketService {
 	onFetch() {
 		return this.socket.fromEvent('data');
 	}
-	onFetchitem() {
-		return this.socket.fromEvent('mute');
-	}
+	
 	
 }
