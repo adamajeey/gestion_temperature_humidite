@@ -57,7 +57,11 @@ var port = new SerialPort('/dev/ttyUSB0',{
 });
 
 port.pipe(parser);
+<<<<<<< HEAD
 var url = "mongodb+srv://MamySy:mamy@cluster0.qwexmvm.mongodb.net/?retryWrites=true&w=majority";
+=======
+var url = "mongodb+srv://MamySy:<mamy>@cluster0.qwexmvm.mongodb.net/" ;
+>>>>>>> 8bd14152b76ed99169f898fc1f623b9ff5299ef4
 
 
 
@@ -114,7 +118,7 @@ parser.on('data', function(data) {
 );
 
 
-  http.listen(3000, ()=>{
+  http.listen(3001, ()=>{
     console.log('server started at ${3001}')/* apres avoir ecouter le port 3000 affiche les données */
 })
 parser.on('mute', function(mute){

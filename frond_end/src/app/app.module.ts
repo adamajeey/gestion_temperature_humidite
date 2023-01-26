@@ -20,9 +20,19 @@ import { HelperService } from './helper/helper.service';
 import { ProfilComponent } from './profil/profil.component';
 import { AccueilDashboardComponent } from './accueil-dashboard/accueil-dashboard.component';
 import { SidebarComponent } from './users/sidebar/sidebar.component';
+<<<<<<< HEAD
 const config: SocketIoConfig = { url: 'http://localhost:3000', options: {
     transports: ["websocket+"]
 } };
+=======
+import { SocketIoConfig, SocketIoModule } from 'ngx-socket-io';
+
+>>>>>>> 8bd14152b76ed99169f898fc1f623b9ff5299ef4
+
+const config: SocketIoConfig = { url: 'http://localhost:3000', options: {
+        transports:["websocket+"]
+    }
+};
 
  
 
@@ -55,7 +65,7 @@ const config: SocketIoConfig = { url: 'http://localhost:3000', options: {
         Ng2SearchPipeModule,
         NgStyle,
         NgClass,
-        SocketIoModule.forRoot(config)
+        SocketIoModule . forRoot ( config )
 
     ],
     providers: [

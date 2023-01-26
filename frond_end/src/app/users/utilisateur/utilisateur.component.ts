@@ -7,7 +7,7 @@ import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-utilisateur',
-  templateUrl: './utilisateur.component.html',
+  templateUrl:'./utilisateur.component.html',
   styleUrls: ['./utilisateur.component.css']
 })
 
@@ -205,7 +205,7 @@ modifUsers (){
  this.userService.changeRole(id,user).subscribe(
    
    data=>{
-    this.simpleAlert(); 
+ 
     this.ngOnInit();
     this.showForm = false
   },

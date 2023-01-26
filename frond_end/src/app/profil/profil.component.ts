@@ -207,6 +207,7 @@ errorMsg:any;
     );
 
   }
+  
 
 /* recuperer les email,nom et prenom qu'on va modifier */
 getUserData(id:any,email:any,prenom:any,nom:any){
@@ -277,6 +278,7 @@ modifUsers (){
 
     this.ngOnInit();
     this.showForm = false
+    
   },
   error =>{
     console.log(error )
