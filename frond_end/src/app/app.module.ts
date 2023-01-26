@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+
 import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './users/header/header.component';
@@ -20,12 +20,13 @@ import { HelperService } from './helper/helper.service';
 import { ProfilComponent } from './profil/profil.component';
 import { AccueilDashboardComponent } from './accueil-dashboard/accueil-dashboard.component';
 import { SidebarComponent } from './users/sidebar/sidebar.component';
-
+import { TableHistoriqueComponent } from './table-historique/table-historique.component';
+const config: SocketIoConfig = { url: 'http://localhost:3001', options: {
+    transports: ["websocket"]
+} };
 
  
-const config: SocketIoConfig = { url: 'ws://localhost:3001', options: {
-    transports:["websocket"]
-} };
+
 @NgModule({
     declarations: [
         AppComponent,
@@ -39,7 +40,7 @@ const config: SocketIoConfig = { url: 'ws://localhost:3001', options: {
         ProfilComponent,
         AccueilDashboardComponent,
         SidebarComponent,
-       
+        TableHistoriqueComponent
         
     ],
     bootstrap: [AppComponent],
@@ -48,6 +49,7 @@ const config: SocketIoConfig = { url: 'ws://localhost:3001', options: {
         AppRoutingModule,
         HttpClientModule,
         FormsModule,
+        FormsModule,
         ReactiveFormsModule,  
         NgxPaginationModule,
         CommonModule,
@@ -55,7 +57,6 @@ const config: SocketIoConfig = { url: 'ws://localhost:3001', options: {
         NgStyle,
         NgClass,
         SocketIoModule.forRoot(config)
-        
 
     ],
     providers: [

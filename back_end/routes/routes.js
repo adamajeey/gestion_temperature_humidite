@@ -1,11 +1,12 @@
 const express = require('express');
 const Model = require('../models/userModel');
+const Modeltemp = require('../models/userModel copy');
 const bcrypt = require('bcryptjs');
 const jwt = require("jsonwebtoken");
 const check = require('./midleware');
-
+var MongoClient = require('mongodb').MongoClient;
 const router = express.Router();
-
+var url = "mongodb+srv://MamySy:mamy@cluster0.qwexmvm.mongodb.net/";
 module.exports = router;
 
 
@@ -123,15 +124,6 @@ const updatedData = req.body;
 const options = { new: true };
 
 if (updatedData.password){
-    const newpassword= updatedData.password;
-    const ancienpassword= updatedData.ancienpassword
-    const user =await Model.findById(id)
-    const comp = await bcrypt.compare(ancienpassword, user.password)
-    console.log(bcrypt.compare(ancienpassword, user.password));
-    if(!comp){
-      res.status(400).json({message: "veuillez saisir le bon actuel mot de passe!"})
-      return;
-    } 
     const hash = await bcrypt.hash(updatedData.password, 10);
     updatedData.password = hash;
     
@@ -166,3 +158,34 @@ catch (error) {
 res.status(400).json({ message: error.message })
 }
 })
+
+/* get all method */
+router.get('/pap', async(req, res) => {
+  try{
+  /* const data = await Modeltemp.find();
+  console.log(data);
+  res.json(data) */
+  MongoClient.connect(url, { useUnifiedTopology: true }, function(err, db) {
+    if (err) throw err;
+    var dbo = db.db("test");
+    var col = dbo.collection('tempHum2');
+    col.find().toArray(function(err, items) {
+        console.log(items);
+             res.json(items)
+console.log(items);
+        
+})
+
+})
+  }
+  catch(error){
+  res.status(500).json({message: error.message})
+  }
+  })
+  // list data
+/* router.get('/pap', function(req, res) {
+  Modeltemp.find(function (err, sales) {
+      if (err) return next(err);
+      res.json(sales);
+  });
+}); */

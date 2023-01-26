@@ -1,18 +1,18 @@
-import { Temp_Humid } from './../services/interfaces/movie';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UsersService } from 'src/app/services/users.service';
-import { data } from 'jquery';
 /* import { Person } from './Person'; */
+import { SocketService } from '../meteo.service';
+import { io } from 'socket.io-client';
 
-
+import { Temp_Humid } from '../services/interfaces/movie';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
   registerForm!:FormGroup;
   title = 'angularvalidate';
   submitted = false;
@@ -20,9 +20,10 @@ export class LoginComponent {
   spin= false;
 
 
-  constructor(private userService : UsersService, private formBuilder: FormBuilder ,private route: Router) {
+  constructor(private userService : UsersService, private formBuilder: FormBuilder ,private route: Router,private meteoservice:SocketService) {
     
   }
+  
   ngOnInit() {
     this.registerForm = this.formBuilder.group({
     
@@ -31,6 +32,15 @@ export class LoginComponent {
       password:['',[Validators.required,Validators.minLength(8)]],
       
       })
+
+      
+      
+      this.meteoservice.onFetchitem().subscribe((mute)=>{
+        console.log(mute);
+        
+      })
+
+       
   }
 
   
@@ -77,16 +87,6 @@ this.spin = true
 
 
 
-}
-
-Temp(){
-  
-
-  this.userService.getDonnee().subscribe(data=>{
-    console.log(data);
-    
-  })
-  
 }
 
 

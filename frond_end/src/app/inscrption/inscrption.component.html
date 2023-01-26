@@ -29,7 +29,7 @@
                 </div>
 
                 <form id="form" style="height: 600px;  margin-top: -15px;"
-                  class="row d-flex justify-content-center no-wrap" (ngSubmit)="onSubmit()" [formGroup]="registerForm">
+                  class="row d-flex justify-content-center no-wrap  " (submit)="onSubmit()" [formGroup]="registerForm">
                   <div *ngIf="!verifPass" class="d-flex justify-content-center text text-danger" id="">
                     <span>les deux password ne correspondent pas!</span>
                   </div>
@@ -152,7 +152,7 @@
                   </div>
 
                   <div class="d-flex align-items-center justify-content-center pb-4">
-                    <button type="button" id="form2Example11" class="btn btn-outline-danger">
+                    <button type="button" (click)="onSubmit()" id="form2Example11" class="btn btn-outline-danger">
                       <span class="visually" *ngIf="!spin">Ajouter</span>
                       <span class="spinner-border spinner-border-sm" *ngIf="spin" role="status" aria-hidden="false"
                         style="color: white;"></span>

@@ -1,14 +1,24 @@
-import { Component } from '@angular/core';
+import { data } from 'jquery';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { SocketService } from '../meteo.service';
 
 @Component({
   selector: 'app-accueil-dashboard',
   templateUrl: './accueil-dashboard.component.html',
   styleUrls: ['./accueil-dashboard.component.css']
 })
-export class AccueilDashboardComponent {
-  check:string = 'off';
-  checked(){
-    this.check == "off" ? this.check = "on": this.check = "off"
+export class AccueilDashboardComponent implements OnInit {
+
+  tempHum: any = []
+
+  constructor(private meteoservice:SocketService){}
+
+  ngOnInit(): void {
+    this.meteoservice.onFetch().subscribe((data)=>{
+      console.log(data);  
+      this.tempHum = Array(data)
+    })
   }
+
 }

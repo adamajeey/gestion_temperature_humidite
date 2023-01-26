@@ -1,10 +1,7 @@
 const express = require('express');/* recupere la variable express dans la boite express */
 const mongoose  = require('mongoose'); //gere link api base de donnees
-var mongodb = require('mongodb');
-var MongoClient = require('mongodb').MongoClient;
-var binary = mongodb.Binary;
 require('dotenv').config();/* pour recuperer le fichier env */
-
+var MongoClient = require('mongodb').MongoClient;
 var cors = require('cors') //configuration des differentes requettes pour acceder aux ressources
 
 const routes = require('./routes/routes');
@@ -41,22 +38,28 @@ console.log('Database Connected')
 var fs = require('fs');
 /* var index = fs.readFileSync( '/'); */
 
-
-const { SerialPort } = require('serialport')
-const { ReadlineParser } = require('@serialport/parser-readline')
-const port = new SerialPort({ path: '/dev/ttyUSB0', baudRate: 9600 })
-
-
+const { SerialPort } = require('serialport');
+var { ReadlineParser } = require("@serialport/parser-readline")
 const router = require('./routes/routes');
+/* const { Socket } = require('socket.io'); */
+const parsers = SerialPort.parsers;
+/* var path = require('path') */
 
-// On lit les donnees par ligne telles quelles apparaissent
-var parser = port.pipe(new ReadlineParser({ delimiter: '\r\n' }));
-/* parser.on('open', function() {
-    console.log('Connexion ouverte');
+
+
+
+var port = new SerialPort({ path:'/dev/ttyUSB0',
+    baudRate: 9600,
+    dataBits: 8,
+    parity: 'none',
+    stopBits: 1,
+    flowControl: false
 });
 
-port.pipe(parser); */
-var url = "mongodb://localhost:27017/";
+var parser = port.pipe(new ReadlineParser({ delimiter: '\r\n' }));
+
+port.pipe(parser);
+var url = "mongodb+srv://MamySy:mamy@cluster0.qwexmvm.mongodb.net/";
 
 
 
@@ -72,11 +75,9 @@ parser.on('data', function(data) {
     
     console.log('les information sont: ' + data);
     temp = data.split('/');
-    console.log(data);
     var temperature = data.slice(0, 2); //decoupe de la temperature
     var humidite = data.slice(3, 5); //decoupe de l'humidite
-    
-   
+    console.log(data.split('/'));
     io.emit('data', {"temperature": temperature, "humidite": humidite});
     var datHeure = new Date();
     var min = datHeure.getMinutes();
@@ -99,17 +100,13 @@ parser.on('data', function(data) {
             .catch(logError)
     }
    
-    
-    /* if ((heur == 08 && min == 00 && sec == 00) || (heur == 12 && min == 00 && sec == 00) || (heur == 19 && min == 00 && sec == 00)) { */
-    if(sec == 00){ 
-        var temperature = data.slice(0, 2); //decoupe de la temperature
-        var humidite = data.slice(3, 5); //decoupe de l'humidite
-        var tempEtHum = { "temperature": temperature, "humidite": humidite,"Date": heureEtDate, "Heure": heureInsertion };
+    var tempEtHum = { "temperature": temp[0], "humidite": temp[1],'Date': heureEtDate, 'Heure': heureInsertion };
+    if ((heur == 08 && min == 00 && sec == 00) || (heur == 12 && min == 00 && sec == 00) || (heur == 19 && min == 00 && sec == 00)) {
          //Connexion a mongodb et insertion Temperature et humidite
          MongoClient.connect(url, { useUnifiedTopology: false }, function(err, db) {
             if (err) throw err;
-            var dbo = db.db("dhtTemp");
-            dbo.collection("tempHum").insertOne(tempEtHum, function(err, res) {
+            var dbo = db.db("test");
+            dbo.collection("tempHum2").insertOne(tempEtHum, function(err, res) {
                 if (err) throw err;
                 console.log("1 document inserted");
                 db.close();
@@ -119,11 +116,22 @@ parser.on('data', function(data) {
 }
     
 );
-router.get('/', (req, res) => {
-    res.json(data)
-  });
+
 
   http.listen(3001, ()=>{
     console.log('server started at ${3001}')/* apres avoir ecouter le port 3000 affiche les données */
 })
- 
+parser.on('mute', function(mute){
+MongoClient.connect(url, { useUnifiedTopology: true }, function(err, db) {
+    if (err) throw err;
+    var dbo = db.db("dhtTemp2");
+    var col = dbo.collection('tempHum2');
+    col.find().toArray(function(err, items) {
+        console.log(items);
+        io.emit('mute', items);     
+console.log(items);
+        
+})
+
+})
+} )
