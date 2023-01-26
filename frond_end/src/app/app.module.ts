@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+
 import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './users/header/header.component';
@@ -19,13 +20,11 @@ import { HelperService } from './helper/helper.service';
 import { ProfilComponent } from './profil/profil.component';
 import { AccueilDashboardComponent } from './accueil-dashboard/accueil-dashboard.component';
 import { SidebarComponent } from './users/sidebar/sidebar.component';
-import { SocketIoConfig, SocketIoModule } from 'ngx-socket-io';
-
 
 const config: SocketIoConfig = { url: 'http://localhost:3000', options: {
-        transports:["websocket+"]
-    }
-};
+    transports: ["websocket+"]
+} };
+
 
  
 
@@ -51,13 +50,16 @@ const config: SocketIoConfig = { url: 'http://localhost:3000', options: {
         AppRoutingModule,
         HttpClientModule,
         FormsModule,
+        FormsModule,
         ReactiveFormsModule,  
         NgxPaginationModule,
         CommonModule,
         Ng2SearchPipeModule,
         NgStyle,
         NgClass,
-        SocketIoModule . forRoot ( config )
+
+        SocketIoModule.forRoot(config)
+
 
     ],
     providers: [
