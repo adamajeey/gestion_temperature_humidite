@@ -194,6 +194,13 @@ errorMsg:any;
   }
   
 
+  simpleAlert(){  
+    Swal.fire('MODIFICATION RÉUSSIE AVEC SUCCÉE'); 
+    Swal.update({
+    icon: 'success' 
+    }) 
+  } 
+
   ngOnInit(): void {
 
     this.userService.getUsers().subscribe(
@@ -249,8 +256,11 @@ getUserData(id:any,email:any,prenom:any,nom:any){
 modifUsers (){
   const id =  this.userEditForm.value.id;
   for (const iterator of this.users) {
+
+  this.simpleAlert()
     this.submitted = true
     this.spin = true
+
    if(this.userEditForm.invalid){
     this.spin = false
     return ;
@@ -330,8 +340,10 @@ modifUsers (){
 modifUsersPassword(){
 
   const id = this.userEditForm.value.id;
+  this.simpleAlert()
     this.submitted = true
     this.spin = true
+    
    if(this.userEditForm.invalid){
     this.spin = false
     return ;
