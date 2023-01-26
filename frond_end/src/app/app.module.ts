@@ -20,9 +20,11 @@ import { HelperService } from './helper/helper.service';
 import { ProfilComponent } from './profil/profil.component';
 import { AccueilDashboardComponent } from './accueil-dashboard/accueil-dashboard.component';
 import { SidebarComponent } from './users/sidebar/sidebar.component';
+
 const config: SocketIoConfig = { url: 'http://localhost:3000', options: {
     transports: ["websocket+"]
 } };
+
 
  
 
@@ -55,7 +57,9 @@ const config: SocketIoConfig = { url: 'http://localhost:3000', options: {
         Ng2SearchPipeModule,
         NgStyle,
         NgClass,
+
         SocketIoModule.forRoot(config)
+
 
     ],
     providers: [

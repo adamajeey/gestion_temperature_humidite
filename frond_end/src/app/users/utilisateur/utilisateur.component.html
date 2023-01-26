@@ -65,15 +65,14 @@
    </div>
    
    <div class="container card rounded-5 text-black shadow-lg p-3 mb-5 bg-white rounded" style="height:600px;margin:0; display: flex; flex-wrap: wrap; margin-top: 100px; width: 550px;" *ngIf="showForm" >
-
       
 
     <div class="text-center">
       <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/lotus.webp"
         style="width: 180px;margin-top: -40px;" alt="logo">
-      <h3 class=" mb-3 pb-1" style="margin-top: -20px;">Modifier un utilisateur</h3> <br>
+      <h3 class=" mb-3 pb-1" style="margin-top: -20px;">Modifier votre profil</h3> <br>
     </div>
-
+  
     <form id="form" style="height: 600px;  margin-top: -15px;" [formGroup]="userEditForm"  class="col-6" style="margin: 0 auto;"
       class="row d-flex justify-content-center no-wrap  " >
       <input type="text" formControlName="id"  hidden>
@@ -84,47 +83,47 @@
       <div *ngIf="errorMsg!" class="d-flex justify-content-center text text-danger" id="">
         <span>email deja existe!</span>
       </div>
-
+  
+      <div class="input-control col-md-12">
+        <label class="form-label" for="form2Example11">Prenom</label><span style="color: red;">*</span>
+        <div   [ngClass]="{'invalid':submitted && userEditForm.controls['prenom'].errors}">
+        <input  class=" p-3 rounded-0" name="prenom" type="text" id="prenom"
+          placeholder="prenom" formControlName="prenom" type="text" class="form-control">
+        </div>
+        <div *ngIf="userEditForm.controls['prenom'].dirty && userEditForm.controls['prenom'].errors" class="text-danger" name="prenom">
+          <div *ngIf="userEditForm.controls['prenom'].errors['required']">
+            Ce champ est require
+          </div>
+          <div *ngIf="!userEditForm.controls['prenom'].errors['required'] && userEditForm.controls['prenom'].errors['cannotContainSpace']">
+            ne met pas espace
+          </div>
+        </div>
+      </div>
+  
+      <div class="input-control col-md-12">
+        <label class="form-label" for="form2Example11">Nom</label><span style="color: red;">*</span>
+        <div   [ngClass]="{'invalid':submitted && userEditForm.controls['nom'].errors}">
+        <input  class=" p-3 rounded-0" name="nom" type="text" id="nom"
+          placeholder="nom" formControlName="nom" type="text" class="form-control">
+        </div>
+        <div *ngIf="userEditForm.controls['nom'].dirty && userEditForm.controls['nom'].errors" class="text-danger" name="prenom">
+          <div *ngIf="userEditForm.controls['nom'].errors['required']">
+            Ce champ est require
+          </div>
+          <div *ngIf="!userEditForm.controls['nom'].errors['required'] && userEditForm.controls['nom'].errors['cannotContainSpace']">
+            ne met pas espace
+          </div>
+        </div>
+      </div>
+  
       
-    <div class="input-control col-md-12">
-      <label class="form-label" for="form2Example11">Prenom</label><span style="color: red;">*</span>
-      <div   [ngClass]="{'invalid':submitted && userEditForm.controls['prenom'].errors}">
-      <input  class=" p-3 rounded-0" name="prenom" type="text" id="prenom"
-        placeholder="prenom" formControlName="prenom" type="text" class="form-control">
-      </div>
-      <div *ngIf="userEditForm.controls['prenom'].dirty && userEditForm.controls['prenom'].errors" class="text-danger" name="prenom">
-        <div *ngIf="userEditForm.controls['prenom'].errors['required']">
-          Ce champ est require
-        </div>
-        <div *ngIf="!userEditForm.controls['prenom'].errors['required'] && userEditForm.controls['prenom'].errors['cannotContainSpace']">
-          ne met pas espace
-        </div>
-      </div>
-    </div>
-
-    <div class="input-control col-md-12">
-      <label class="form-label" for="form2Example11">Nom</label><span style="color: red;">*</span>
-      <div   [ngClass]="{'invalid':submitted && userEditForm.controls['nom'].errors}">
-      <input  class=" p-3 rounded-0" name="nom" type="text" id="nom"
-        placeholder="nom" formControlName="nom" type="text" class="form-control">
-      </div>
-      <div *ngIf="userEditForm.controls['nom'].dirty && userEditForm.controls['nom'].errors" class="text-danger" name="prenom">
-        <div *ngIf="userEditForm.controls['nom'].errors['required']">
-          Ce champ est require
-        </div>
-        <div *ngIf="!userEditForm.controls['nom'].errors['required'] && userEditForm.controls['nom'].errors['cannotContainSpace']">
-          ne met pas espace
-        </div>
-      </div>
-    </div>
-      
-
+  
       <div class="input-control col-md-12">
         <label class="form-label" for="form2Example11">Email</label><span style="color: red;">*</span>
-        <input id="form2Example11" name="email" class=" p-3 rounded-0" type="text"
-          [ngClass]="{'is-invalid':submitted && userEditForm.controls['email'].errors}" placeholder="email"
+        <div [ngClass]="{'invalid':submitted && userEditForm.controls['email'].errors}">
+        <input id="form2Example11" name="email" class=" p-3 rounded-0" type="text" placeholder="email"
           formControlName="email" type="email" class="form-control" id="email" name="email">
-        <div *ngIf="userEditForm.controls['email'].dirty && userEditForm.controls['email'].errors" class="text-danger">
+        <div *ngIf="userEditForm.controls['email'].dirty  && userEditForm.controls['email'].errors" class="text-danger">
           <div *ngIf="userEditForm.controls['email'].errors ['required']">
             Ce champ est require
           </div>
@@ -133,12 +132,13 @@
           </div>
         </div>
       </div>
+      </div>
   <div class="d-flex justify-content-center gap-5" style="margin-top: 60px;">
     <button type="submit" class="btn btn-danger" (click)="modifUsers()">Modifier</button>
     <button  class="btn btn-success" (click)="this.showForm = false;">Annuler</button>
   </div>
-</form> 
+  </form> 
    
    </div>
 </body>
-</html>
+</html>  
