@@ -24,11 +24,7 @@ export class TableHistoriqueComponent implements OnInit{
     this.serServe.historique().subscribe((data)=>{
       console.log(data);
      this.temphum = data as unknown as Temphum[];
-    console.log(this.temphum);
-    
-     
-      
-     
+    console.log(this.temphum); 
     })     
   }
 }
