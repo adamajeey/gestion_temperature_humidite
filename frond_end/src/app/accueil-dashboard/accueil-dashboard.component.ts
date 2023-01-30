@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { SocketService } from '../meteo.service';
 import { UsersService } from '../services/users.service';
 import { Temphum } from '../models/temphum'; 
+import { Socket } from 'ngx-socket-io';
 
 
 @Component({
@@ -23,7 +24,7 @@ export class AccueilDashboardComponent implements OnInit {
   temp!:any[]
   moyTemp:any;
   moyHum:any;
-  constructor(private meteoservice:SocketService, private serServe :UsersService){}
+  constructor(private meteoservice:SocketService, private serServe :UsersService, private socket: Socket){}
 
   ngOnInit(): void {
     this.meteoservice.onFetch().subscribe((data)=>{
@@ -50,6 +51,14 @@ export class AccueilDashboardComponent implements OnInit {
     this.moyHum = (parseInt(String(h8)) + parseInt(String(h12)) + parseInt(String(h19))) / 3;
     
     })  
+  }
+
+  allumer(){
+    this.socket.emit('active', '1');
+  }
+
+  eteindre(){
+    this.socket.emit('active', '0');
   }
 
 }

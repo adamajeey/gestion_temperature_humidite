@@ -29,7 +29,7 @@
     
     
        <!--  affichage ventilateur -->
-        <div class="card d-flex align-items-center " style="width: 350px; border: solid red;">
+        <div class="card d-flex align-items-center " style="width: 350px;">
          
           <div class="card-body mt-3 mr-auto  ">
             
@@ -38,8 +38,13 @@
               <img class="taivent" src="../../assets/Rectangle 14.png" alt="Card image cap">  
               
             </div>
-            <div class=" d-flex justify-content-center">
-              <button type="button" class="btn btn-success ">On</button> 
+            <div class="d-flex justify-content-center gap-5">
+              <div class=" d-flex justify-content-center">
+                <button type="button" class="btn btn-success" (click)="allumer()">On</button> 
+              </div>
+              <div class=" d-flex justify-content-center">
+                <button type="button" class="btn btn-danger" (click)="eteindre()">Off</button> 
+              </div>
             </div>
             
           </div>
