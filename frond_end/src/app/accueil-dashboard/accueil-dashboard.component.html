@@ -29,7 +29,7 @@
     
     
        <!--  affichage ventilateur -->
-        <div class="card d-flex align-items-center " style="width: 350px; border: solid red;">
+        <div class="card d-flex align-items-center " style="width: 350px;">
          
           <div class="card-body mt-3 mr-auto  ">
             
@@ -38,8 +38,13 @@
               <img class="taivent" src="../../assets/Rectangle 14.png" alt="Card image cap">  
               
             </div>
-            <div class=" d-flex justify-content-center">
-              <button type="button" class="btn btn-success ">On</button> 
+            <div class="d-flex justify-content-center gap-5">
+              <div class=" d-flex justify-content-center">
+                <button type="button" class="btn btn-success" (click)="allumer()">On</button> 
+              </div>
+              <div class=" d-flex justify-content-center">
+                <button type="button" class="btn btn-danger" (click)="eteindre()">Off</button> 
+              </div>
             </div>
             
           </div>
@@ -51,8 +56,8 @@
               <h3 class="text-center">Moyenne</h3>
               
             <div class="d-flex justify-content-around mt-3 mr-auto ">
-              <div  style="font-size: 50px; color: red;">23°C</div>
-              <div  style="font-size: 50px; color: green; margin-left: 75px;">38%</div>
+              <div  style="font-size: 50px; color: red;">{{moyTemp | number:'1.0-0'}}°C</div>
+              <div  style="font-size: 50px; color: green; margin-left: 75px;">{{moyHum | number:'1.0-0'}}%</div>
             </div>
             <div class="d-flex justify-content-around " >
               <div>Temperature</div>
@@ -72,9 +77,9 @@
             <div class="card-body  mt-3 mr-auto">
                 <h3 class="text-center">08:00</h3>
                 <img class="card-img-top rounded-circle taicard" src="../../assets/téléchargement (2).jpeg" alt="Card image cap">
-                <div class="centered">23°C</div>
+                <div class="centered" *ngFor="let i of temp8">{{i.temperature}}°C</div>
                 <h5 class="card-title">Card title</h5>
-              <h3 class="text-center">HUMIDITE : 38%</h3>
+              <h3 class="text-center" *ngFor="let i of temp8">HUMIDITE : {{i.humidite}}%</h3>
             </div>
           </div>
         
@@ -84,11 +89,11 @@
                 <h3 class="text-center">12:00</h3>
                 <img class="card-img-top rounded-circle taicard  " src="../../assets/téléchargement (2).jpeg" alt="Card image cap">
             
-                <div class="centered">23°C</div>
+                <div class="centered" *ngFor="let i of temp12">{{i.temperature}}°C</div>
             
             
                 <h5 class="card-title">Card title</h5>
-              <h3 class="text-center">HUMIDITE : 38%</h3>
+              <h3 class="text-center" *ngFor="let i of temp12">HUMIDITE : {{i.humidite}}%</h3>
             </div>
           </div>
         
@@ -98,8 +103,8 @@
                 <h3 class="text-center">19:00</h3>
                 <img class="card-img-top rounded-circle taicard justify-content-center" src="../../assets/téléchargement (2).jpeg" alt="Card image cap">
               <h5 class="card-title">Card title</h5>
-              <div class="centered">23°C</div>
-              <h3 class="text-center">HUMIDITE : 38%</h3>
+              <div class="centered" *ngFor="let i of temp19">{{i.temperature}}°C</div>
+              <h3 class="text-center" *ngFor="let i of temp19">HUMIDITE : {{i.humidite}}%</h3>
              
             </div>
           </div>
