@@ -1,30 +1,101 @@
--- <table class="table table-striped">
+<!-- <table class="table table-striped">
     <thead>
       <tr>
-        <th scope="col">Date</th>
+        <th scope="col">Semaine</th>
         <th scope="col">Heure</th>
-        <th scope="col">Temperature</th>
-        <th scope="col">Humidite</th>
+        <th scope="col">Semaine 1</th>
+        <th scope="col">Semaine 2</th>
+        <th scope="col">Semaine 3</th>
+        <th scope="col">Semaine 4</th>
+        <th scope="col">Semaine 5</th>
+        <th scope="col">Semaine 6</th>
+        <th scope="col">Semaine 7</th>
+       
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let i of temphum">
-        <!-- <th rowspan="3" scope="row" class="text-center">Temperature en °C</th> -->
-        <td>{{i.Date}}</td>
-        <td>{{i.Heure}}</td>
-        <td>{{i.temperature}}°C</td>
-        <td>{{i.humidite}}%</td> 
+      <tr>
+        <th rowspan="3" scope="row" class="text-center">Temperature en °C</th>
+        <td>08:00</td>
+        <td>24</td>
+        <td>28</td>
+        <td>29</td>
+        <td>30</td>
+        <td>41</td>
+        <td>45</td>
+        <td>19</td>
+      </tr>
+      <tr>
+        <td>12:00</td>
+        <th scope="row">20</th>
+        <td>19</td>
+        <td>25</td>
+        <td>26</td>
+        <td>25</td>
+        <td>33</td>
+        <td>34</td>
+      </tr>
+      <tr>
+        <td>19:00</td>
+        <th scope="row">20</th>
+        <td>19</td>
+        <td>25</td>
+        <td>26</td>
+        <td>25</td>
+        <td>33</td>
+        <td>34</td>
+      </tr>
+      <tr>
+        <th rowspan="3" scope="row" class="text-center">Humidité en %</th>
+        <td>08:00</td>
+        <td>19</td>
+        <td>25</td>
+        <td>26</td>
+        <td>25</td>
+        <td>33</td>
+        <td>34</td>
+        <td>19</td>
+      </tr>
+      <tr>
+        <td>12:00</td>
+        <th scope="row">20</th>
+        <td>19</td>
+        <td>25</td>
+        <td>26</td>
+        <td>25</td>
+        <td>33</td>
+        <td>34</td>
+      </tr>
+      <tr>
+        <td>19:00</td>
+        <th scope="row">20</th>
+        <td>19</td>
+        <td>25</td>
+        <td>26</td>
+        <td>25</td>
+        <td>33</td>
+        <td>34</td>
       </tr>
   
     </tbody>
   </table> -->
 
- <!--  <tbody>
-    <tr *ngFor="let movie of temphum">
-        <th>{{movie.id}}</th>
-        <td>{{movie.Temperature}}</td>
-        <td>{{movie.Humidite}}</td>
-        <td><span class="badge bg-warning text-dark">{{movie.Humidite}}</span></td>
-      
+<table>
+  <thead>
+    <tr>
+    
     </tr>
-</tbody> -->
+  </thead>
+   <tbody>
+   <tr *ngFor="let t of temphum">
+    <td>{{t.temperature}}</td>
+    <td>{{t.humidite}}</td>
+    <td>{{t.Heure}}</td>
+    <td>{{t.Date}}</td>
+   </tr>
+  </tbody>
+</table>
+
+
+
+

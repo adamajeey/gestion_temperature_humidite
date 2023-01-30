@@ -4,6 +4,7 @@ import { User } from '../models/user';
 import { env } from 'src/env';
 import { BehaviorSubject, map } from 'rxjs';
 import { Router } from '@angular/router';
+import { Temphum } from '../models/temphum';
 
 
 @Injectable({
@@ -62,7 +63,7 @@ export class UsersService {
     return this.httpClient.get(`${env.apiUrl}/getAll`)
   };
   getData(){
-    return this.httpClient.get(`${env.apiUrl}/pap`)
+    return this.httpClient.get<Temphum>(`${env.apiUrl}/pap`)
   };
 
 

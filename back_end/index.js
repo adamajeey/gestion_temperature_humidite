@@ -58,7 +58,7 @@ var port = new SerialPort({ path:'/dev/ttyUSB0',
 
 var parser = port.pipe(new ReadlineParser({ delimiter: '\r\n' }));
 
-port.pipe(parser);
+/* port.pipe(parser); */
 var url = "mongodb+srv://MamySy:mamy@cluster0.qwexmvm.mongodb.net/";
 
 
@@ -101,7 +101,7 @@ parser.on('data', function(data) {
     }
    
     var tempEtHum = { "temperature": temp[0], "humidite": temp[1],'Date': heureEtDate, 'Heure': heureInsertion };
-    if ((heur == 08 && min == 00 && sec == 00) || (heur == 12 && min == 00 && sec == 00) || (heur == 19 && min == 00 && sec == 00)) {
+    if ((heur == 11 && min == 0 /* && sec == 00 */) || (heur == 12 && min == 08 && sec == 00) || (heur == 19 && min == 00 && sec == 00)) { 
          //Connexion a mongodb et insertion Temperature et humidite
          MongoClient.connect(url, { useUnifiedTopology: false }, function(err, db) {
             if (err) throw err;
@@ -112,7 +112,7 @@ parser.on('data', function(data) {
                 db.close();
             });
         })
-    } //Fin if
+    }  //Fin if
 }
     
 );

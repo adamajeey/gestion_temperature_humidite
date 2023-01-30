@@ -182,6 +182,23 @@ console.log(items);
   res.status(500).json({message: error.message})
   }
   })
+  // 
+  router.get('/deletetemp', async(req, res) => {
+    try {
+      MongoClient.connect(url, { useUnifiedTopology: true }, function(err, db) {
+        if (err) throw err;
+        var dbo = db.db("test");
+        var col = dbo.collection('tempHum2');
+        col.deleteMany()
+            
+    })
+    
+    
+    }
+    catch (error) {
+    res.status(400).json({ message: error.message })
+    }
+    })
   // list data
 /* router.get('/pap', function(req, res) {
   Modeltemp.find(function (err, sales) {
