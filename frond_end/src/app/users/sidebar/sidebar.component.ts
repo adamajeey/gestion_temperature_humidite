@@ -36,8 +36,8 @@ constructor(private userService : UsersService, private sanitizer: DomSanitizer,
   
 }
 ngOnInit(): void {
-  this.roles = localStorage.getItem('role') == "admin"
- if (this.userService.getLoggedIn() !== "admin") {
+  this.roles = localStorage.getItem('role') == "Admin"
+ if (this.userService.getLoggedIn() !== "dmin") {
     this.roles = true
     // console.log('ok')
  } else {
