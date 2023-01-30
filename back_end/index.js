@@ -67,17 +67,22 @@ var url = "mongodb+srv://MamySy:mamy@cluster0.qwexmvm.mongodb.net/";
 io.on('connection', function(socket) {
     
     console.log('Node is listening to port');
-   
+    socket.on("active", (arg) => {
+        console.log(arg); // world
+        port.write(arg);
+      });
     
 });
 
+
+
 parser.on('data', function(data) {
     
-    console.log('les information sont: ' + data);
+    //console.log('les information sont: ' + data);
     temp = data.split('/');
     var temperature = data.slice(0, 2); //decoupe de la temperature
     var humidite = data.slice(3, 5); //decoupe de l'humidite
-    console.log(data.split('/'));
+    //console.log(data.split('/'));
     io.emit('data', {"temperature": temperature, "humidite": humidite});
     var datHeure = new Date();
     var min = datHeure.getMinutes();
@@ -92,16 +97,18 @@ parser.on('data', function(data) {
     if (min < 10) { min = '0' + min; }
     var heureInsertion = heur + ':' + min + ':' + sec;
     var heureEtDate = mois + '/' + numMois + '/' + laDate;
-    console.log(heureInsertion);
-    console.log(heureEtDate);
+    //console.log(heureInsertion);
+    //console.log(heureEtDate);
     const fetchMovies = (socket) => {
         data.findAll()
             .then(data => io.emit('fetchMovies', data))
             .catch(logError)
     }
-   
-    var tempEtHum = { "temperature": temp[0], "humidite": temp[1],'Date': heureEtDate, 'Heure': heureInsertion };
-    if ((heur == 11 && min == 0 /* && sec == 00 */) || (heur == 12 && min == 08 && sec == 00) || (heur == 19 && min == 00 && sec == 00)) { 
+    var temperature = data.slice(0, 2); //decoupe de la temperature
+    var humidite = data.slice(3, 5); //decoupe de l'humidite
+    var tempEtHum = { "temperature": temperature, "humidite": humidite,'Date': heureEtDate, 'Heure': heureInsertion };
+    if ((heur == 08 && min == 00 && sec == 00) || (heur == 12 && min == 00 && sec == 00) || (heur == 19 && min == 00 && sec == 00)) {
+    //if(sec == 00){ 
          //Connexion a mongodb et insertion Temperature et humidite
          MongoClient.connect(url, { useUnifiedTopology: false }, function(err, db) {
             if (err) throw err;
@@ -118,10 +125,11 @@ parser.on('data', function(data) {
 );
 
 
+
   http.listen(3001, ()=>{
     console.log('server started at ${3001}')/* apres avoir ecouter le port 3000 affiche les données */
 })
-parser.on('mute', function(mute){
+/* parser.on('mute', function(mute){
 MongoClient.connect(url, { useUnifiedTopology: true }, function(err, db) {
     if (err) throw err;
     var dbo = db.db("dhtTemp2");
@@ -134,4 +142,4 @@ console.log(items);
 })
 
 })
-} )
+} ) */
