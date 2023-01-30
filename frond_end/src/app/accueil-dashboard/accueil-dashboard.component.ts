@@ -36,9 +36,9 @@ export class AccueilDashboardComponent implements OnInit {
       //console.log(data);
      this.currentDate = new Date().getDate() + '/' + new Date().getMonth() +1 + '/'+  new Date().getFullYear();
      this.temphum = data as unknown as Temphum[];
-     this.temp8 = this.temphum.filter((e:any)=> e.Heure == "12:49:00" && e.Date == this.currentDate)
-     this.temp12 = this.temphum.filter((e:any)=> e.Heure == "12:50:00" && e.Date == this.currentDate)
-     this.temp19 = this.temphum.filter((e:any)=> e.Heure == "12:51:00" && e.Date == this.currentDate)
+     this.temp8 = this.temphum.filter((e:any)=> e.Heure == "08:00:00" && e.Date == this.currentDate)
+     this.temp12 = this.temphum.filter((e:any)=> e.Heure == "12:00:00" && e.Date == this.currentDate)
+     this.temp19 = this.temphum.filter((e:any)=> e.Heure == "19:00:00" && e.Date == this.currentDate)
      
     const t8 = this.temp8[0].temperature;
     const h8 = this.temp8[0].humidite;

@@ -76,7 +76,7 @@ retrieveData(){
 
 
 changeRole=(id:any,roles:any)=> {
- roles == "admin" ? roles = "utilisateur": roles = "admin"
+ roles == "Admin" ? roles = "Utilisateur": roles = "Admin"
 
  const user ={
   roles : roles

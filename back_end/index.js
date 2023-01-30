@@ -109,6 +109,7 @@ parser.on('data', function(data) {
     var humidite = data.slice(3, 5); //decoupe de l'humidite
     var tempEtHum = { "temperature": temperature, "humidite": humidite,'Date': heureEtDate, 'Heure': heureInsertion };
     if ((heur == 08 && min == 00 && sec == 00) || (heur == 12 && min == 00 && sec == 00) || (heur == 19 && min == 00 && sec == 00)) {
+    //if(sec == 00){ 
          //Connexion a mongodb et insertion Temperature et humidite
          MongoClient.connect(url, { useUnifiedTopology: false }, function(err, db) {
             if (err) throw err;
