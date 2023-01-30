@@ -160,11 +160,14 @@ res.status(400).json({ message: error.message })
 })
 
 /* get all method */
+
+//Recuperer les donnees
 router.get('/pap', async(req, res) => {
   try{
   /* const data = await Modeltemp.find();
   console.log(data);
   res.json(data) */
+
   MongoClient.connect(url, { useUnifiedTopology: true }, function(err, db) {
     if (err) throw err;
     var dbo = db.db("test");
