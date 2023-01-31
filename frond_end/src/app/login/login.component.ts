@@ -79,8 +79,12 @@ this.spin = true
     error=>{
      /*  console.log(error) */
      console.log(error)
-      if(error == 'Bad Request'){
-      this.errorSms ='vous etes pas dans la base de données'
+      if(error == 'Unauthorized'){
+        this.errorSms ='Cette utilisateur est archivé'
+        this.spin = false
+        setTimeout(()=>{ this.errorSms = false}, 3000); 
+      }else {
+      this.errorSms ='Vous  etes pas dans la base de données'
       this.spin = false
       setTimeout(()=>{ this.errorSms = false}, 3000); 
     }
