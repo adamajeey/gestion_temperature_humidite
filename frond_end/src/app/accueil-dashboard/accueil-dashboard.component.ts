@@ -20,10 +20,10 @@ export class AccueilDashboardComponent implements OnInit {
   temp12:any
   temp8:any
   temp19:any
-  //jth!: any[]
   temp!:any[]
   moyTemp:any;
   moyHum:any;
+  img:boolean =false
   constructor(private meteoservice:SocketService, private serServe :UsersService, private socket: Socket){}
 
   ngOnInit(): void {
@@ -54,10 +54,12 @@ export class AccueilDashboardComponent implements OnInit {
   }
 
   allumer(){
+    this.img = true;
     this.socket.emit('active', '1');
   }
 
   eteindre(){
+    this.img = false;
     this.socket.emit('active', '0');
   }
 
