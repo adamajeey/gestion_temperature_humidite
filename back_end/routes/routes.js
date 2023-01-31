@@ -20,7 +20,7 @@ router.post("/login",  async (req, res, next) => {
     if (!existingUser) {
       return res.status(400).send("email doesn't exist...!");
     }else if(existingUser.etat == false){
-      return res.status(401).send("user is disabled...!");
+      return res.status(401).send("user est archivé...!");
     }
       
       
