@@ -20,7 +20,7 @@ router.post("/login",  async (req, res, next) => {
     if (!existingUser) {
       return res.status(400).send("email doesn't exist...!");
     }else if(existingUser.etat == false){
-      return res.status(401).send("user is disabled...!");
+      return res.status(401).send("user est archivé...!");
     }
       
       
@@ -166,6 +166,7 @@ router.get('/pap', async(req, res) => {
   /* const data = await Modeltemp.find();
   console.log(data);
   res.json(data) */
+
   MongoClient.connect(url, { useUnifiedTopology: true }, function(err, db) {
     if (err) throw err;
     var dbo = db.db("test");

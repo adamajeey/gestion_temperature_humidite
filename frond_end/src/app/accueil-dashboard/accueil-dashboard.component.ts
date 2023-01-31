@@ -32,6 +32,7 @@ export class AccueilDashboardComponent implements OnInit {
       this.tempHum = Array(data)
     })
 
+    //recuperation temperature par heur données et calsul des moyenne 
     this.serServe.historique().subscribe((data)=>{
       //console.log(data);
      this.currentDate = new Date().getDate() + '/' + new Date().getMonth() +1 + '/'+  new Date().getFullYear();

@@ -25,6 +25,7 @@ console.log(error)
 
 })
 
+//Creation server socket 
 const http = require('http').Server(app);
 
 const io = require('socket.io')(http);
@@ -47,7 +48,7 @@ const parsers = SerialPort.parsers;
 
 
 
-
+//configuration du port
 var port = new SerialPort({ path:'/dev/ttyUSB0',
     baudRate: 9600,
     dataBits: 8,
