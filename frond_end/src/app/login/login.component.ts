@@ -64,6 +64,7 @@ this.spin = true
 
   // console.log(user)
   
+  //Redirection apres la connexion
   this.userService.getConnexion(user).subscribe(
     data=>{
       console.log(data)
@@ -86,11 +87,5 @@ this.spin = true
     }
    );
 
-
-
 }
-
-
-
 }
-
