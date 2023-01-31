@@ -25,7 +25,7 @@ const routes: Routes = [
 {path:"sides", component: SidebarComponent},
 {path:"", component: LoginComponent},
 {path:"diagramme", component: DiagrammeComponent},
-{path:"table", component: TableHistoriqueComponent},
+{path:"table", component: TableHistoriqueComponent, canActivate: [AuthGuard]},
 {path:"sides", component: SidebarComponent, canActivate: [AuthGuard]},
 {path:"menu", component: MenuComponent, canActivate: [AuthGuard]},
 { path: '', redirectTo: '/login', pathMatch: 'full' },

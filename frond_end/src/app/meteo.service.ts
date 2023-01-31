@@ -10,8 +10,8 @@ export class SocketService {
 	constructor(private socket: Socket) { }
 
 	// emit event
-	fetchMovies() {
-		this.socket.emit('fetchMovies');
+	allume() {
+		this.socket.emit('active', '1');
 	}
 
 	addMovie(TeHu: Temp_Humid) {

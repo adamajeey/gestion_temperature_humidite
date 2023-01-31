@@ -25,6 +25,7 @@ console.log(error)
 
 })
 
+//Creation server socket 
 const http = require('http').Server(app);
 
 const io = require('socket.io')(http);
@@ -38,17 +39,17 @@ console.log('Database Connected')
 var fs = require('fs');
 /* var index = fs.readFileSync( '/'); */
 
-var SerialPort = require('serialport');
+const { SerialPort } = require('serialport');
+var { ReadlineParser } = require("@serialport/parser-readline")
 const router = require('./routes/routes');
-const { Socket } = require('socket.io');
+/* const { Socket } = require('socket.io'); */
 const parsers = SerialPort.parsers;
-
-const parser = new parsers.Readline({
-    delimiter: '\r\n'
-});
+/* var path = require('path') */
 
 
-var port = new SerialPort('/dev/ttyUSB0',{ 
+
+//configuration du port
+var port = new SerialPort({ path:'/dev/ttyUSB0',
     baudRate: 9600,
     dataBits: 8,
     parity: 'none',
@@ -56,25 +57,34 @@ var port = new SerialPort('/dev/ttyUSB0',{
     flowControl: false
 });
 
-port.pipe(parser);
-var url = "mongodb+srv://MamySy:<mamy>@cluster0.qwexmvm.mongodb.net/" ;
+var parser = port.pipe(new ReadlineParser({ delimiter: '\r\n' }));
+
+/* port.pipe(parser); */
+var url = "mongodb+srv://MamySy:mamy@cluster0.qwexmvm.mongodb.net/";
 
 
 
-
+//Connexion socket
 io.on('connection', function(socket) {
     
     console.log('Node is listening to port');
-   
+    socket.on("active", (arg) => {
+        console.log(arg); // world
+        port.write(arg);
+      });
     
 });
 
+
+
 parser.on('data', function(data) {
     
-    console.log('les information sont: ' + data);
+    //console.log('les information sont: ' + data);
     temp = data.split('/');
-    console.log(data.split('/'));
-    io.emit('data', {"temperature": temp[0], "humidite": temp[1]});
+    var temperature = data.slice(0, 2); //decoupe de la temperature
+    var humidite = data.slice(3, 5); //decoupe de l'humidite
+    //console.log(data.split('/'));
+    io.emit('data', {"temperature": temperature, "humidite": humidite});
     var datHeure = new Date();
     var min = datHeure.getMinutes();
     var heur = datHeure.getHours(); //heure
@@ -88,20 +98,22 @@ parser.on('data', function(data) {
     if (min < 10) { min = '0' + min; }
     var heureInsertion = heur + ':' + min + ':' + sec;
     var heureEtDate = mois + '/' + numMois + '/' + laDate;
-    console.log(heureInsertion);
-    console.log(heureEtDate);
+    //console.log(heureInsertion);
+    //console.log(heureEtDate);
     const fetchMovies = (socket) => {
         data.findAll()
             .then(data => io.emit('fetchMovies', data))
             .catch(logError)
     }
-   
-    var tempEtHum = { "temperature": temp[0], "humidite": temp[1],'Date': heureEtDate, 'Heure': heureInsertion };
+    var temperature = data.slice(0, 2); //decoupe de la temperature
+    var humidite = data.slice(3, 5); //decoupe de l'humidite
+    var tempEtHum = { "temperature": temperature, "humidite": humidite,'Date': heureEtDate, 'Heure': heureInsertion };
     if ((heur == 08 && min == 00 && sec == 00) || (heur == 12 && min == 00 && sec == 00) || (heur == 19 && min == 00 && sec == 00)) {
+    //if(sec == 00){ 
          //Connexion a mongodb et insertion Temperature et humidite
          MongoClient.connect(url, { useUnifiedTopology: false }, function(err, db) {
             if (err) throw err;
-            var dbo = db.db("dhtTemp2");
+            var dbo = db.db("test");
             dbo.collection("tempHum2").insertOne(tempEtHum, function(err, res) {
                 if (err) throw err;
                 console.log("1 document inserted");
@@ -114,10 +126,11 @@ parser.on('data', function(data) {
 );
 
 
+
   http.listen(3001, ()=>{
     console.log('server started at ${3001}')/* apres avoir ecouter le port 3000 affiche les données */
 })
-parser.on('mute', function(mute){
+/* parser.on('mute', function(mute){
 MongoClient.connect(url, { useUnifiedTopology: true }, function(err, db) {
     if (err) throw err;
     var dbo = db.db("dhtTemp2");
@@ -130,4 +143,4 @@ console.log(items);
 })
 
 })
-} )
+} ) */

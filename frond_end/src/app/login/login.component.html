@@ -24,15 +24,17 @@
                                     <div *ngIf="errorSms!" class="d-flex justify-content-center text text-danger" id="">
                                         <span>vous n'etes pas dans la base de données!</span>
                                     </div>
-                                    <div class="col-md-12">
+                                    <div>
                                         <div class="input-control">
-                                            <label for="email">Email<span style="color: red;">*</span></label>
+                                            <div>
+                                                <label for="email">Email<span style="color: red;">*</span></label>
                                             <input id="email" name="email" class=" p-3 rounded-0" type="text" id="email"
                                                 name="email" class=" p-3 rounded-0" type="text" id="email" name="email"
                                                 class=" p-3 rounded-0" type="text"
                                                 [ngClass]="{'is-invalid':submitted && registerForm.controls['email'].errors}"
                                                 placeholder="" formControlName="email" type="email" class="form-control"
                                                 id="email" name="email">
+                                            </div>
                                             <div *ngIf="registerForm.controls['email'].dirty && registerForm.controls['email'].errors"
                                                 class="text-danger">
                                                 <div
@@ -45,7 +47,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-12">
+                                    <div>
                                         <div class="input-control">
                                             <label for="password">Mot de passe<span style="color: red;">*</span></label>
                                             <input name="password" class=" p-3 rounded-0" type="password" id="pass1"

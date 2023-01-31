@@ -15,7 +15,7 @@ export const ROUTES: RouteInfo[] = [
     { path: '/profil', title: 'Profil',  icon:'bi bi-person-circle', class: '' },
     { path: '/admin', title: 'Liste Active',  icon:'bi bi-table', class: '' },
     { path: '/pageArchive', title: 'Liste Archive',  icon:'bi bi-table', class: '' },
-    { path: '/historique', title: 'Historique',  icon:'bi bi-collection', class: '' },
+    { path: '/table', title: 'Historique',  icon:'bi bi-collection', class: '' },
     { path: '/inscription', title: 'Inscription',  icon:'bi bi-people', class: '' }
 ];
 
@@ -36,8 +36,8 @@ constructor(private userService : UsersService, private sanitizer: DomSanitizer,
   
 }
 ngOnInit(): void {
-  this.roles = localStorage.getItem('role') == "admin"
- if (this.userService.getLoggedIn() !== "admin") {
+  this.roles = localStorage.getItem('role') == "Admin"
+ if (this.userService.getLoggedIn() !== "dmin") {
     this.roles = true
     // console.log('ok')
  } else {

@@ -39,6 +39,8 @@ export class UsersService {
       }));
 
   }
+
+  
   getToken() {
     return localStorage.getItem('currentUser');
   }
@@ -58,6 +60,10 @@ export class UsersService {
 
   getUsers(){
     return this.httpClient.get(`${env.apiUrl}/getAll`)
+  };
+
+  historique(){
+    return this.httpClient.get(`${env.apiUrl}/pap`)
   };
 
   changeRole(id:any,user: User){
