@@ -45,12 +45,7 @@ export class UtilisateurComponent implements OnInit {
   }
 
 
-  simpleAlert(){  
-    Swal.fire('MODIFICATION RÉUSSIE AVEC SUCCÉE'); 
-    Swal.update({
-    icon: 'success' 
-    }) 
-  }  
+
 
   ngOnInit(): void {
 
@@ -151,18 +146,6 @@ export class UtilisateurComponent implements OnInit {
 
   getUserData(id: any, email: any, prenom: any, nom: any) {
 
-
-    Swal.fire({
-      title: 'Voulez-vous vraiment modifier le profil de utilisateur?',
-      text: 'Si oui met ok',
-      icon: 'warning',
-      confirmButtonColor: "#B82010",
-      cancelButtonColor: "green",
-      showCancelButton: true,
-      confirmButtonText: 'ok!',
-      cancelButtonText: 'Annuler'
-    }).then((result) => {
-      if (result.value) {
         this.showForm = true;
         this.userEditForm = this.formBuilder.group({
           id: [id],
@@ -171,14 +154,12 @@ export class UtilisateurComponent implements OnInit {
           email: [email, [Validators.required, Validators.email]],
         });
       }
-    })
-  }
-
+ 
 
   modifUsers() {
     const id = this.userEditForm.value.id;
     for (const iterator of this.users) {
-      this.simpleAlert()
+     
       this.submitted = true
       this.spin = true
       if (this.userEditForm.invalid) {
@@ -205,11 +186,26 @@ export class UtilisateurComponent implements OnInit {
     this.userService.changeRole(id, user).subscribe(
 
       data => {
+
+    Swal.fire({
+      title: 'Voulez-vous vraiment modifier le profil de utilisateur?',
+      text: 'Si oui met ok',
+      icon: 'warning',
+      confirmButtonColor: "#B82010",
+      cancelButtonColor: "green",
+      showCancelButton: true,
+      confirmButtonText: 'ok!',
+      cancelButtonText: 'Annuler'
+    }).then((result) => {
+      if (result.value) {
     
         this.ngOnInit();
         this.showForm = false;
       
-      },
+      }
+    }
+    )
+  },
       
       error => {
         console.log(error)

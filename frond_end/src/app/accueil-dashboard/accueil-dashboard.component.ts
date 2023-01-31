@@ -6,4 +6,6 @@ import { Router } from '@angular/router';
   templateUrl: './accueil-dashboard.component.html',
   styleUrls: ['./accueil-dashboard.component.css']
 })
-export class AccueilDashboardComponent {}
+export class AccueilDashboardComponent {
+checked: any;
+}
