@@ -42,21 +42,21 @@ const { SerialPort } = require('serialport');
 var { ReadlineParser } = require("@serialport/parser-readline")
 const router = require('./routes/routes');
 /* const { Socket } = require('socket.io'); */
-const parsers = SerialPort.parsers;
+/* const parsers = SerialPort.parsers; */
 /* var path = require('path') */
 
 
 
 
-var port = new SerialPort({ path:'/dev/ttyUSB0',
+/* var port = new SerialPort({ path:'/dev/ttyUSB0',
     baudRate: 9600,
     dataBits: 8,
     parity: 'none',
     stopBits: 1,
     flowControl: false
-});
+}); */
 
-var parser = port.pipe(new ReadlineParser({ delimiter: '\r\n' }));
+/* var parser = port.pipe(new ReadlineParser({ delimiter: '\r\n' })); */
 
 /* port.pipe(parser); */
 var url = "mongodb+srv://MamySy:mamy@cluster0.qwexmvm.mongodb.net/";
@@ -76,16 +76,16 @@ io.on('connection', function(socket) {
 
 
 
-parser.on('data', function(data) {
+/* parser.on('data', function(data) { */
     
     //console.log('les information sont: ' + data);
-    temp = data.split('/');
+    /* temp = data.split('/');
     var temperature = data.slice(0, 2); //decoupe de la temperature
     var humidite = data.slice(3, 5); //decoupe de l'humidite
     //console.log(data.split('/'));
     io.emit('data', {"temperature": temperature, "humidite": humidite});
-    var datHeure = new Date();
-    var min = datHeure.getMinutes();
+    var datHeure = new Date(); */
+   /*  var min = datHeure.getMinutes();
     var heur = datHeure.getHours(); //heure
     var sec = datHeure.getSeconds(); //secondes
     var mois = datHeure.getDate(); //renvoie le chiffre du jour du mois 
@@ -96,7 +96,7 @@ parser.on('data', function(data) {
     if (sec < 10) { sec = '0' + sec; }
     if (min < 10) { min = '0' + min; }
     var heureInsertion = heur + ':' + min + ':' + sec;
-    var heureEtDate = mois + '/' + numMois + '/' + laDate;
+    var heureEtDate = mois + '/' + numMois + '/' + laDate; */
     //console.log(heureInsertion);
     //console.log(heureEtDate);
     const fetchMovies = (socket) => {
@@ -104,13 +104,13 @@ parser.on('data', function(data) {
             .then(data => io.emit('fetchMovies', data))
             .catch(logError)
     }
-    var temperature = data.slice(0, 2); //decoupe de la temperature
-    var humidite = data.slice(3, 5); //decoupe de l'humidite
-    var tempEtHum = { "temperature": temperature, "humidite": humidite,'Date': heureEtDate, 'Heure': heureInsertion };
-    if ((heur == 08 && min == 00 && sec == 00) || (heur == 12 && min == 00 && sec == 00) || (heur == 19 && min == 00 && sec == 00)) {
+    /* var temperature = data.slice(0, 2); //decoupe de la temperature
+    var humidite = data.slice(3, 5); //decoupe de l'humidite */
+  /*   var tempEtHum = { "temperature": temperature, "humidite": humidite,'Date': heureEtDate, 'Heure': heureInsertion }; */
+  /*   if ((heur == 17 && min == 10 && sec == 00) || (heur == 12 && min == 00 && sec == 00) || (heur == 19 && min == 00 && sec == 00)) { */
     //if(sec == 00){ 
          //Connexion a mongodb et insertion Temperature et humidite
-         MongoClient.connect(url, { useUnifiedTopology: false }, function(err, db) {
+    /*      MongoClient.connect(url, { useUnifiedTopology: false }, function(err, db) {
             if (err) throw err;
             var dbo = db.db("test");
             dbo.collection("tempHum2").insertOne(tempEtHum, function(err, res) {
@@ -118,11 +118,11 @@ parser.on('data', function(data) {
                 console.log("1 document inserted");
                 db.close();
             });
-        })
-    }  //Fin if
-}
+        }) */
+    /* } */  //Fin if
+/* } */
     
-);
+/* ); */
 
 
 
