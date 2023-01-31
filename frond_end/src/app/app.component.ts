@@ -21,7 +21,7 @@ export class AppComponent implements OnInit {
   title = 'simplonApi2';
   showHead:any;
   history: Set<any> = new Set()
-hist: any[] = []
+  hist: any[] = []
   constructor(private userService : UsersService, private router: Router,location: Location,  private element: ElementRef ) {
     setInterval(() => {
       this.CurrentTime = new Date().getHours() + ':' + new Date().getMinutes() + ':'+  new Date().getSeconds()}, + 1);

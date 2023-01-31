@@ -20,7 +20,7 @@ router.post("/login",  async (req, res, next) => {
     if (!existingUser) {
       return res.status(400).send("email doesn't exist...!");
     }else if(existingUser.etat == false){
-      return res.status(401).send("user is disabled...!");
+      return res.status(401).send("user est archivé...!");
     }
       
       
@@ -161,7 +161,6 @@ res.status(400).json({ message: error.message })
 
 /* get all method */
 
-//Recuperer les donnees
 router.get('/pap', async(req, res) => {
   try{
   /* const data = await Modeltemp.find();
@@ -176,7 +175,7 @@ router.get('/pap', async(req, res) => {
         console.log(items);
              res.json(items)
 console.log(items);
-        
+
 })
 
 })

@@ -22,8 +22,8 @@ import { AccueilDashboardComponent } from './accueil-dashboard/accueil-dashboard
 import { SidebarComponent } from './users/sidebar/sidebar.component';
 import { TableHistoriqueComponent } from './table-historique/table-historique.component';
 
-const config: SocketIoConfig = { url: 'http://localhost:3000', options: {
-    transports: ["websocket+"]
+const config: SocketIoConfig = { url: 'http://localhost:3001', options: {
+    transports: ["websocket"]
 } };
 
 

@@ -22,7 +22,7 @@
                                 <form id="form" class="row g-3 d-flex justify-content-center no-wrap m-2"
                                     (submit)="onSubmit()" [formGroup]="registerForm">
                                     <div *ngIf="errorSms!" class="d-flex justify-content-center text text-danger" id="">
-                                        <span>vous n'etes pas dans la base de données!</span>
+                                        <span>{{errorSms}}</span>
                                     </div>
                                     <div>
                                         <div class="input-control">
