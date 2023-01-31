@@ -1,30 +1,119 @@
-<table class="table table-striped">
+<!--  <table class="table table-striped">
     <thead>
-      <tr>
-        <th scope="col">Date</th>
-        <th scope="col">Heure</th>
-        <th scope="col">Temperature</th>
-        <th scope="col">Humidite</th>
+      <tr >
+        <th scope="col">Semaine</th>
+        <th scope="col"> Heure </th>
+        <th scope="col">{{dethier1}}</th>
+        <th scope="col">{{dethier2}}</th>
+        <th scope="col">{{dethier3}}</th>
+        <th scope="col">{{dethier4}}</th>
+        <th scope="col">{{dethier5}}</th>
+        <th scope="col">{{dethier6}}</th>
+        <th scope="col">{{dethier7}}</th>
+      
+       
+       
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let i of temphum">
-        <!-- <th rowspan="3" scope="row" class="text-center">Temperature en °C</th> -->
-        <td>{{i.Date}}</td>
-        <td>{{i.Heure}}</td>
-        <td>{{i.temperature}}°C</td>
-        <td>{{i.humidite}}%</td> 
+      <tr>
+        <th rowspan="3" scope="row" class="text-center">Temperature en °C</th>
+        <td>08:00</td>
+        <td>24</td>
+        <td>28</td>
+        <td>29</td>
+        <td>30</td>
+        <td>41</td>
+        <td>45</td>
+        <td>19</td>
+      </tr>
+      <tr>
+        <td>12:00</td>
+        <th scope="row">20</th>
+        <td>19</td>
+        <td>25</td>
+        <td>26</td>
+        <td>25</td>
+        <td>33</td>
+        <td>34</td>
+      </tr>
+      <tr>
+        <td>19:00</td>
+        <th scope="row">20</th>
+        <td>19</td>
+        <td>25</td>
+        <td>26</td>
+        <td>25</td>
+        <td>33</td>
+        <td>34</td>
+      </tr>
+      <tr>
+        <th rowspan="3" scope="row" class="text-center">Humidité en %</th>
+        <td>08:00</td>
+        <td>19</td>
+        <td>25</td>
+        <td>26</td>
+        <td>25</td>
+        <td>33</td>
+        <td>34</td>
+        <td>19</td>
+      </tr>
+      <tr>
+        <td>12:00</td>
+        <th scope="row">20</th>
+        <td>19</td>
+        <td>25</td>
+        <td>26</td>
+        <td>25</td>
+        <td>33</td>
+        <td>34</td>
+      </tr>
+      <tr>
+        <td>19:00</td>
+        <th scope="row">20</th>
+        <td>19</td>
+        <td>25</td>
+        <td>26</td>
+        <td>25</td>
+        <td>33</td>
+        <td>34</td>
       </tr>
   
     </tbody>
-  </table>
+  </table> 
 
- <!--  <tbody>
-    <tr *ngFor="let movie of temphum">
-        <th>{{movie.id}}</th>
-        <td>{{movie.Temperature}}</td>
-        <td>{{movie.Humidite}}</td>
-        <td><span class="badge bg-warning text-dark">{{movie.Humidite}}</span></td>
-      
+ -->
+ <div class="container d-flex justify-content-end" style="margin-top: 50px;">       
+
+  <form class="form-inline my-2 my-lg-2 row">
+    <div class="d-flex gap-1">
+      <input *ngIf="show" id="search" class="form-control" type="text" name="search" placeholder="Rechercher" [(ngModel)]="searchText">
+      <button class="btn btn-outline-danger" (click)="afficher()"><i class="bi bi-search"></i></button>
+    </div>
+  </form>
+</div>
+ <table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Date</th>
+      <th scope="col">Heure</th>
+      <th scope="col">Temperature</th>
+      <th scope="col">Humidite</th>
     </tr>
-</tbody> -->
+  </thead>
+  <tbody>
+    <tr *ngFor="let i of temphum | filter:searchText | paginate: { itemsPerPage:  itemsperpage, currentPage: p}">
+      <!-- <th rowspan="3" scope="row" class="text-center">Temperature en °C</th> -->
+      <td>{{i.Date}}</td>
+      <td>{{i.Heure}}</td>
+      <td>{{i.temperature}}°C</td>
+      <td>{{i.humidite}}%</td> 
+    </tr>
+
+  </tbody>
+</table>
+
+<div class="mt-8 py-5">
+  <div class="pagination fixed-bottom justify-content-center">
+    <pagination-controls (pageChange)="p = $event"></pagination-controls> 
+  </div>
