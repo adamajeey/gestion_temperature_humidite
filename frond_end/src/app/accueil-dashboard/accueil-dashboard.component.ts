@@ -12,10 +12,6 @@ import { Socket } from 'ngx-socket-io';
   templateUrl: './accueil-dashboard.component.html',
   styleUrls: ['./accueil-dashboard.component.css']
 })
-<<<<<<< HEAD
-export class AccueilDashboardComponent {
-checked: any;
-=======
 export class AccueilDashboardComponent implements OnInit {
 
   currentDate:any;
@@ -66,5 +62,4 @@ export class AccueilDashboardComponent implements OnInit {
     this.socket.emit('active', '0');
   }
 
->>>>>>> eae58f6ed4d98c923fbac933f3a0468402855dc9
 }

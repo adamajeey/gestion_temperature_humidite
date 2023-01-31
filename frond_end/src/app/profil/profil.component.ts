@@ -257,7 +257,7 @@ modifUsers (){
   const id =  this.userEditForm.value.id;
   for (const iterator of this.users) {
 
-  this.simpleAlert()
+
     this.submitted = true
     this.spin = true
 
