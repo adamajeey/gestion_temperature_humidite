@@ -271,4 +271,3 @@ ddeleteId=(id:any,etat:any)=> {
 
 }
 
-
