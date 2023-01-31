@@ -160,6 +160,7 @@ res.status(400).json({ message: error.message })
 })
 
 /* get all method */
+
 router.get('/pap', async(req, res) => {
   try{
   /* const data = await Modeltemp.find();
@@ -173,7 +174,7 @@ router.get('/pap', async(req, res) => {
         console.log(items);
              res.json(items)
 console.log(items);
-        
+
 })
 
 })

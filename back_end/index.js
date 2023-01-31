@@ -62,14 +62,14 @@ var parser = port.pipe(new ReadlineParser({ delimiter: '\r\n' }));
 var url = "mongodb+srv://MamySy:mamy@cluster0.qwexmvm.mongodb.net/";
 
 
-
+var temoin = '0'
 
 io.on('connection', function(socket) {
     
     console.log('Node is listening to port');
     socket.on("active", (arg) => {
         console.log(arg); // world
-        port.write(arg);
+        temoin = arg;
       });
     
 });
@@ -120,6 +120,7 @@ parser.on('data', function(data) {
             });
         })
     } //Fin if
+    port.write(temoin);
 }
     
 );

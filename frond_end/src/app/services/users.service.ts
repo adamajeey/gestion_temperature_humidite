@@ -82,9 +82,6 @@ export class UsersService {
   }
 
   getLogOut(){
-    // return this.httpClient.post<User>(`${env.apiUrl}/post`,user);
-    /* localStorage.clear(); */
-    /* this.router.navigateByUrl('login'); */
     let removeToken = localStorage.removeItem('currentUser');
     if (removeToken == null) {
       this.router.navigate(['']);
