@@ -7,7 +7,7 @@ import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-utilisateur',
-  templateUrl: './utilisateur.component.html',
+  templateUrl:'./utilisateur.component.html',
   styleUrls: ['./utilisateur.component.css']
 })
 
@@ -31,6 +31,7 @@ emailExiste:any;
 spin= false;
 errorMsg:any;
 show:boolean = false;
+roles:any
 
 
   constructor(private userService : UsersService, private formBuilder : FormBuilder, private router: Router){
@@ -64,6 +65,7 @@ ngOnInit(): void {
         
       }
 ); 
+this.roles = localStorage.getItem('role');
 
 }
 
@@ -99,9 +101,6 @@ changeRole=(id:any,roles:any)=> {
 
       data=>{
         // this.simpleAlert()
-        Swal.fire({
-         icon:'success' 
-        })  
         this.ngOnInit();
       }
       );
@@ -137,9 +136,6 @@ etat == "false" ? etat = true : etat = false
 
       data=>{
   
-        Swal.fire({
-          icon:'success' 
-        })
         this.ngOnInit();
       }
    );  
@@ -152,7 +148,7 @@ etat == "false" ? etat = true : etat = false
 
 getUserData(id:any,email:any,prenom:any,nom:any){
 
-  
+/* 
   Swal.fire({  
     title: 'Voulez-vous vraiment modifier le profil de utilisateur?',  
     text: 'Si oui met ok',  
@@ -163,7 +159,7 @@ getUserData(id:any,email:any,prenom:any,nom:any){
     confirmButtonText: 'ok!',  
     cancelButtonText: 'Annuler'  
   }).then((result) => {  
-    if (result.value) {  
+    if (result.value) {  */ 
       this.showForm = true;
       this.userEditForm = this.formBuilder.group({
           id:[id],
@@ -172,8 +168,7 @@ getUserData(id:any,email:any,prenom:any,nom:any){
           email: [email, [Validators.required,Validators.email]],
         });  
     }  
-  })
-}
+  
 
 
 modifUsers (){
@@ -185,6 +180,11 @@ modifUsers (){
     this.spin = false
     return ;
   }
+
+
+  
+
+
   
   console.log(iterator.email  )
   if(iterator.email == this.userEditForm.value.email && iterator._id != id){
@@ -205,10 +205,28 @@ modifUsers (){
  this.userService.changeRole(id,user).subscribe(
    
    data=>{
-    this.simpleAlert(); 
+    Swal.fire({  
+      title: 'Voulez-vous vraiment modifier le profil de utilisateur?',  
+      text: 'Si oui met ok',  
+      icon: 'warning',  
+      confirmButtonColor: "#B82010", 
+      cancelButtonColor: "green" , 
+      showCancelButton: true,  
+      confirmButtonText: 'ok!',  
+      cancelButtonText: 'Annuler'  
+    }).then((result) => {  
+      if (result.value) { 
+ 
     this.ngOnInit();
+ 
+
     this.showForm = false
-  },
+  }
+  }
+  )
+  
+},
+ 
   error =>{
     console.log(error )
   }
@@ -244,9 +262,7 @@ ddeleteId=(id:any,etat:any)=> {
 
       data=>{
   
-        Swal.fire({
-          icon:'success' 
-        })
+    
         this.ngOnInit();
       }
    );  
@@ -256,5 +272,4 @@ ddeleteId=(id:any,etat:any)=> {
 }
 
 }
-
 

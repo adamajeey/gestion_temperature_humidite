@@ -155,7 +155,7 @@
     </div>
   </div>
     <hr style="color: white;">
-    <ul class="nav nav-pills flex-column mb-auto">
+    <ul class="nav nav-pills flex-column mb-auto" *ngFor="let user of userActif">
       <!-- <li class="nav-item">
         <a [routerLink]="['/acceuil']" routerLinkActive="router-link-active"  class="nav-link link-light fs-5" aria-current="page">
           <svg class="bi me-2" width="20" height="20"><use xlink:href="#speedometer2"></use></svg>
@@ -194,12 +194,22 @@
           Inscription
         </a>
       </li> -->
+      <div *ngIf="user.roles == 'Admin'">
       <li id="current" routerLinkActive="nav-link bg-light active" *ngFor="let menuItem of menuItems" class="{{menuItem.class}}">
         <a  [routerLink]="[menuItem.path]" style="text-decoration: none;gap: 15px;" class="nav-link link-light fs-5 d-flex">
           <i class="{{menuItem.icon}} text-dark"></i>
           <p class="text-dark">{{menuItem.title}}</p>
         </a>
     </li>
+  </div>
+  <div *ngIf="user.roles == 'Utilisateur'">
+    <li id="current" routerLinkActive="nav-link bg-light active" *ngFor="let menuItem of menuItemsUser" class="{{menuItem.class}}">
+      <a  [routerLink]="[menuItem.path]" style="text-decoration: none;gap: 15px;" class="nav-link link-light fs-5 d-flex">
+        <i class="{{menuItem.icon}} text-dark"></i>
+        <p class="text-dark">{{menuItem.title}}</p>
+      </a>
+  </li>
+</div>
     </ul>
   </div>
 

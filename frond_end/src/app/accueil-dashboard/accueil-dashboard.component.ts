@@ -20,12 +20,12 @@ export class AccueilDashboardComponent implements OnInit {
   temp12:any
   temp8:any
   temp19:any
-  //jth!: any[]
   temp!:any[]
   moyTemp:any;
   moyHum:any;
   dethier:any;
   temp20: any;
+  img:boolean =false
   constructor(private meteoservice:SocketService, private serServe :UsersService, private socket: Socket){}
 
   ngOnInit(): void {
@@ -34,6 +34,7 @@ export class AccueilDashboardComponent implements OnInit {
       this.tempHum = Array(data)
     })
 
+    //recuperation temperature par heur données et calsul des moyenne 
     this.serServe.historique().subscribe((data)=>{
       //console.log(data);
      this.currentDate = new Date().getDate() + '/' + new Date().getMonth() +1 + '/'+  new Date().getFullYear();
@@ -65,10 +66,12 @@ export class AccueilDashboardComponent implements OnInit {
   }
 
   allumer(){
+    this.img = true;
     this.socket.emit('active', '1');
   }
 
   eteindre(){
+    this.img = false;
     this.socket.emit('active', '0');
   }
 

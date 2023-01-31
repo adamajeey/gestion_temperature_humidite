@@ -20,7 +20,7 @@ router.post("/login",  async (req, res, next) => {
     if (!existingUser) {
       return res.status(400).send("email doesn't exist...!");
     }else if(existingUser.etat == false){
-      return res.status(401).send("user is disabled...!");
+      return res.status(401).send("user est archivé...!");
     }
       
       
@@ -160,11 +160,13 @@ res.status(400).json({ message: error.message })
 })
 
 /* get all method */
+
 router.get('/pap', async(req, res) => {
   try{
   /* const data = await Modeltemp.find();
   console.log(data);
   res.json(data) */
+
   MongoClient.connect(url, { useUnifiedTopology: true }, function(err, db) {
     if (err) throw err;
     var dbo = db.db("test");
@@ -173,7 +175,7 @@ router.get('/pap', async(req, res) => {
         console.log(items);
              res.json(items)
 console.log(items);
-        
+
 })
 
 })

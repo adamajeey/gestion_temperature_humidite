@@ -31,21 +31,25 @@
        <!--  affichage ventilateur -->
         <div class="card d-flex align-items-center " style="width: 350px;">
          
-          <div class="card-body mt-3 mr-auto  ">
+          <div class="card-body mt-1 mr-auto gap-3">
             
             
-            <div> 
-              <img class="taivent" src="../../assets/Rectangle 14.png" alt="Card image cap">  
+            <div class=" d-flex justify-content-center mb-2" *ngIf="img"> 
+              <img class="taivent h-50 w-50" src="../../assets/vent.gif" alt="Card image cap">  
               
             </div>
-            <div class="d-flex justify-content-center gap-5">
-              <div class=" d-flex justify-content-center">
+            <div class=" d-flex justify-content-center mb-2" *ngIf="!img"> 
+              <img class="taivent h-50 w-50" src="../../assets/gif.jpg" alt="Card image cap">  
+              
+            </div>
+            
+              <div class=" d-flex justify-content-center" *ngIf="!img">
                 <button type="button" class="btn btn-success" (click)="allumer()">On</button> 
               </div>
-              <div class=" d-flex justify-content-center">
+              <div class=" d-flex justify-content-center" *ngIf="img">
                 <button type="button" class="btn btn-danger" (click)="eteindre()">Off</button> 
               </div>
-            </div>
+        
             
           </div>
         </div>
@@ -72,25 +76,25 @@
     
     <!-- Affichage des trois Temperatures et Humidités  -->
     <div class="container justify-content-between custom-line">
-        <div class="card d-flex align-items-center" style="width: 350px;" *ngFor="let i of temp8">
+        <div class="card d-flex align-items-center" style="width: 350px;">
            
-            <div class="card-body  mt-3 mr-auto">
+            <div class="card-body  mt-3 mr-auto" *ngFor="let i of temp8">
                 <h3 class="text-center">08:00</h3>
                 <img *ngIf="i.temperature >= 30" class="card-img-top rounded-circle taicard" src="../../assets/8hh.jpeg" alt="Card image cap">
                 <img *ngIf="i.temperature >= 24" class="card-img-top rounded-circle taicard" src="../../assets/8hh.jpeg" alt="Card image cap">
-                <img *ngIf="i.temperature == 0" class="card-img-top rounded-circle taicard" src="../../assets/téléchargement (2).jpeg" alt="Card image cap">
+                <img *ngIf="i.temperature != i.temperature" class="card-img-top rounded-circle taicard" src="../../assets/téléchargement (2).jpeg" alt="Card image cap">
                 <div class="centered">{{i.temperature}}°C</div>
                 <h5 class="card-title">Card title</h5>
               <h3 class="text-center">HUMIDITE : {{i.humidite}}%</h3>
             </div>
-          </div>
+          </div> 
         
           <div class="card d-flex align-items-center " style="width: 350px;" *ngFor="let i of temp12">
            
             <div class="card-body mt-3 mr-auto">
                 <h3 class="text-center">12:00</h3>
                 <img *ngIf="i.temperature >= 30" class="card-img-top rounded-circle taicard" src="../../assets/12hh.jpeg" alt="Card image cap">
-                <img *ngIf="i.temperature >= 24" class="card-img-top rounded-circle taicard" src="../../assets/12hhh.jpeg" alt="Card image cap">
+                <img *ngIf="i.temperature >= 24" class="card-img-top rounded-circle taicard" src="../../assets/12h.jpeg" alt="Card image cap">
                 <img *ngIf="i.temperature == 0" class="card-img-top rounded-circle taicard" src="../../assets/téléchargement (2).jpeg" alt="Card image cap">
                 <div class="centered">{{i.temperature}}°C</div>
             
@@ -117,6 +121,6 @@
     </div>
   
     
-  
+ 
 </body>
 </html>
