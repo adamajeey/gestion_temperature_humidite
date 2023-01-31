@@ -194,10 +194,10 @@
           Inscription
         </a>
       </li> -->
-      <li id="current" routerLinkActive="nav-link active" *ngFor="let menuItem of menuItems" class="{{menuItem.class}}">
-        <a  [routerLink]="[menuItem.path]" style="text-decoration: none;gap: 15px;" class="nav-link link-light fs-5 d-flex" >
-          <i class="{{menuItem.icon}}"></i>
-          <p>{{menuItem.title}}</p>
+      <li id="current" routerLinkActive="nav-link bg-light active" *ngFor="let menuItem of menuItems" class="{{menuItem.class}}">
+        <a  [routerLink]="[menuItem.path]" style="text-decoration: none;gap: 15px;" class="nav-link link-light fs-5 d-flex">
+          <i class="{{menuItem.icon}} text-dark"></i>
+          <p class="text-dark">{{menuItem.title}}</p>
         </a>
     </li>
     </ul>

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UsersService } from 'src/app/services/users.service';
@@ -12,7 +12,7 @@ import { Temp_Humid } from '../services/interfaces/movie';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
   registerForm!:FormGroup;
   title = 'angularvalidate';
   submitted = false;
@@ -33,10 +33,9 @@ export class LoginComponent {
       password:['',[Validators.required,Validators.minLength(8)]],
       
       })
-      this.meteoservice.onFetch().subscribe((data)=>{
-        console.log(data);
-        
-      })
+
+      
+      
       this.meteoservice.onFetchitem().subscribe((mute)=>{
         console.log(mute);
         
@@ -65,6 +64,7 @@ this.spin = true
 
   // console.log(user)
   
+  //Redirection apres la connexion
   this.userService.getConnexion(user).subscribe(
     data=>{
       console.log(data)
@@ -87,9 +87,5 @@ this.spin = true
     }
    );
 
-
-
 }
-
 }
-
