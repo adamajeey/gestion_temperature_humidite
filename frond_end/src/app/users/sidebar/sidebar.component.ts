@@ -19,6 +19,15 @@ export const ROUTES: RouteInfo[] = [
     { path: '/inscription', title: 'Inscription',  icon:'bi bi-people', class: '' }
 ];
 
+export const USERS: RouteInfo[] = [
+  { path: '/acceuil', title: 'Dashboard',  icon: 'bi bi-speedometer2', class: '' },
+  { path: '/profil', title: 'Profil',  icon:'bi bi-person-circle', class: '' },
+  { path: '/admin', title: 'Liste Active',  icon:'bi bi-table', class: '' },
+  //{ path: '/pageArchive', title: 'Liste Archive',  icon:'bi bi-table', class: '' },
+  { path: '/table', title: 'Historique',  icon:'bi bi-collection', class: '' },
+  //{ path: '/inscription', title: 'Inscription',  icon:'bi bi-people', class: '' }
+];
+
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
@@ -27,17 +36,18 @@ export const ROUTES: RouteInfo[] = [
 export class SidebarComponent implements OnInit {
 
   menuItems!: any[];
+  menuItemsUser!:any[];
 
 image:any; roles:any; img:any; userActif:any; users:any;
 emailUser = localStorage.getItem('email')?.replace(/['"]+/g, '');
 
 constructor(private userService : UsersService, private sanitizer: DomSanitizer, private router: Router){
   this.menuItems = ROUTES.filter(menuItem => menuItem);
-  
+  this.menuItemsUser = USERS.filter(menuItem => menuItem);
 }
 ngOnInit(): void {
   this.roles = localStorage.getItem('role') == "Admin"
- if (this.userService.getLoggedIn() !== "dmin") {
+ if (this.userService.getLoggedIn() !== "Admin") {
     this.roles = true
     // console.log('ok')
  } else {
