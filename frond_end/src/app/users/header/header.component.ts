@@ -29,7 +29,7 @@ ngOnInit(): void {
  this.image=localStorage.getItem('img')
   const imgRead = this.convertFile(<any>this.image?.replace(/['"]+/g, '')) 
   this.img  = this.sanitizer.bypassSecurityTrustResourceUrl(URL.createObjectURL(imgRead))
-  console.log(this.img)
+  /* console.log(this.img) */
 
   
 

@@ -11,7 +11,7 @@ import { AccueilDashboardComponent } from './accueil-dashboard/accueil-dashboard
 import { SidebarComponent } from './users/sidebar/sidebar.component';
 import { DiagrammeComponent } from './diagramme/diagramme.component';
 import { TableHistoriqueComponent } from './table-historique/table-historique.component';
-import { MenuComponent } from './menu/menu.component';
+
 import { AuthGuard } from "./services/user.guard";
 
 const routes: Routes = [
@@ -27,7 +27,7 @@ const routes: Routes = [
 {path:"diagramme", component: DiagrammeComponent},
 {path:"table", component: TableHistoriqueComponent, canActivate: [AuthGuard]},
 {path:"sides", component: SidebarComponent, canActivate: [AuthGuard]},
-{path:"menu", component: MenuComponent, canActivate: [AuthGuard]},
+
 { path: '', redirectTo: '/login', pathMatch: 'full' },
 {path:"modification", component: ModificationComponent, canActivate: [AuthGuard]},
 
