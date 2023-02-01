@@ -33,14 +33,6 @@ export class LoginComponent implements OnInit {
       password:['',[Validators.required,Validators.minLength(8)]],
       
       })
-<<<<<<< HEAD
-      this.meteoservice.onFetch().subscribe((data)=>{
-        console.log(data);
-        
-      })
-     
-=======
->>>>>>> main
 
       
       
@@ -76,13 +68,10 @@ this.spin = true
   this.userService.getConnexion(user).subscribe(
     data=>{
       console.log(data)
-      if (data.data?.roles.replace(/['"]+/g, '') == "Admin" || data.data?.roles.replace(/['"]+/g, '') == "admin") {
+      if (data.data?.roles.replace(/['"]+/g, '') == "Admin" || data.data?.roles.replace(/['"]+/g, '') == "Utilisateur") {
           this.route.navigateByUrl('acceuil')
           this.spin = true
-      } else {
-        this.route.navigateByUrl('acceuil')
-        this.spin = true
-      }
+      } 
     }, 
     error=>{
      /*  console.log(error) */
