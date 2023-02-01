@@ -52,13 +52,13 @@ export class InscrptionComponent implements OnInit{
     let pass1 = (<HTMLInputElement>document.getElementById("pass1")).value;
     let pass2 = (<HTMLInputElement>document.getElementById("pass2")).value;
 
-    console.log(pass1 != pass2)
+    /* console.log(pass1 != pass2) */
 
     if( pass1 != pass2)
     {
 
       this.verifPass = false;
-      console.log(this.verifPass)
+     /*  console.log(this.verifPass) */
       this.registerForm = this.formBuilder.group(
         {
 
@@ -118,7 +118,7 @@ this.submitted = true
     }, 
    /*  /controle email/ */
     error=>{
-      console.log(error)
+     /*  console.log(error) */
       if(error == 'Conflict')
       { 
         this.errorMsg ='error email existant';

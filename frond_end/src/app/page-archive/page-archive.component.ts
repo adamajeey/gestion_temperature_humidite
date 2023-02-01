@@ -37,7 +37,7 @@ ngOnInit(): void {
 
         this.users = data;
         this.userArchive = this.users.filter((e:any)=> e.etat == false)
-               console.log(this.userArchive)
+               /* console.log(this.userArchive) */
               }
 );
 
@@ -50,17 +50,7 @@ retrieveData(){
   })
 }
 
-  
-    // else if (result.dismiss === Swal.DismissReason.cancel) {  
-    //   Swal.fire(  
-    //     'Annuler',    
-    //     'error'  
-    //   )  
-    // }  
-   
-  
 
- 
 
 ddeleteId=(id:any,etat:any)=> {
 
@@ -103,37 +93,7 @@ public afficher():void{
   this.show = !this.show;
 }
 
-/* 
-getUserData(id:any,email:any,prenom:any,nom:any){
-  this.showForm = true;
-  this.userEditForm = this.formBuilder.group({
-      id:[id],
-      prenom: [prenom, [Validators.required]],
-      nom: [nom, [Validators.required]],
-      email: [email, [Validators.required]],
-    });
-  console.log(id)
-}
 
-
-modifUsers (){
-
-const id =  this.userEditForm.value.id;
- const user ={
-  nom : this.userEditForm.value.nom,
-  prenom: this.userEditForm.value.prenom,
-  email: this.userEditForm.value.email
- }
-console.log(user)
-
- this.userService.changeRole(id,user).subscribe(
-
-  data=>{
-    //this.ngOnInit();
-    this.showForm = false
-  }
- );
-} */
 
 }
 

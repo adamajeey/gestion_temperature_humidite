@@ -30,7 +30,7 @@ export class AccueilDashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.meteoservice.onFetch().subscribe((data)=>{
-      console.log(data);  
+    /*   console.log(data); */  
       this.tempHum = Array(data)
     })
 
@@ -39,18 +39,18 @@ export class AccueilDashboardComponent implements OnInit {
       //console.log(data);
      this.currentDate = new Date().getDate() + '/' + new Date().getMonth() +1 + '/'+  new Date().getFullYear();
      this.dethier = new Date().getDate()-7 + '/' + new Date().getMonth() +1 + '/'+  new Date().getFullYear();
-     console.log(this.dethier);
+    /*  console.log(this.dethier); */
      
      this.temphum = data as unknown as Temphum[];
      this.temp8 = this.temphum.filter((e:any)=> e.Heure == "08:00:00" && e.Date == this.currentDate)
      this.temp12 = this.temphum.filter((e:any)=> e.Heure == "12:00:00" && e.Date == this.currentDate)
      this.temp19 = this.temphum.filter((e:any)=> e.Heure == "19:00:00" && e.Date == this.currentDate)
      this.temp20 = this.temphum.filter((e:any)=> e.Heure == "19:00:00" || "12:00:00" || "08:00:00" && e.Date == this.dethier && e.Date <= this.currentDate)
-     console.log(this.temp20);
-     
-     this.temp20.forEach(function (temperature:any) {
+    /*  console.log(this.temp20);
+      */
+   /*   this.temp20.forEach(function (temperature:any) {
       console.log(temperature.temperature);
-    }); 
+    });  */
 
     const t8 = this.temp8[0].temperature;
     const h8 = this.temp8[0].humidite;

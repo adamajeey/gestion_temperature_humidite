@@ -185,8 +185,8 @@ modifUsers (){
   
 
 
-  
-  console.log(iterator.email  )
+  /* 
+  console.log(iterator.email  ) */
   if(iterator.email == this.userEditForm.value.email && iterator._id != id){
     this.emailExiste = "Email existe déjà";
     setTimeout(() => {
@@ -228,7 +228,7 @@ modifUsers (){
 },
  
   error =>{
-    console.log(error )
+   /*  console.log(error ) */
   }
  );
 }

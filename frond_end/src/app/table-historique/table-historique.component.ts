@@ -14,8 +14,7 @@ import { UsersService } from '../services/users.service';
   styleUrls: ['./table-historique.component.css']
 })
 export class TableHistoriqueComponent implements OnInit{
-  public message$: BehaviorSubject<string> = new BehaviorSubject('');
-
+ /* Declaration des variables */
  temphum!: Temphum[] ;
  temp! :any [];
  currentDate!: any;
@@ -24,36 +23,33 @@ export class TableHistoriqueComponent implements OnInit{
  temp19: any;
  temp20: any;
  dethier1: any;
-
-
-  dethierr: any;
+ dethierr: any;
  moyTemp!: number;
  moyHum!: number;
-searchText!: string;
-itemsperpage: number =7;
-p: number = 1;
-show:boolean = false;
+ searchText!: string;
+ itemsperpage: number =7; 
+ p: number = 1;
+ show:boolean = false;
 
 
-	constructor(private serServe :UsersService) { }
+	constructor(private serServe :UsersService) { }// importation du service 
   ngOnInit()  {
    
-
+/* Fonction pour la recuperation des données humidité et temperature */
     this.serServe.historique().subscribe((data)=>{
       //console.log(data);
-     this.currentDate = new Date().getDate() + '/' + new Date().getMonth() +1 + '/'+  new Date().getFullYear();
-     this.dethier1 = new Date().getDate()-7 + '/' + new Date().getMonth() +1 + '/'+  new Date().getFullYear();
+     this.currentDate = new Date().getDate() + '/' + new Date().getMonth() +1 + '/'+  new Date().getFullYear();// recuperation date actuelle
+     this.dethier1 = new Date().getDate()-7 + '/' + new Date().getMonth() +1 + '/'+  new Date().getFullYear(); // recuperation date du semaine derniere
     
-    
-     console.log(this.dethier1);
-      console.log(this.dethierr);
-     
+     /* console.log(this.dethier1);
+      console.log(this.dethierr); */
+     /** filtre des temperatures  */
      this.temphum = data as unknown as Temphum[];
      this.temp8 = this.temphum.filter((e:any)=> e.Heure == "08:00:00" && e.Date == this.currentDate)
      this.temp12 = this.temphum.filter((e:any)=> e.Heure == "12:00:00" && e.Date == this.currentDate)
      this.temp19 = this.temphum.filter((e:any)=> e.Heure == "19:00:00" && e.Date == this.currentDate)
      this.temp20 = this.temphum.filter((e:any)=> e.Heure == "08:00:00"   && e.Date > this.dethier1 && e.Date <= this.currentDate  && e.Date !== this.dethierr )
-     console.log(this.temp20);
+    /*  console.log(this.temp20); */
      
     /*  this.temp20.forEach(function (temperature:any) {
       console.log(temperature.temperature);
@@ -65,7 +61,7 @@ show:boolean = false;
     const h12 = this.temp12[0].humidite;
     const t19 = this.temp19[0].temperature;
     const h19 = this.temp19[0].humidite;
-
+    /* calcul de la temperature et de l'humidité moyenne */ 
     this.moyTemp = (parseInt(String(t8)) + parseInt(String(t12)) + parseInt(String(t19))) / 3;
     this.moyHum = (parseInt(String(h8)) + parseInt(String(h12)) + parseInt(String(h19))) / 3;
     
