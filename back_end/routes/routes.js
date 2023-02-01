@@ -9,7 +9,7 @@ const router = express.Router();
 var url = "mongodb+srv://MamySy:mamy@cluster0.qwexmvm.mongodb.net/";
 module.exports = router;
 
-
+/* pour la connection */
 router.post("/login",  async (req, res, next) => {
 
     let { email, password } = req.body;
@@ -59,7 +59,7 @@ router.post("/login",  async (req, res, next) => {
     });
 });
 
-/* post method */
+/*  la méthode POST passe les paramètres dans le corps de la requête. */
 router.post('/post', async(req, res) => {
 
 const { email, password, prenom, nom, date_inscri, roles, etat, matricule, img } = req.body;
@@ -100,7 +100,8 @@ try {
 }
 
 })
-/* get all method */
+/* La méthode GET est utilisée par le navigateur pour 
+demander au serveur de renvoyer une certaine ressource. */
 router.get('/getAll', async(req, res) => {
 try{
 const data = await Model.find();
@@ -116,7 +117,7 @@ const data = await Model.findById(req.params.id);
 res.json(data)
 })
 
-/* update by id methode */
+/* update by id methode  pour la mdodification*/
 router.patch('/update/:id', async (req, res) => {
 try {
 const id = req.params.id;
@@ -146,7 +147,7 @@ catch (error) {
     res.status(400).json({ message: error.message })
 }
 })
-/* delete by id method */
+/* delete by id method pour supprimer */
 
 router.delete('/delete/:id', async(req, res) => {
 try {

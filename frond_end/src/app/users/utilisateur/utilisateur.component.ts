@@ -76,7 +76,7 @@ retrieveData(){
   })
 }
 
-
+/* pour changer le role d'un utilisateur */
 changeRole=(id:any,roles:any)=> {
  roles == "Admin" ? roles = "Utilisateur": roles = "Admin"
 
@@ -110,7 +110,7 @@ changeRole=(id:any,roles:any)=> {
  
 }
 
-
+/* pour archiver un utilisateur */
 deleteId=(id:any,etat:any)=> {
   
 etat == "false" ? etat = true : etat = false
@@ -145,21 +145,9 @@ etat == "false" ? etat = true : etat = false
  
 }
 
-
+/* pour recuperer l'id,le mail, le prenom et le nom de l'utilisateur qu'on doit modifier */
 getUserData(id:any,email:any,prenom:any,nom:any){
-
-/* 
-  Swal.fire({  
-    title: 'Voulez-vous vraiment modifier le profil de utilisateur?',  
-    text: 'Si oui met ok',  
-    icon: 'warning',  
-    confirmButtonColor: "#B82010", 
-    cancelButtonColor: "green" , 
-    showCancelButton: true,  
-    confirmButtonText: 'ok!',  
-    cancelButtonText: 'Annuler'  
-  }).then((result) => {  
-    if (result.value) {  */ 
+ 
       this.showForm = true;
       this.userEditForm = this.formBuilder.group({
           id:[id],
@@ -168,9 +156,7 @@ getUserData(id:any,email:any,prenom:any,nom:any){
           email: [email, [Validators.required,Validators.email]],
         });  
     }  
-  
-
-
+/* modifier un utilisateur */
 modifUsers (){
   const id =  this.userEditForm.value.id;
   for (const iterator of this.users) {
@@ -180,13 +166,8 @@ modifUsers (){
     this.spin = false
     return ;
   }
-
-
-  
-
-
-  /* 
-  console.log(iterator.email  ) */
+  /* pour montrer que l'email existe deja lors de la modification */
+  console.log(iterator.email  )
   if(iterator.email == this.userEditForm.value.email && iterator._id != id){
     this.emailExiste = "Email existe déjà";
     setTimeout(() => {
@@ -236,6 +217,7 @@ modifUsers (){
 public afficher():void{
   this.show = !this.show;
 }
+/* pour desarchiver un utilisateur */
 ddeleteId=(id:any,etat:any)=> {
 
 

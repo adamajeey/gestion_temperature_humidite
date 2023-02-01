@@ -78,42 +78,55 @@
     <div class="container justify-content-between custom-line">
         <div class="card d-flex align-items-center" style="width: 350px;">
            
-            <div class="card-body  mt-3 mr-auto" *ngFor="let i of temp8">
+            <div class="card-body  mt-3 mr-auto">
                 <h3 class="text-center">08:00</h3>
-                <img *ngIf="i.temperature >= 30" class="card-img-top rounded-circle taicard" src="../../assets/8hh.jpeg" alt="Card image cap">
-                <img *ngIf="i.temperature >= 24" class="card-img-top rounded-circle taicard" src="../../assets/8hh.jpeg" alt="Card image cap">
-                <img *ngIf="i.temperature != i.temperature" class="card-img-top rounded-circle taicard" src="../../assets/téléchargement (2).jpeg" alt="Card image cap">
-                <div class="centered">{{i.temperature}}°C</div>
+                <div>
+                <img *ngIf="t8 >= 30; else archive;" class="card-img-top rounded-circle taicard" src="../../assets/8hh.jpeg" alt="Card image cap">
+                <img *ngIf="t8 >= 24" class="card-img-top rounded-circle taicard" src="../../assets/8hh.jpeg" alt="Card image cap">
+                <ng-template #archive>
+                  <img class="card-img-top rounded-circle taicard" src="../../assets/téléchargement (2).jpeg" alt="Card image cap">
+                </ng-template> 
+              </div>
+                <div class="centered">{{t8}}°C</div>
                 <h5 class="card-title">Card title</h5>
-              <h3 class="text-center">HUMIDITE : {{i.humidite}}%</h3>
+              <h3 class="text-center">HUMIDITE : {{h8}}%</h3>
             </div>
           </div> 
         
-          <div class="card d-flex align-items-center " style="width: 350px;" *ngFor="let i of temp12">
+          <div class="card d-flex align-items-center " style="width: 350px;">
            
             <div class="card-body mt-3 mr-auto">
                 <h3 class="text-center">12:00</h3>
-                <img *ngIf="i.temperature >= 30" class="card-img-top rounded-circle taicard" src="../../assets/12hh.jpeg" alt="Card image cap">
-                <img *ngIf="i.temperature >= 24" class="card-img-top rounded-circle taicard" src="../../assets/12h.jpeg" alt="Card image cap">
-                <img *ngIf="i.temperature == 0" class="card-img-top rounded-circle taicard" src="../../assets/téléchargement (2).jpeg" alt="Card image cap">
-                <div class="centered">{{i.temperature}}°C</div>
+                <div>
+                  <img *ngIf="t12 >= 30 ; else archive;" class="card-img-top rounded-circle taicard" src="../../assets/12hh.jpeg" alt="Card image cap">
+                  <img *ngIf="t12 >= 24" class="card-img-top rounded-circle taicard" src="../../assets/12h.jpeg" alt="Card image cap">
+                  <ng-template #archive>
+                    <img class="card-img-top rounded-circle taicard" src="../../assets/téléchargement (2).jpeg" alt="Card image cap">
+                  </ng-template> 
+                </div>
+                <div class="centered">{{t12}}°C</div>
             
             
                 <h5 class="card-title">Card title</h5>
-              <h3 class="text-center" *ngFor="let i of temp12">HUMIDITE : {{i.humidite}}%</h3>
+              <h3 class="text-center">HUMIDITE : {{h12}}%</h3>
             </div>
           </div>
         
-          <div class="card d-flex align-items-center" style="width: 350px;" *ngFor="let i of temp19">
+          <div class="card d-flex align-items-center" style="width: 350px;">
             
             <div class="card-body mt-3 mr-auto " >
                 <h3 class="text-center">19:00</h3>
-                <img *ngIf="i.temperature >= 30" class="card-img-top rounded-circle taicard" src="../../assets/19hh.jpeg" alt="Card image cap">
-                <img *ngIf="i.temperature >= 24" class="card-img-top rounded-circle taicard" src="../../assets/19h.jpeg" alt="Card image cap">
-                <img *ngIf="i.temperature == 0" class="card-img-top rounded-circle taicard" src="../../assets/téléchargement (2).jpeg" alt="Card image cap">
+                <div>
+                <img *ngIf="t19 >= 30; else archive;" class="card-img-top rounded-circle taicard" src="../../assets/19hh.jpeg" alt="Card image cap">
+                <img *ngIf="t19 >= 24" class="card-img-top rounded-circle taicard" src="../../assets/19h.jpeg" alt="Card image cap">               
+                <ng-template #archive>
+                  <img class="card-img-top rounded-circle taicard" src="../../assets/téléchargement (2).jpeg" alt="Card image cap">
+                </ng-template> 
+                </div>
+                <div class="centered">{{t19}}°C</div>
               <h5 class="card-title">Card title</h5>
-              <div class="centered">{{i.temperature}}°C</div>
-              <h3 class="text-center">HUMIDITE : {{i.humidite}}%</h3>
+              
+              <h3 class="text-center">HUMIDITE : {{h19}}%</h3>
              
             </div>
           </div>

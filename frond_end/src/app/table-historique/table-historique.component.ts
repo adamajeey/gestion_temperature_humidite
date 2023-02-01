@@ -26,10 +26,10 @@ export class TableHistoriqueComponent implements OnInit{
  dethierr: any;
  moyTemp!: number;
  moyHum!: number;
- searchText!: string;
- itemsperpage: number =7; 
- p: number = 1;
- show:boolean = false;
+searchText!: string;
+itemsperpage: number =13;
+p: number = 1;
+show:boolean = false;
 
 
 	constructor(private serServe :UsersService) { }// importation du service 
