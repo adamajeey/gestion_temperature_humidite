@@ -100,17 +100,11 @@ export class InscrptionComponent implements OnInit {
       etat: true,
       img: this.imgSelected
     }
-
-
-
-
     this.userService.addUsers(user).subscribe(
       data => {
         this.spin = false;
         this.simpleAlert()
         window.location.reload();
-
-
       },
       /*controle email*/
       error => {
@@ -123,11 +117,8 @@ export class InscrptionComponent implements OnInit {
           this.imgHeight = true;
         setTimeout(() => { this.imgHeight = false }, 3001);
       }
-
-
     );
-
-  }
+}
 
   onFileSelected(event: any) {
     let reader = new FileReader();
