@@ -73,8 +73,9 @@ this.spin = true
           this.spin = true
       } 
     }, 
+
+      /* Verification si l'utilisateur est dans la base de donnees ou il est archivé */
     error=>{
-     /*  console.log(error) */
      console.log(error)
       if(error == 'Unauthorized'){
         this.errorSms ='Cette utilisateur est archivé'
