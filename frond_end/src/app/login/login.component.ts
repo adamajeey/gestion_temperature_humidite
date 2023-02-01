@@ -73,18 +73,18 @@ this.spin = true
           this.spin = true
       } 
     }, 
-
-      /* Verification si l'utilisateur est dans la base de donnees ou il est archivé */
+    /* verifie si l'utilisateur n'est pas dans la base de donnée ou l'utilisateur est archiver */
     error=>{
+  
      console.log(error)
       if(error == 'Unauthorized'){
         this.errorSms ='Cette utilisateur est archivé'
         this.spin = false
-        setTimeout(()=>{ this.errorSms = false}, 3000); 
+        setTimeout(()=>{ this.errorSms = false}, 3001); 
       }else {
       this.errorSms ='Vous  etes pas dans la base de données'
       this.spin = false
-      setTimeout(()=>{ this.errorSms = false}, 3000); 
+      setTimeout(()=>{ this.errorSms = false}, 3001); 
     }
     }
    );
