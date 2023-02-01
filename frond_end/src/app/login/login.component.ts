@@ -88,6 +88,5 @@ this.spin = true
     }
     }
    );
-
 }
 }
