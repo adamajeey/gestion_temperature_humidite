@@ -252,20 +252,16 @@ getUserData(id:any,email:any,prenom:any,nom:any){
   console.log(this.image)
 }
 
-
+/* fonction pour modifier le profil d'un utilisateur */
 modifUsers (){
   const id =  this.userEditForm.value.id;
   for (const iterator of this.users) {
-
-  this.simpleAlert()
     this.submitted = true
     this.spin = true
-
-   if(this.userEditForm.invalid){
+if(this.userEditForm.invalid){
     this.spin = false
     return ;
   }
-  
   console.log(iterator.email  )
   if(iterator.email == this.userEditForm.value.email && iterator._id != id){
     this.emailExiste = "Email existe déjà";
@@ -275,20 +271,15 @@ modifUsers (){
     return;
   }
 }
-
  const user ={
   nom : this.userEditForm.value.nom,
   prenom: this.userEditForm.value.prenom,
   email: this.userEditForm.value.email
  }
- 
- this.userService.changeRole(id,user).subscribe(
-   
+ this.userService.changeRole(id,user).subscribe( 
    data=>{
-
     this.ngOnInit();
-    this.showForm = false
-    
+    this.showForm = false 
   },
   error =>{
     console.log(error )
@@ -340,7 +331,6 @@ modifUsers (){
 modifUsersPassword(){
 
   const id = this.userEditForm.value.id;
-  this.simpleAlert()
     this.submitted = true
     this.spin = true
     
@@ -348,20 +338,13 @@ modifUsersPassword(){
     this.spin = false
     return ;
   }
-
-  const user = {
-    // photo: this.userEditForm.value.photo,
+const user = {
     password: this.userEditForm.value.password,
-    // password2: this.userEditForm.value.password2
   }
-
   this.userService.changeRole(id,user).subscribe(
-
-    data => {
-    
+data => {
       this.ngOnInit();
       this.showFormPass = false
-
     },
     error =>{
       console.log(error )
@@ -375,8 +358,8 @@ modifUsersPassword(){
 /* controler les deux mots de passe */
  checkPassword = () => {
 
-  let pass1 = this.userEditForm.value.password//(<HTMLInputElement>document.getElementById("pass1")).value;
-  let pass2 = this.userEditForm.value.password2//(<HTMLInputElement>document.getElementById("pass2")).value;
+  let pass1 = this.userEditForm.value.password
+  let pass2 = this.userEditForm.value.password2
 
   console.log(pass1 != pass2)
 
