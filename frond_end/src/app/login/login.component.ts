@@ -68,16 +68,14 @@ this.spin = true
   this.userService.getConnexion(user).subscribe(
     data=>{
       console.log(data)
-      if (data.data?.roles.replace(/['"]+/g, '') == "Admin" || data.data?.roles.replace(/['"]+/g, '') == "admin") {
+      if (data.data?.roles.replace(/['"]+/g, '') == "Admin" || data.data?.roles.replace(/['"]+/g, '') == "Utilisateur") {
           this.route.navigateByUrl('acceuil')
           this.spin = true
-      } else {
-        this.route.navigateByUrl('acceuil')
-        this.spin = true
-      }
+      } 
     }, 
+
+      /* Verification si l'utilisateur est dans la base de donnees ou il est archivé */
     error=>{
-     /*  console.log(error) */
      console.log(error)
       if(error == 'Unauthorized'){
         this.errorSms ='Cette utilisateur est archivé'
@@ -90,6 +88,5 @@ this.spin = true
     }
     }
    );
-
 }
 }

@@ -17,15 +17,63 @@ export class TableHistoriqueComponent implements OnInit{
   public message$: BehaviorSubject<string> = new BehaviorSubject('');
 
  temphum!: Temphum[] ;
+ temp! :any [];
+ currentDate!: any;
+ temp8: any;
+ temp12: any;
+ temp19: any;
+ temp20: any;
+ dethier1: any;
+
+
+  dethierr: any;
+ moyTemp!: number;
+ moyHum!: number;
+searchText!: string;
+itemsperpage: number =7;
+p: number = 1;
+show:boolean = false;
 
 
 	constructor(private serServe :UsersService) { }
   ngOnInit()  {
+   
+
     this.serServe.historique().subscribe((data)=>{
-      console.log(data);
+      //console.log(data);
+     this.currentDate = new Date().getDate() + '/' + new Date().getMonth() +1 + '/'+  new Date().getFullYear();
+     this.dethier1 = new Date().getDate()-7 + '/' + new Date().getMonth() +1 + '/'+  new Date().getFullYear();
+    
+    
+     console.log(this.dethier1);
+      console.log(this.dethierr);
+     
      this.temphum = data as unknown as Temphum[];
-    console.log(this.temphum); 
+     this.temp8 = this.temphum.filter((e:any)=> e.Heure == "08:00:00" && e.Date == this.currentDate)
+     this.temp12 = this.temphum.filter((e:any)=> e.Heure == "12:00:00" && e.Date == this.currentDate)
+     this.temp19 = this.temphum.filter((e:any)=> e.Heure == "19:00:00" && e.Date == this.currentDate)
+     this.temp20 = this.temphum.filter((e:any)=> e.Heure == "08:00:00"   && e.Date > this.dethier1 && e.Date <= this.currentDate  && e.Date !== this.dethierr )
+     console.log(this.temp20);
+     
+    /*  this.temp20.forEach(function (temperature:any) {
+      console.log(temperature.temperature);
+    });  */
+
+    const t8 = this.temp8[0].temperature;
+    const h8 = this.temp8[0].humidite;
+    const t12 = this.temp12[0].temperature;
+    const h12 = this.temp12[0].humidite;
+    const t19 = this.temp19[0].temperature;
+    const h19 = this.temp19[0].humidite;
+
+    this.moyTemp = (parseInt(String(t8)) + parseInt(String(t12)) + parseInt(String(t19))) / 3;
+    this.moyHum = (parseInt(String(h8)) + parseInt(String(h12)) + parseInt(String(h19))) / 3;
+    
     })     
+     
+  }
+  public afficher():void{
+    this.show = !this.show;
   }
 }
 
