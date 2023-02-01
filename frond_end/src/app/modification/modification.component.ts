@@ -43,7 +43,7 @@ export class ModificationComponent {
         this.users = data;
 
         this.userActif = this.users.filter((e: any) => e.etat == true && e.email == this.emailUser)
-        console.log(this.userActif)
+      /*   console.log(this.userActif) */
       }
     );
 
@@ -56,18 +56,18 @@ export class ModificationComponent {
     for (const iterator of this.userActif) {
       id = iterator._id
     }
-    console.log(id)
+    /* console.log(id) */
     this.userEditForm = this.formBuilder.group({
       id: [id],
       password: ["", [Validators.required]],
       password2: ["", [Validators.required]],
     });
-    console.log(id)
+   /*  console.log(id) */
 
     this.image = localStorage.getItem('img')
     const imgRead = this.convertFile(<any>this.image?.replace(/['"]+/g, ''))
     this.img = this.sanitizer.bypassSecurityTrustResourceUrl(URL.createObjectURL(imgRead))
-    console.log(this.image)
+    /* console.log(this.image) */
  
 }
 
@@ -80,12 +80,12 @@ modifUsers(){
     password: this.userEditForm.value.password,
     // password2: this.userEditForm.value.password2
   }
-  console.log(user)
+ /*  console.log(user) */
 
   this.userService.modifUsers(id,user).subscribe(
 
     data => {
-      console.log(data)
+     /*  console.log(data) */
       this.userService.getLogOut();
       this.router.navigateByUrl('login')
     }
@@ -97,7 +97,7 @@ checkPassword = () => {
   let pass1 = this.userEditForm.value.password//(<HTMLInputElement>document.getElementById("pass1")).value;
   let pass2 = this.userEditForm.value.password2//(<HTMLInputElement>document.getElementById("pass2")).value;
 
-  console.log(pass1 != pass2)
+ /*  console.log(pass1 != pass2) */
 
   if (pass1 != pass2) {
     this.verifPass = true;

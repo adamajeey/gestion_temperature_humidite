@@ -33,11 +33,16 @@ export class LoginComponent implements OnInit {
       password:['',[Validators.required,Validators.minLength(8)]],
       
       })
+      this.meteoservice.onFetch().subscribe((data)=>{
+        /* console.log(data); */
+        
+      })
+     
 
       
       
       this.meteoservice.onFetchitem().subscribe((mute)=>{
-        console.log(mute);
+      /*   console.log(mute); */
         
       })
 
@@ -67,16 +72,16 @@ this.spin = true
   //Redirection apres la connexion
   this.userService.getConnexion(user).subscribe(
     data=>{
-      console.log(data)
-      if (data.data?.roles.replace(/['"]+/g, '') == "Admin" || data.data?.roles.replace(/['"]+/g, '') == "Utilisateur") {
+     /*  console.log(data) */
+      if (data.data?.roles.replace(/['"]+/g, '') == "Admin" || data.data?.roles.replace(/['"]+/g, '') == "admin") {
           this.route.navigateByUrl('acceuil')
           this.spin = true
       } 
     }, 
     /* verifie si l'utilisateur n'est pas dans la base de donnée ou l'utilisateur est archiver */
     error=>{
-  
-     console.log(error)
+     /*  console.log(error) */
+    /*  console.log(error) */
       if(error == 'Unauthorized'){
         this.errorSms ='Cette utilisateur est archivé'
         this.spin = false
