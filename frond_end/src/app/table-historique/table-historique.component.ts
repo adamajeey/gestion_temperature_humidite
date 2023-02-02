@@ -27,7 +27,7 @@ export class TableHistoriqueComponent implements OnInit{
  moyTemp!: number;
  moyHum!: number;
 searchText!: string;
-itemsperpage: number =13;
+itemsperpage: number =12;
 p: number = 1;
 show:boolean = false;
 
