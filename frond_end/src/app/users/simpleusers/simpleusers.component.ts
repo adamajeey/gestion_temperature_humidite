@@ -8,15 +8,17 @@ import { UsersService } from 'src/app/services/users.service';
   styleUrls: ['./simpleusers.component.css']
 })
 export class SimpleusersComponent implements OnInit {
+
 users:any;
 /* showForm: any; */
   /* userEditForm: FormGroup; */
 showForm = false; 
 p: number= 1;
-itemsperpage: number= 5;
+itemsperpage: number= 8;
 totalUser:any; 
 searchText:any;
 user:any;userActif:any;
+show:boolean = false;
   constructor(private userService : UsersService){}
 
   ngOnInit(): void {
@@ -29,5 +31,8 @@ user:any;userActif:any;
     }
   );
 
+}
+public afficher():void{
+  this.show = !this.show;
 }
 }

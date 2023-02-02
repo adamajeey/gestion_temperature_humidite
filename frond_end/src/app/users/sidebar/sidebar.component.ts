@@ -22,7 +22,7 @@ export const ROUTES: RouteInfo[] = [
 export const USERS: RouteInfo[] = [
   { path: '/acceuil', title: 'Dashboard',  icon: 'bi bi-speedometer2', class: '' },
   { path: '/profil', title: 'Profil',  icon:'bi bi-person-circle', class: '' },
-  { path: '/admin', title: 'Liste Active',  icon:'bi bi-table', class: '' },
+  { path: '/user', title: 'Liste Active',  icon:'bi bi-table', class: '' },
   //{ path: '/pageArchive', title: 'Liste Archive',  icon:'bi bi-table', class: '' },
   { path: '/table', title: 'Historique',  icon:'bi bi-collection', class: '' },
   //{ path: '/inscription', title: 'Inscription',  icon:'bi bi-people', class: '' }
