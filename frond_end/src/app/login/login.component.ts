@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UsersService } from 'src/app/services/users.service';
-/* import { Person } from './Person'; */
 import { SocketService } from '../meteo.service';
 import { io } from 'socket.io-client';
 
@@ -66,14 +65,12 @@ this.spin = true
    password: this.registerForm.value. password,
   
   }
-
-  // console.log(user)
   
   //Redirection apres la connexion
   this.userService.getConnexion(user).subscribe(
     data=>{
      /*  console.log(data) */
-      if (data.data?.roles.replace(/['"]+/g, '') == "Admin" || data.data?.roles.replace(/['"]+/g, '') == "admin") {
+      if (data.data?.roles.replace(/['"]+/g, '') == "Admin" || data.data?.roles.replace(/['"]+/g, '') == "Utilisateur") {
           this.route.navigateByUrl('acceuil')
           this.spin = true
       } 
