@@ -31,7 +31,7 @@
                 <p class="text-dark">{{user.nom}}</p>
               </h2>
               <!-- pour modifier profil -->
-              <div ng="let user of userActif">
+              <div ng="let user of userActif" *ngIf="user.roles == 'Admin'">
                 <span class="btn btn-outline-dark rounded-5" title="modifier_Profil">
                   <!-- get pour recuperer des objets email,nom etc dans la table d'objet -->
                <button (click)="getUserData(user._id,user.email,user.prenom,user.nom)" class="rounded-5" >

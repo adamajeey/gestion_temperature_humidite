@@ -19,7 +19,9 @@ totalUser:any;
 searchText:any;
 user:any;userActif:any;
 show:boolean = false;
-  constructor(private userService : UsersService){}
+  constructor(private userService : UsersService){
+    
+  }
 
   ngOnInit(): void {
   this.userService.getUsers().subscribe( /* déclarer le service getusers */
