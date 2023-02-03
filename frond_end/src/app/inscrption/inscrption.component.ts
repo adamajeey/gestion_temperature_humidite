@@ -22,6 +22,7 @@ export class InscrptionComponent implements OnInit {
   errorMsg: any;
   spin = false;
   imgHeight = false;
+  roles: string | null;
 
   //Validation formulaire en temps reel
   constructor(private userService: UsersService, private formBuilder: FormBuilder, private router: Router) {
@@ -45,6 +46,11 @@ export class InscrptionComponent implements OnInit {
       password: ['', [Validators.required, Validators.minLength(8)]],
       passwordc: ['', Validators.required]
     })
+    this.roles = localStorage.getItem('roles');
+    if (this.roles !="admin") {
+      this.router.navigateByUrl('acceuil')
+      
+    }
   }
 
   //Receperation et verification des deux mots de passe

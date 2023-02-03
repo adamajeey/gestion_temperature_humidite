@@ -65,7 +65,11 @@ ngOnInit(): void {
         
       }
 ); 
-this.roles = localStorage.getItem('role');
+this.roles = localStorage.getItem('roles');
+if (this.roles !="admin") {
+  this.router.navigateByUrl('acceuil')
+  
+}
 
 }
 
