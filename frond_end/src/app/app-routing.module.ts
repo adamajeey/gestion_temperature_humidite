@@ -13,6 +13,7 @@ import { DiagrammeComponent } from './diagramme/diagramme.component';
 import { TableHistoriqueComponent } from './table-historique/table-historique.component';
 import { MenuComponent } from './menu/menu.component';
 import { AuthGuard } from "./services/user.guard";
+import { Auth1Guard } from "./services/user1.guard";
 
 const routes: Routes = [
 {path: "pageArchive" , component: UtilisateurComponent, canActivate: [AuthGuard]},
@@ -20,7 +21,7 @@ const routes: Routes = [
 {path: "profil", component: ProfilComponent, canActivate: [AuthGuard]},
 {path: "user", component: SimpleusersComponent, canActivate: [AuthGuard]},
 {path:"acceuil", component: AccueilDashboardComponent, canActivate: [AuthGuard]},
-{path:"inscription", component: InscrptionComponent, canActivate: [AuthGuard]},
+{path:"inscription", component: InscrptionComponent, canActivate: [Auth1Guard]},
 {path:"login", component: LoginComponent},
 {path:"sides", component: SidebarComponent},
 {path:"", component: LoginComponent},
@@ -28,7 +29,8 @@ const routes: Routes = [
 {path:"table", component: TableHistoriqueComponent, canActivate: [AuthGuard]},
 {path:"sides", component: SidebarComponent, canActivate: [AuthGuard]},
 {path:"menu", component: MenuComponent, canActivate: [AuthGuard]},
-{ path: '', redirectTo: '/login', pathMatch: 'full' },
+{path: '', redirectTo: '/login', pathMatch: 'full'},
+{path: '**', redirectTo: '/login' },
 {path:"modification", component: ModificationComponent, canActivate: [AuthGuard]},
 
 

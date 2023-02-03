@@ -6,7 +6,7 @@ import { UsersService } from './users.service';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthGuard implements CanActivate {
+export class Auth1Guard implements CanActivate {
   constructor(
     public authService: UsersService,
     public router: Router
@@ -16,15 +16,15 @@ export class AuthGuard implements CanActivate {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-    if (this.authService.isLoggedIn !== true) {
-      window.alert("Accès non autorisé!");
-      this.authService.getLogOut();
-      this.router.navigate(['login'])
+    if (localStorage.getItem('role') === "Utilisateur") {
+      //window.alert("Accès non autorisé!");
+      //this.authService.getLogOut();
+      this.router.navigate(['acceuil'])
     }
-    else if(this.authService.isLoggedIn === true && localStorage.getItem("role") === "Utilisateur"){
+    /* else if(this.authService.isLoggedIn === true && localStorage.getItem("role") === "Utilisateur"){
       window.alert("Accès non autorisé!");
       this.router.navigate(['login'])
-    }
+    } */
     return true;
   }
 }

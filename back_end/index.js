@@ -57,7 +57,7 @@ var port = new SerialPort({ path:'/dev/ttyUSB0',
     flowControl: false
 }); 
 
-/* var parser = port.pipe(new ReadlineParser({ delimiter: '\r\n' })); */
+var parser = port.pipe(new ReadlineParser({ delimiter: '\r\n' })); 
 
 /* port.pipe(parser); */
 var url = "mongodb+srv://MamySy:mamy@cluster0.qwexmvm.mongodb.net/";
@@ -77,15 +77,15 @@ io.on('connection', function(socket) {
 
 
 
-/* parser.on('data', function(data) { */
-    
+parser.on('data', function(data) { 
+    console.log(data);
     //console.log('les information sont: ' + data);
-    /* temp = data.split('/');
+    temp = data.split('/');
     var temperature = data.slice(0, 2); //decoupe de la temperature
     var humidite = data.slice(3, 5); //decoupe de l'humidite
     //console.log(data.split('/'));
     io.emit('data', {"temperature": temperature, "humidite": humidite});
-    var datHeure = new Date(); */
+    //var datHeure = new Date();
    /*  var min = datHeure.getMinutes();
     var heur = datHeure.getHours(); //heure
     var sec = datHeure.getSeconds(); //secondes
@@ -120,10 +120,12 @@ io.on('connection', function(socket) {
                 db.close();
             });
         })
-    } //Fin if
+    } //Fin if*/
+    port.write(temoin);
+    
 }
     
-/* ); */
+); 
 
 
 

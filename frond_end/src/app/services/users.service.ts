@@ -15,10 +15,10 @@ export class UsersService {
 
   constructor(private httpClient:HttpClient, private router: Router) {
     this.currentUserSubject = new BehaviorSubject<User>(JSON.parse((localStorage.getItem('currentUser')!)));
-    if (this.currentUserSubject.value == null) {
+    /* if (this.currentUserSubject.value == null) {
       this.getLogOut();
       this.router.navigateByUrl('login');
-    }
+    } */
   }
 
   public get currentUserValue(): User {

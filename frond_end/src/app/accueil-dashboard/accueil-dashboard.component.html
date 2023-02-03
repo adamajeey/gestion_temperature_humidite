@@ -81,8 +81,8 @@
             <div class="card-body  mt-3 mr-auto">
                 <h3 class="text-center">08:00</h3>
                 <div>
-                <img *ngIf="t8 >= 30; else archive;" class="card-img-top rounded-circle taicard" src="../../assets/8hh.jpeg" alt="Card image cap">
-                <img *ngIf="t8 >= 24" class="card-img-top rounded-circle taicard" src="../../assets/8hh.jpeg" alt="Card image cap">
+                <img *ngIf="t8 >= 30" class="card-img-top rounded-circle taicard" src="../../assets/8hh.jpeg" alt="Card image cap">
+                <img *ngIf="t8 >= 24 ; else archive;" class="card-img-top rounded-circle taicard" src="../../assets/8hh.jpeg" alt="Card image cap">
                 <ng-template #archive>
                   <img class="card-img-top rounded-circle taicard" src="../../assets/téléchargement (2).jpeg" alt="Card image cap">
                 </ng-template> 
@@ -98,8 +98,8 @@
             <div class="card-body mt-3 mr-auto">
                 <h3 class="text-center">12:00</h3>
                 <div>
-                  <img *ngIf="t12 >= 30 ; else archive;" class="card-img-top rounded-circle taicard" src="../../assets/12hh.jpeg" alt="Card image cap">
-                  <img *ngIf="t12 >= 24" class="card-img-top rounded-circle taicard" src="../../assets/12h.jpeg" alt="Card image cap">
+                  <img *ngIf="t12 >= 30" class="card-img-top rounded-circle taicard" src="../../assets/12hh.jpeg" alt="Card image cap">
+                  <img *ngIf="t12 >= 24 ; else archive;" class="card-img-top rounded-circle taicard" src="../../assets/12hh.jpeg" alt="Card image cap">
                   <ng-template #archive>
                     <img class="card-img-top rounded-circle taicard" src="../../assets/téléchargement (2).jpeg" alt="Card image cap">
                   </ng-template> 
@@ -117,8 +117,8 @@
             <div class="card-body mt-3 mr-auto " >
                 <h3 class="text-center">19:00</h3>
                 <div>
-                <img *ngIf="t19 >= 30; else archive;" class="card-img-top rounded-circle taicard" src="../../assets/19hh.jpeg" alt="Card image cap">
-                <img *ngIf="t19 >= 24" class="card-img-top rounded-circle taicard" src="../../assets/19h.jpeg" alt="Card image cap">               
+                <img *ngIf="t19 >= 30" class="card-img-top rounded-circle taicard" src="../../assets/19hh.jpeg" alt="Card image cap">
+                <img *ngIf="t19 >= 24 ; else archive;" class="card-img-top rounded-circle taicard" src="../../assets/19h.jpeg" alt="Card image cap">               
                 <ng-template #archive>
                   <img class="card-img-top rounded-circle taicard" src="../../assets/téléchargement (2).jpeg" alt="Card image cap">
                 </ng-template> 

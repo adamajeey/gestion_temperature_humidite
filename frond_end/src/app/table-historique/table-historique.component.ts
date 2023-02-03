@@ -52,7 +52,7 @@ show:boolean = false;
      this.temp8 = this.temphum.filter((e:any)=> e.Heure == "08:00:00" && e.Date == this.currentDate)
      this.temp12 = this.temphum.filter((e:any)=> e.Heure == "12:00:00" && e.Date == this.currentDate)
      this.temp19 = this.temphum.filter((e:any)=> e.Heure == "19:00:00" && e.Date == this.currentDate)
-     this.temp20 = this.temphum.filter((e:any)=> e.Heure == "08:00:00"   && e.Date > this.dethier1 && e.Date <= this.currentDate  && e.Date !== this.dethierr )
+     this.temp20 = this.temphum.filter((e:any)=> e.Heure == "08:00:00"   && e.Date > this.dethier1 && e.Date < this.currentDate  && e.Date !== this.dethierr )
      console.log(this.temp20);
      
     /*  this.temp20.forEach(function (temperature:any) {
