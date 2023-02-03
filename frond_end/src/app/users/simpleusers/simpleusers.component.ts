@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { UsersService } from 'src/app/services/users.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-simpleusers',
@@ -19,7 +20,9 @@ totalUser:any;
 searchText:any;
 user:any;userActif:any;
 show:boolean = false;
-  constructor(private userService : UsersService){
+  roles: any;
+ 
+  constructor(private userService : UsersService, private router: Router){
     
   }
 
@@ -32,6 +35,13 @@ show:boolean = false;
      
     }
   );
+  this.roles = localStorage.getItem('role');
+  console.log(this.roles.includes('Utilisateur'));
+
+if (!this.roles.includes('Utilisateur')) {
+  this.router.navigateByUrl('acceuil')
+  
+}
 
 }
 public afficher():void{

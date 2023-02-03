@@ -65,8 +65,10 @@ ngOnInit(): void {
         
       }
 ); 
-this.roles = localStorage.getItem('roles');
-if (this.roles !="admin") {
+this.roles = localStorage.getItem('role');
+console.log(this.roles.includes('Admin'));
+
+if (!this.roles.includes('Admin')) {
   this.router.navigateByUrl('acceuil')
   
 }

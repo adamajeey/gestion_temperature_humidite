@@ -22,7 +22,7 @@ export class InscrptionComponent implements OnInit {
   errorMsg: any;
   spin = false;
   imgHeight = false;
-  roles: string | null;
+  roles: any;
 
   //Validation formulaire en temps reel
   constructor(private userService: UsersService, private formBuilder: FormBuilder, private router: Router) {
@@ -46,8 +46,10 @@ export class InscrptionComponent implements OnInit {
       password: ['', [Validators.required, Validators.minLength(8)]],
       passwordc: ['', Validators.required]
     })
-    this.roles = localStorage.getItem('roles');
-    if (this.roles !="admin") {
+    this.roles = localStorage.getItem('role');
+    console.log(this.roles.includes('Admin'));
+
+    if (!this.roles.includes('Admin')) {
       this.router.navigateByUrl('acceuil')
       
     }
