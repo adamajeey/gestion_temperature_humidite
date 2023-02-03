@@ -29,7 +29,9 @@ const routes: Routes = [
 {path:"sides", component: SidebarComponent, canActivate: [AuthGuard]},
 
 { path: '', redirectTo: '/login', pathMatch: 'full' },
+/* { path: '**', redirectTo: '/accueil' }, */
 {path:"modification", component: ModificationComponent, canActivate: [AuthGuard]},
+
 
 
 
